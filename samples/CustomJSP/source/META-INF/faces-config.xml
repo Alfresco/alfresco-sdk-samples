@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE faces-config PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.1//EN"
+                              "http://java.sun.com/dtd/web-facesconfig_1_1.dtd">
+<faces-config>
+
+   <navigation-rule>
+      <from-view-id>/jsp/*</from-view-id>
+      <navigation-case>
+         <from-outcome>showDocDetails</from-outcome>
+         <to-view-id>/jsp/extension/document-details.jsp</to-view-id>
+      </navigation-case>
+   </navigation-rule>
+   
+   <navigation-rule>
+      <from-view-id>/jsp/extension/document-details.jsp</from-view-id>
+      <navigation-case>
+         <from-outcome>checkoutFile</from-outcome>
+         <to-view-id>/jsp/dialog/checkout-file.jsp</to-view-id>
+      </navigation-case>
+      <navigation-case>
+         <from-outcome>checkinFile</from-outcome>
+         <to-view-id>/jsp/dialog/checkin-file.jsp</to-view-id>
+      </navigation-case>
+      <navigation-case>
+         <from-outcome>undoCheckoutFile</from-outcome>
+         <to-view-id>/jsp/dialog/undocheckout-file.jsp</to-view-id>
+      </navigation-case>
+      <navigation-case>
+         <from-outcome>updateFile</from-outcome>
+         <to-view-id>/jsp/dialog/update-file.jsp</to-view-id>
+      </navigation-case>
+      <navigation-case>
+         <from-outcome>deleteFile</from-outcome>
+         <to-view-id>/jsp/dialog/delete-file.jsp</to-view-id>
+      </navigation-case>
+      <navigation-case>
+         <from-outcome>editFile</from-outcome>
+         <to-view-id>/jsp/dialog/edit-file.jsp</to-view-id>
+      </navigation-case>
+      <navigation-case>
+         <from-outcome>editHtmlInline</from-outcome>
+         <to-view-id>/jsp/dialog/edit-html-inline.jsp</to-view-id>
+      </navigation-case>
+      <navigation-case>
+         <from-outcome>editTextInline</from-outcome>
+         <to-view-id>/jsp/dialog/edit-text-inline.jsp</to-view-id>
+      </navigation-case>
+      <navigation-case>
+         <from-outcome>editSimpleWorkflow</from-outcome>
+         <to-view-id>/jsp/dialog/edit-simple-workflow.jsp</to-view-id>
+      </navigation-case>
+      <navigation-case>
+         <from-outcome>editCategories</from-outcome>
+         <to-view-id>/jsp/dialog/edit-category.jsp</to-view-id>
+      </navigation-case>
+      <navigation-case>
+         <from-outcome>createAction</from-outcome>
+         <to-view-id>/jsp/wizard/create-action/action.jsp</to-view-id>
+      </navigation-case>
+      <navigation-case>
+         <from-outcome>previewContent</from-outcome>
+         <to-view-id>/jsp/dialog/preview-file.jsp</to-view-id>
+      </navigation-case>
+      <navigation-case>
+         <from-outcome>showForum</from-outcome>
+         <to-view-id>/jsp/forums/forum.jsp</to-view-id>
+      </navigation-case>
+      <navigation-case>
+         <from-outcome>manageContentUsers</from-outcome>
+         <to-view-id>/jsp/roles/manage-content-users.jsp</to-view-id>
+      </navigation-case>
+      <navigation-case>
+         <from-outcome>applyTemplate</from-outcome>
+         <to-view-id>/jsp/dialog/apply-doc-template.jsp</to-view-id>
+      </navigation-case>
+   </navigation-rule>
+   
+   <navigation-rule>
+      <from-view-id>/jsp/dialog/edit-simple-workflow.jsp</from-view-id>
+      <navigation-case>
+         <from-outcome>cancel</from-outcome>
+         <to-view-id>/jsp/extension/document-details.jsp</to-view-id>
+      </navigation-case>
+      <navigation-case>
+         <from-outcome>finish</from-outcome>
+         <to-view-id>/jsp/extension/document-details.jsp</to-view-id>
+      </navigation-case>
+   </navigation-rule>
+   
+   <navigation-rule>
+      <from-view-id>/jsp/dialog/edit-category.jsp</from-view-id>
+      <navigation-case>
+         <from-outcome>cancel</from-outcome>
+         <to-view-id>/jsp/extension/document-details.jsp</to-view-id>
+      </navigation-case>
+      <navigation-case>
+         <from-outcome>finish</from-outcome>
+         <to-view-id>/jsp/extension/document-details.jsp</to-view-id>
+      </navigation-case>
+   </navigation-rule>
+
+</faces-config>

@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE beans PUBLIC '-//SPRING//DTD BEAN//EN' 'http://www.springframework.org/dtd/spring-beans.dtd'>
+
+<beans>
+
+   <!-- Tag Action Bean -->
+   <bean id="tag" class="org.alfresco.sample.TagActionExecuter" parent="action-executer" >
+      <property name="nodeService">
+         <ref bean="nodeService" />
+      </property>
+   </bean>
+   
+   <!-- Load the Tag Action Messages -->
+   <bean id="tag-action-messages" class="org.alfresco.i18n.ResourceBundleBootstrapComponent">
+      <property name="resourceBundles">
+         <list>
+            <value>org.alfresco.sample.tag-action-messages</value>
+         </list>
+      </property>
+   </bean>
+   
+   <!-- Tag Model Registration -->
+   <bean id="tags.dictionaryBootstrap" parent="dictionaryModelBootstrap" depends-on="dictionaryBootstrap">
+        <property name="models">
+            <list>
+                <value>alfresco/extension/tagsModel.xml</value>
+            </list>
+        </property>
+    </bean>
+
+</beans>

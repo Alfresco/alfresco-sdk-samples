@@ -1,0 +1,15 @@
+<alfresco-config>
+
+   <config evaluator="aspect-name" condition="tag:taggable">
+      <property-sheet>
+         <show-property name="tag:tags" />
+      </property-sheet>
+   </config>
+   
+   <config evaluator="string-compare" condition="Action Wizards">
+      <action-handlers>
+         <handler name="tag" class="org.alfresco.sample.TagActionHandler" />
+      </action-handlers>
+   </config>
+
+</alfresco-config>

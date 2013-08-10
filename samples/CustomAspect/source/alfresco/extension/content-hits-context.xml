@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE beans PUBLIC '-//SPRING//DTD BEAN//EN' 'http://www.springframework.org/dtd/spring-beans.dtd'>
+ 
+<beans>
+	
+	 <!-- Registration of new models -->	
+    <bean id="contentHits.dictionaryBootstrap" parent="dictionaryModelBootstrap" depends-on="dictionaryBootstrap">
+        <property name="models">
+            <list>
+                <value>org/alfresco/sample/contentHitsModel.xml</value>
+            </list>
+        </property>
+    </bean>
+      
+    <!-- ContentHits Aspect Behaviour Bean -->
+    <bean id="contentHitsAspect" class="org.alfresco.sample.ContentHitsAspect" init-method="init">
+    	<property name="nodeService">
+    		<ref bean="nodeService"/>
+    	</property>
+        <property name="tenantService">
+            <ref bean="tenantService"/>
+        </property>
+    	<property name="policyComponent">
+    		<ref bean="policyComponent"/>
+    	</property>
+        <property name="policyFilter">
+            <ref bean="policyBehaviourFilter"/>
+        </property>
+    	<property name="transactionService">
+    		<ref bean="transactionService"/>
+    	</property>
+    	<property name="threadExecuter">
+         <ref bean="defaultAsyncThreadPool"/>
+    	</property>
+    </bean>  
+      
+</beans>

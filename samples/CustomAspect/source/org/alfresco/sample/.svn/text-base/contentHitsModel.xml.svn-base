@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Definition of new Model -->
+<model name="ch:mynewmodel" xmlns="http://www.alfresco.org/model/dictionary/1.0">
+
+   <!-- Optional meta-data about the model -->   
+   <description>ContentHits Model</description>
+   <author>Roy Wetherall</author>
+   <version>1.0</version>
+
+   <!-- Imports are required to allow references to definitions in other models -->   
+   <imports>
+   	  <!-- Import Alfresco Dictionary Definitions -->
+      <import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d"/>
+      <!-- Import Alfresco Content Domain Model Definitions -->
+      <import uri="http://www.alfresco.org/model/content/1.0" prefix="cm"/>
+   </imports>
+
+   <!-- Introduction of new namespaces defined by this model -->
+   <!-- NOTE: The following namespace my.new.model should be changed to reflect your own namespace -->
+   <namespaces>
+      <namespace uri="extension.contenthits" prefix="ch"/>
+   </namespaces>
+  
+    <aspects>
+      
+      <!-- Definition of new Content Aspects: Content Hits -->
+      <aspect name="ch:contentHits">
+      	<title>Content Hits</title>
+      	<properties>      	
+      		<property name="ch:countStartedDate">
+      			<type>d:date</type>
+      			<mandatory>true</mandatory>
+      		</property>
+      		<property name="ch:updateCount">
+      			<type>d:int</type>
+      			<default>0</default>
+      		</property>
+      		<property name="ch:readCount">
+      			<type>d:int</type>
+      			<default>0</default>
+      		</property>
+      	</properties>
+      </aspect>
+      
+   </aspects>
+   
+</model>

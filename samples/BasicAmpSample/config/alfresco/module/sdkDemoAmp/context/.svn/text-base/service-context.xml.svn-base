@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE beans PUBLIC '-//SPRING//DTD BEAN//EN' 'http://www.springframework.org/dtd/spring-beans.dtd'>
+
+<beans>
+    
+    <!-- A simple class that is initialized by Spring -->
+    <bean id="sdk.demoAmp.exampleBean" class="org.alfresco.module.sdkdemoamp.Demo" init-method="init" />
+    
+    <!-- A simple module component that will be executed once -->
+    <bean id="sdk.demoAmp.exampleComponent" class="org.alfresco.module.sdkdemoamp.DemoComponent" parent="module.baseComponent" >
+        <property name="moduleId" value="sdkDemoAmp" />  <!-- See module.properties -->
+        <property name="name" value="exampleComponent" />
+        <property name="description" value="A demonstration component" />
+        <property name="sinceVersion" value="1.0" />
+        <property name="appliesFromVersion" value="1.0" />
+    </bean>
+    
+</beans>

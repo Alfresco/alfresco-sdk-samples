@@ -1,0 +1,29 @@
+<alfresco-config>
+
+   <config>
+      <actions>
+         <!-- Launch Add Aspect Dialog -->
+         <action id="add_aspect">
+            <label>Add Aspect</label>
+            <image>/images/icons/add.gif</image>
+            <action>dialog:addAspect</action>
+            <action-listener>#{BrowseBean.setupSpaceAction}</action-listener>
+            <params>
+               <param name="id">#{actionContext.id}</param>
+            </params>
+         </action>
+         
+         <!-- Add action to more actions menu for each space -->
+         <action-group id="space_browse_menu">
+            <action idref="add_aspect" />
+         </action-group>
+      </actions>
+      
+      <dialogs>
+         <dialog name="addAspect" page="/jsp/extension/add-aspect.jsp" managed-bean="AddAspectDialog"
+                 icon="/images/icons/add_content_large.gif" title="Add Aspect" 
+                 description="Adds an aspect to the selected node" />
+      </dialogs>
+   </config>
+
+</alfresco-config>

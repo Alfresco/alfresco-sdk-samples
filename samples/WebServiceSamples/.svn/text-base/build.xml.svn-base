@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<project name="Web Service Samples" default="compile" basedir=".">
+	
+	<property name="project.dir" value="."/>
+	<property name="build.dir" value="${project.dir}/build"/>
+	
+   <path id="class.path">
+      <dirset dir="${build.dir}" />
+      <fileset dir="../../lib/remote" includes="**/*.jar"/>
+   </path>
+   
+   <target name="compile">
+      <mkdir dir="${build.dir}" />
+      <javac classpathref="class.path" srcdir="${project.dir}/source" destdir="${build.dir}" />
+   </target>
+	
+</project>	

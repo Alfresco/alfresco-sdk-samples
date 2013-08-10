@@ -1,0 +1,9 @@
+<alfresco-config>
+
+   <config>
+      <client>
+         <login-page>/jsp/extension/login.jsp</login-page>
+      </client>
+   </config>
+
+</alfresco-config>

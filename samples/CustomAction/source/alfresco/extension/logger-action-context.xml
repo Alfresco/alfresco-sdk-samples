@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE beans PUBLIC '-//SPRING//DTD BEAN//EN' 'http://www.springframework.org/dtd/spring-beans.dtd'>
+ 
+<beans>
+      
+    <!-- Logger Action Bean -->
+    <bean id="logger-action" class="org.alfresco.sample.LoggerActionExecuter" parent="action-executer"/>
+   
+   	<!-- Load the Logger Action Messages -->   
+   	<bean id="logger-action-messages" class="org.alfresco.i18n.ResourceBundleBootstrapComponent">
+    	<property name="resourceBundles">
+    		<list>
+    			<value>org.alfresco.sample.logger-action-messages</value>
+    		</list>
+    	</property>
+   	</bean>
+      
+</beans>

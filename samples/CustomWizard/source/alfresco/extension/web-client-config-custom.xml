@@ -1,0 +1,51 @@
+<alfresco-config>
+
+   <config>
+      <wizards>
+         <wizard name="createContent" managed-bean="CustomCreateContentWizard"
+                 title-id="custom_create_content_wizard_title" 
+                 description-id="create_content_desc"
+                 icon="/images/icons/new_content_large.gif">
+            <step name="details" title-id="details" description-id="create_content_step1_desc">
+               <page path="/jsp/content/create-content-wizard/details.jsp" 
+                     title-id="create_content_step1_title"
+                     description-id="create_content_step1_desc"
+                     instruction-id="default_instruction" />
+            </step>
+            <step name="content" title-id="enter_content" description-id="create_content_step2_desc">
+               <condition if="#{CreateContentWizard.mimeType == 'text/html'}">
+                  <page path="/jsp/content/create-content-wizard/create-html.jsp"
+                        title-id="create_content_step2_title"
+                        description-id="create_content_step2_desc"
+                        instruction-id="default_instruction" />
+               </condition>
+               <!-- Default to the inline text editor -->
+               <page path="/jsp/content/create-content-wizard/create-text.jsp"
+                     title-id="create_content_step2_title"
+                     description-id="create_content_step2_desc"
+                     instruction-id="default_instruction" />
+            </step>
+            <step name="aspect" title-id="select_aspect" description-id="create_content_step3_desc">
+               <page path="/jsp/extension/select-aspect.jsp" 
+                     title-id="create_content_step3_title"
+                     description-id="create_content_step3_desc"
+                     instruction-id="default_instruction" />
+            </step>
+            <step name="summary" title-id="summary" description-id="summary_step_description">
+               <page path="/jsp/wizard/summary.jsp"
+                     title-id="summary"
+                     description-id="summary_desc"
+                     instruction-id="content_finish_instruction" />
+            </step>
+         </wizard>
+      </wizards>
+   </config>
+
+   <config evaluator="string-compare" condition="Content Wizards">
+      <aspects>
+         <aspect name="dublincore"/>
+         <aspect name="effectivity"/>
+      </aspects>
+   </config>
+
+</alfresco-config>

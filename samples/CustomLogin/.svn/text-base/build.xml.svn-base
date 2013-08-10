@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+
+<project name="Custom Login Build File" default="package-extension" basedir=".">
+	
+	<property name="project.dir" value="."/>
+	<property name="build.dir" value="${project.dir}/build"/>
+   <property name="web.dir" value="${project.dir}/web" />
+	<property name="package.file.jar" value="${build.dir}/custom-login.jar"/>
+   <property name="package.file.zip" value="${build.dir}/custom-login.zip"/>
+	
+   <path id="class.path">
+      <dirset dir="${build.dir}" />
+      <fileset dir="../../lib/server" includes="**/*.jar"/>
+   </path>
+   
+   <target name="compile">
+      <mkdir dir="${build.dir}" />
+      <javac classpathref="class.path" srcdir="${project.dir}/source" destdir="${build.dir}" />
+   </target>
+   
+	<target name="package-jar">
+      <delete file="${package.file.jar}" />  
+		<jar destfile="${package.file.jar}">
+			<fileset dir="${build.dir}" excludes="*.zip"/>
+		</jar>
+	</target>
+   
+   <target name="package-extension" depends="package-jar">
+      <delete file="${package.file.zip}" />
+      <zip destfile="${package.file.zip}">
+         <zipfileset file="${package.file.jar}" prefix="WEB-INF/lib" />
+         <zipfileset dir="${web.dir}" />
+      </zip>
+   </target>
+   
+   <target name="integrate-extension" depends="package-extension">
+      <available file="alfresco.war" type="file" property="alfresco.war.present" />
+      <fail unless="alfresco.war.present"
+            message="Could not find alfresco.war, please copy it to ${basedir}" />
+      <zip destfile="alfresco.war" update="true">
+         <zipfileset file="${package.file.jar}" prefix="WEB-INF/lib" />
+         <zipfileset dir="${web.dir}" />
+      </zip>
+   </target>
+	
+</project>	

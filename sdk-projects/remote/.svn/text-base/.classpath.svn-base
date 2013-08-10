@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="dependencies/axis-1.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependencies/bcprov-jdk15-137.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependencies/commons-discovery-0.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependencies/commons-logging-1.1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependencies/jaxrpc.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependencies/mail.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependencies/opensaml-1.0.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependencies/saaj.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependencies/wsdl4j-1.6.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependencies/wss4j-1.5.4-patched.jar"/>
+	<classpathentry exported="true" kind="lib" path="alfresco-web-service-client.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependencies/xalan.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependencies/xmlsec-1.4.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependencies/xercesImpl-2.8.0.jar"/>
+	<classpathentry kind="output" path=""/>
+</classpath>

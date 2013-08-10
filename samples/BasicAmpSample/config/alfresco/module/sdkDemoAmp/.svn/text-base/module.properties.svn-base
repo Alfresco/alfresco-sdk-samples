@@ -1,0 +1,5 @@
+# SDK Sample module
+module.id=sdkDemoAmp
+module.title=SDK Demo AMP Project
+module.description=Skeleton demo project to build an amp file
+module.version=1.0
