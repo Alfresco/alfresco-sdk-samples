@@ -1,67 +1,0 @@
-10
-
-dir
-53865
-http://svn.alfresco.com/repos/alfresco-open-mirror/alfresco/HEAD/root/projects/sdk/samples
-http://svn.alfresco.com/repos/alfresco-open-mirror
-
-
-
-2013-03-25T19:21:31.352719Z
-48578
-dward
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-7033f55c-6c29-4ad8-afba-765cb616e738
-
-BasicAmpSample
-dir
-
-TaggingSample
-dir
-
-CustomLogin
-dir
-
-JCRSamples
-dir
-
-WebServiceSamples
-dir
-
-FirstJCRClient
-dir
-
-FirstWebServiceClient
-dir
-
-CustomJSP
-dir
-
-CustomAction
-dir
-
-CustomAspect
-dir
-
-CustomDialog
-dir
-
-CustomWizard
-dir
-
-FirstFoundationClient
-dir
-
