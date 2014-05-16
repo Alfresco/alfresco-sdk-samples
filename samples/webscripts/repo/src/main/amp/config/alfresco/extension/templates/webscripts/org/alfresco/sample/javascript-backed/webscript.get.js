@@ -1,0 +1,1 @@
+model.greeting = "Hello world";

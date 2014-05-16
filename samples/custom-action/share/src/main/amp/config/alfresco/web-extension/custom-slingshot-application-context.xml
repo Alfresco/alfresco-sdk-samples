@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- This is a sample configuration file from Alfresco Community 4.2.b - Please adapt to your version -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:hz="http://www.hazelcast.com/schema/config"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                http://www.hazelcast.com/schema/config
+                http://www.hazelcast.com/schema/config/hazelcast-spring.xsd">
+   
+
+
+   <!-- Override WebScript Messages - add slingshot application messages -->
+   <bean id="webscripts.resources" class="org.springframework.extensions.surf.util.ResourceBundleBootstrapComponent">
+      <property name="resourceBundles">
+         <list>
+            <value>webscripts.messages.webscripts</value>
+            <value>alfresco.messages.common</value>
+            <value>alfresco.messages.slingshot</value>
+            <value>alfresco.web-extension.messages.custom</value>
+         </list>
+      </property>
+   </bean>
+
+
+</beans>

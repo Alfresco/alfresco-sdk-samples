@@ -1,0 +1,7 @@
+<webscript>
+  <shortname>Delete node</shortname>
+  <description>Deletes a node and return a status</description>
+  <url>/example-webscripts/node/{store_type}/{store_id}/{id}</url>
+  <authentication>user</authentication>
+  <format default="json">argument</format>
+</webscript>

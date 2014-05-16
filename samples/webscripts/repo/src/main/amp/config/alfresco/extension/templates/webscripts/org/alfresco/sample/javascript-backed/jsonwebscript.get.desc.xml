@@ -1,0 +1,7 @@
+<webscript>
+    <shortname>Javascript Backed Webscript</shortname>
+    <description>Hands back a little bit of JSON</description>
+    <url>/example-webscripts/javascript-backed/json-webscript</url>
+    <authentication>user</authentication>
+    <format default="json"></format>
+</webscript>
