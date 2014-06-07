@@ -1,0 +1,7 @@
+<webscript>
+    <shortname>List folder contents</shortname>
+    <description>Lists entries in a folder</description>
+    <url>/example-webscripts/folder/list/{store_type}/{store_id}/{id}</url>
+    <authentication>user</authentication>
+    <format default="html"></format>
+</webscript>

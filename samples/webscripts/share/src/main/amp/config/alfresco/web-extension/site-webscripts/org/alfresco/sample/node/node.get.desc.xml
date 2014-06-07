@@ -1,0 +1,7 @@
+<webscript>
+  <shortname>Get node and display info</shortname>
+  <description>Fetches data from a custom webscript in Alfresco and displays it</description>
+  <url>/example-webscripts/node/{store_type}/{store_id}/{id}</url>
+  <authentication>user</authentication>
+  <format default="html"></format>
+</webscript>

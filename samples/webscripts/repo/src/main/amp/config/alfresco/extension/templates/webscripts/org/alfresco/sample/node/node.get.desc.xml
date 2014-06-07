@@ -1,0 +1,7 @@
+<webscript>
+  <shortname>Get node</shortname>
+  <description>Return a JSON object with a few properties for any given node</description>
+  <url>/example-webscripts/node/{store_type}/{store_id}/{id}</url>
+  <authentication>user</authentication>
+  <format default="json">argument</format>
+</webscript>

@@ -1,0 +1,31 @@
+<alfresco-config>
+
+    <config evaluator="string-compare" condition="CSRFPolicy" replace="true">
+        <filter/>
+    </config>
+
+   <config evaluator="string-compare" condition="DocLibActions">
+      <actions>
+         <action id="start-review-workflow-action" type="javascript" label="actions.start-review-workflow-action" icon="document-assign-workflow">
+            <param name="function">onActionSimpleRepoAction</param>
+            <permissions>
+                <permission allow="true">Write</permission>
+            </permissions>
+            <param name="action">start-review-workflow-action</param>
+            <param name="successMessage">message.start-review-workflow.success</param>
+            <param name="failureMessage">message.start-review-workflow.failure</param>
+        </action>
+      </actions>
+
+       <actionGroups>
+           <actionGroup id="document-browse">
+               <action index="500" id="start-review-workflow-action" />
+           </actionGroup>
+           <actionGroup id="document-details">
+               <action index="500" id="start-review-workflow-action" />
+           </actionGroup>
+       </actionGroups>
+     </config>
+
+
+</alfresco-config>
