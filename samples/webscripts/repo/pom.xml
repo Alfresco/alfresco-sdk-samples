@@ -64,11 +64,41 @@
             <groupId>${alfresco.groupId}</groupId>
             <artifactId>alfresco-repository</artifactId>
         </dependency>
+
         <!-- Test dependencies -->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.8.1</version>
+            <groupId>org.alfresco</groupId>
+            <artifactId>alfresco-remote-api</artifactId>
+            <version>${alfresco.version}</version>
+            <classifier>tests</classifier>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.alfresco</groupId>
+            <artifactId>alfresco-remote-api</artifactId>
+            <version>${alfresco.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.extensions.surf</groupId>
+            <artifactId>spring-webscripts</artifactId>
+            <version>1.2.1-M21</version>
+            <classifier>tests</classifier>
+            <scope>test</scope>
+        </dependency>
+        <!-- The following dependency will not be needed in 5.0.a version or later -->
+        <dependency>
+            <groupId>org.alfresco</groupId>
+            <artifactId>alfresco-remote-api</artifactId>
+            <version>${alfresco.version}</version>
+            <classifier>config</classifier>
+            <scope>test</scope>
+        </dependency>
+        <!-- Without the following dependency, Webscript Test run fails -->
+        <dependency>
+            <groupId>org.apache.chemistry</groupId>
+            <artifactId>chemistry-tck-atompub</artifactId>
+            <version>0.1-incubating-unreleased</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
