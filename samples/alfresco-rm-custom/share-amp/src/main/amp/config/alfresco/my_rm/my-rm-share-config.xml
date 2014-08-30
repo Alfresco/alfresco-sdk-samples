@@ -1,0 +1,16 @@
+<alfresco-config>
+
+   <!-- Document Library config section -->
+   <config evaluator="string-compare" condition="DocumentLibrary">
+      <!-- Status Indicators -->
+      <indicators>
+         <!--  my compliance record metadata indicator -->
+         <indicator id="indicator.myrm.complianceRecordMetadata" 
+                    index="10" 
+                    icon="../../../rm/components/documentlibrary/indicators/rm-record-16.png">
+            <evaluator>evaluator.myrm.complianceRecordMetadata</evaluator>
+         </indicator>
+      </indicators>
+   </config>
+
+</alfresco-config>

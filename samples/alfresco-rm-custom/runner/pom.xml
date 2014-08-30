@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>runner</artifactId>
+    <name>Alfresco, Share and Solr Tomcat Runner</name>
+    <packaging>pom</packaging>
+    <description>Alfresco, Share and Solr Tomcat Runner</description>
+
+    <parent>
+        <groupId>alfresco-rm-custom</groupId>
+        <artifactId>alfresco-rm-custom</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <profiles>
+        <profile>
+            <id>run</id>
+            <properties>
+            	<!-- Location of the Solr project, which is loaded via filesystem. Change if your Solr customization project lives in a different folder. -->
+                <solr.project.dir>${project.basedir}/../solr</solr.project.dir>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>copy-tomcat-resources</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${project.build.directory}/contexts</outputDirectory>
+                                    <resources>
+                                        <resource>
+                                            <directory>tomcat</directory>
+                                            <filtering>true</filtering>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.tomcat.maven</groupId>
+                        <artifactId>tomcat7-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>run-wars</id>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <phase>pre-integration-test</phase>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <warSourceDirectory>${project.parent.basedir}/solr/target/solr-overlay</warSourceDirectory>
+                            <path>/solr</path>
+                            <useTestClasspath>false</useTestClasspath>
+                            <ignorePackaging>true</ignorePackaging>
+                            <useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader>
+                            <systemProperties>
+                                <solr.solr.home>${project.parent.basedir}/solr/solr_home</solr.solr.home>
+                                <java.io.tmpdir>${project.build.directory}</java.io.tmpdir>
+                            </systemProperties>
+                            <delegate>true</delegate>
+                            <webapps>
+                                <webapp>
+                                    <groupId>${project.groupId}</groupId>
+                                    <artifactId>repo</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>war</type>
+                                    <asWebapp>true</asWebapp>
+                                    <contextPath>/alfresco</contextPath>
+                                    <contextFile>${project.build.directory}/contexts/context-repo.xml</contextFile>
+                                </webapp>
+                                <webapp>
+                                    <groupId>${project.groupId}</groupId>
+                                    <artifactId>share</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>war</type>
+                                    <asWebapp>true</asWebapp>
+                                    <contextPath>/share</contextPath>
+                                    <contextFile>${project.build.directory}/contexts/context-share.xml</contextFile>
+                                </webapp>
+                            </webapps>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>
