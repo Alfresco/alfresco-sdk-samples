@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE beans PUBLIC '-//SPRING//DTD BEAN//EN' 'http://www.springframework.org/dtd/spring-beans.dtd'>
+
+<beans>
+
+   <bean id="myrm.resources" class="org.springframework.extensions.surf.util.ResourceBundleBootstrapComponent">
+      <property name="resourceBundles">
+         <list>
+            <value>alfresco.my_rm.messages.my-rm</value>
+         </list>
+      </property>
+   </bean>
+
+   <bean id="myrm.config" class="org.springframework.extensions.config.ConfigBootstrap" init-method="register">
+      <property name="configService" ref="web.config" />
+      <property name="configs">
+         <list>
+            <value>classpath:alfresco/my_rm/my-rm-share-config.xml</value>
+         </list>
+      </property>
+   </bean>
+
+   <bean id="evaluator.myrm.complianceRecordMetadata" class="org.alfresco.web.evaluator.HasAspectEvaluator">
+      <property name="aspects">
+         <list>
+            <value>myrm:myComplianceRecordMetaData</value>
+         </list>
+      </property>
+   </bean>
+   
+</beans>
