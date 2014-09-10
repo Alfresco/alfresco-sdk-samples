@@ -4,7 +4,7 @@
     <artifactId>repo-amp</artifactId>
     <name>Alfresco repository AMP Module</name>
     <packaging>amp</packaging>
-    <description>This is a sample Alfresco repository AMP project, depended upon by the alfresco WAR module</description>
+    <description>This is a sample Alfresco repository AMP project, depended upon by the alfresco WAR aggregator</description>
 
     <parent>
         <groupId>alfresco-rm-custom</groupId>
@@ -22,6 +22,13 @@
         <dependency>
             <groupId>${alfresco.groupId}</groupId>
             <artifactId>alfresco-repository</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${alfresco.groupId}</groupId>
+            <artifactId>alfresco-rm</artifactId>
+            <version>${alfresco.rm.version}</version>
+            <type>jar</type>
+            <classifier>classes</classifier>
         </dependency>
     </dependencies>
     
