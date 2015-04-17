@@ -16,7 +16,7 @@ Some examples ties into both Alfresco and Share. In those cases there will be an
 
 ## Running Alfresco AMP examples (repo)
 
-To run the Alfresco AMP examples you will need to adjust the JVM memory settings. This is not needed for Share. Enter the `repo` folder and run the following command:
+To run the Alfreco AMP examples you enter the `repo` folder and run the "run.sh" script. Alternatively you will need to adjust the JVM memory settings. This is not needed for Share. Enter the `repo` folder and run the following command:
 
 	export MAVEN_OPTS="-Xms1024m -Xmx4096m -XX:PermSize=1024m"
 	mvn integration-test -P amp-to-war
@@ -25,7 +25,7 @@ Alfresco will be available on [http://localhost:8080/alfresco](http://localhost:
 
 ## Running Share AMP examples (share)
 
-To run Share AMP examples you run enter the `share` folder and run the following command:
+To run Share AMP examples you run enter the `share` folder and run the "run.sh" script. Alternatively you run this command:
 
 	mvn integration-test -P amp-to-war
 	
