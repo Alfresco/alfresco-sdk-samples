@@ -11,6 +11,7 @@
 
 
    <!-- Override WebScript Messages - add slingshot application messages -->
+
    <bean id="webscripts.resources" class="org.springframework.extensions.surf.util.ResourceBundleBootstrapComponent">
       <property name="resourceBundles">
          <list>
@@ -21,6 +22,7 @@
          </list>
       </property>
    </bean>
+
 
 
 </beans>

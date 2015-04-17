@@ -19,13 +19,14 @@ public class FolderListWebscript extends DeclarativeWebScript
     protected Repository repository;
     protected NodeService nodeService;
 
-    public void setRepository(Repository repository)
+    public void setRepositoryHelper(Repository repository)
     {
         this.repository = repository;
     }
 
     protected Map<String, Object> executeImpl(WebScriptRequest req, Status status, Cache cache)
     {
+
 
         Map<String, String> templateArgs =
                 req.getServiceMatch().getTemplateVars();
@@ -35,6 +36,7 @@ public class FolderListWebscript extends DeclarativeWebScript
         String nodeId    = templateArgs.get("id");
 
         String nodePath = storeType + "/" + storeId + "/" + nodeId;
+
 
 
         NodeRef folder = repository.findNodeRef("node", nodePath.split("/"));

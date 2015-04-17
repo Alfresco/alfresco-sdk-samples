@@ -84,7 +84,7 @@ Two webscripts for getting basic node information based on a nodeRef and deletin
 
 Both webscripts assumes the same URL, but responds differently to GET and DELETE requests. Both webscripts assumes the nodeRef like this `/example-webscripts/node/{store_type}/{store_id}/{id}`.
 
-Once you have a nodeRef you can `GET` the node with a URL like this: [http://localhost:8080/alfresco/service/example-webscripts/node/workspace/SpacesStore/workspace://SpacesStore/5c80da0a-f081-4745-b71a-a164872f1d8b](http://localhost:8080/alfresco/service/example-webscripts/node/workspace/SpacesStore/workspace://SpacesStore/5c80da0a-f081-4745-b71a-a164872f1d8b)
+Once you have a nodeRef you can `GET` the node with a URL like this: [http://localhost:8080/alfresco/service/example-webscripts/node/workspace/SpacesStore/5c80da0a-f081-4745-b71a-a164872f1d8b](http://localhost:8080/alfresco/service/example-webscripts/node/workspace/SpacesStore/5c80da0a-f081-4745-b71a-a164872f1d8b)
 
 To delete a node, you could use a tool like cURL like this to perform a DELETE request:
 

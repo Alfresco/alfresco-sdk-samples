@@ -28,5 +28,12 @@
           parent="webscript">
     </bean>
 
+    <bean id="webscript.org.alfresco.sample.folder.list.get"
+          class="org.alfresco.sample.FolderListWebscript"
+          parent="webscript">
+        <property name="repositoryHelper">
+            <ref bean="repositoryHelper"/>
+        </property>
+    </bean>
 
 </beans>

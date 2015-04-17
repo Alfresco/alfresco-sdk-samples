@@ -35,7 +35,7 @@
              Community versions are typically identified by major.minor.character (4.2.a),
              while Enterprise versions are identified by major.minor.digit (4.2.0)
         -->
-        <!--<alfresco.version>5.0.c</alfresco.version>-->
+        <alfresco.version>5.0.d</alfresco.version>
 
         <!-- Defines the log level used in log4j.properties -->
         <app.log.root.level>WARN</app.log.root.level>
