@@ -1,0 +1,11 @@
+<web-fragment>
+	<servlet>
+		<servlet-name>test-servlet</servlet-name>
+		<servlet-class>org.alfresco.demo.to_be_jar_archetype.demoamp.TestServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>test-servlet</servlet-name>
+		<url-pattern>/test-servlet/*</url-pattern>
+	</servlet-mapping>
+</web-fragment>
