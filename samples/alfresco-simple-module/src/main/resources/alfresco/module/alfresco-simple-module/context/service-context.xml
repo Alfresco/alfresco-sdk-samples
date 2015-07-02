@@ -19,7 +19,7 @@
 <beans>
 
     <!-- A simple class that is initialized by Spring -->
-    <bean id="org.alfresco.demo.module.exampleBean" class="org.alfresco.demo.module.demoamp.Demo" init-method="init" />
+    <bean id="org.alfresco.demo.module.exampleBean" class="org.alfresco.demo.module.Demo" init-method="init" />
 
     <!-- A simple module component that will be executed once -->
     <bean id="org.alfresco.demo.module.exampleComponent" class="org.alfresco.demo.module.DemoComponent" parent="module.baseComponent" >

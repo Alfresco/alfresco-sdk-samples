@@ -15,5 +15,5 @@ if not exist %springloadedfile% (
 
 set MAVEN_OPTS=-javaagent:"%springloadedfile%" -noverify -Xms256m -Xmx2G
 
-mvn integration-test -Pamp-to-war -nsu
-:: mvn integration-test -Pamp-to-war 
+mvn integration-test -Prun -nsu
+:: mvn integration-test -Prun 

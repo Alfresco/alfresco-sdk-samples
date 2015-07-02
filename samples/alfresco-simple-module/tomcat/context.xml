@@ -11,9 +11,6 @@
 -->
 <Context docBase="${app.amp.client.war.folder}" path="${alfresco.client.contextPath}">
 
-  <Resources className="org.apache.naming.resources.VirtualDirContext"
-             extraResourcePaths="/=${project.build.directory}/${project.build.finalName}/web" />
-
     <!-- Setup the virtual class path like this:
          1) target/classes
          2) target/${project.build.finalName}/config
@@ -23,7 +20,7 @@
     -->
     <Loader searchVirtualFirst="true"
             className="org.apache.catalina.loader.VirtualWebappLoader"
-            virtualClasspath="${project.build.outputDirectory};${project.build.directory}/${project.build.finalName}/config;${project.build.testOutputDirectory}" />
+            virtualClasspath="${project.build.testOutputDirectory};${project.build.outputDirectory}" />
 
 
     <!-- This enables hot reloading of web resources from uncompressed jars (while in prod they would be loaded from  WEB-INF/lib/{\*.jar}/META-INF/resources -->

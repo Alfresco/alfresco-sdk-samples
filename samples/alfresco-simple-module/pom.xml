@@ -112,22 +112,94 @@
             </dependencies>
         </profile>
 
+		<!-- NOTE: Following profiles are temporary override of the SDK behavior. All these profiles will be removed when this approach is fully tested -->
+
         <!--
             If the 'amp-to-war' profile is enabled then make sure to bring in the alfresco-rad module,
             which has the H2 scripts and other RAD features.
 
-            TODO: TO INVESTIGATE: This dependency is already defined in the parent SDK pom in the 'amp-to-war' profile
-                  but this does not work, it is not include...
+            TODO: It's now a JAR so the 'amp-to-war' name is outdated. But for the purpose of this test,
+            we'll keep the run.sh working (I updated this to work with the JAR layout)
             -->
         <profile>
-            <id>amp-to-war</id>
+            <id>run</id>
             <dependencies>
                 <dependency>
-                    <groupId>org.alfresco.maven</groupId>
-                    <artifactId>alfresco-rad</artifactId>
-                    <version>${maven.alfresco.version}</version>
-                </dependency>
-            </dependencies>
+					<groupId>com.h2database</groupId>
+					<artifactId>h2</artifactId>
+					<version>${h2.version}</version>
+				</dependency>
+			</dependencies>
+			<properties>
+				<skipTests>true</skipTests>
+			</properties>
+            <build>
+            	<plugins>
+            	 	<!-- Fetch and unpack Alfresco Repository WAR (alfresco.war) -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>unpack-alfresco</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>unpack</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${app.amp.client.war.folder}</outputDirectory>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>${alfresco.groupId}</groupId>
+                                            <artifactId>${app.amp.client.war.artifactId}</artifactId>
+                                            <type>war</type>
+                                            <version>${alfresco.version}</version>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+            		<plugin>
+            			<groupId>org.alfresco.maven.plugin</groupId>
+            			<artifactId>alfresco-maven-plugin</artifactId>
+            			<!-- Added since now it's a JAR -->
+            			<configuration>
+            				<skipAmpInstallation>true</skipAmpInstallation>
+            			</configuration>
+            		</plugin>
+            		<plugin>
+                        <groupId>org.apache.tomcat.maven</groupId>
+                        <artifactId>tomcat7-maven-plugin</artifactId>
+                        <version>2.2</version>
+                        <executions>
+                            <execution>
+                                <id>run-embedded</id>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <phase>integration-test</phase>
+                                <configuration>
+                                    <ignorePackaging>true</ignorePackaging>
+                                    <useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader>
+                                    <systemProperties>
+                                        <java.io.tmpdir>${project.build.directory}</java.io.tmpdir>
+                                    </systemProperties>
+                                    <contextFile>${project.basedir}/tomcat/context.xml</contextFile>
+                                    <delegate>true</delegate>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <dependencies>
+							<dependency>
+								<groupId>org.alfresco.maven</groupId>
+								<artifactId>alfresco-rad</artifactId>
+								<version>2.1.0</version>
+							</dependency>
+                        </dependencies>
+                    </plugin>
+            	</plugins>
+            </build>
         </profile>
     </profiles>
 </project>

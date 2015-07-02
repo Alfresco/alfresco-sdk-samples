@@ -18,7 +18,7 @@
 -->
 <beans>
 	<bean id="webscript.helloworld.get"
-		  class="org.alfresco.demo.module.demoamp.HelloWorldWebScript"
+		  class="org.alfresco.demo.module.HelloWorldWebScript"
 		  parent="webscript">
 	</bean>
 </beans>
