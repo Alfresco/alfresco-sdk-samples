@@ -4,4 +4,5 @@
     <url>/sample/helloworld</url>
     <authentication>user</authentication>
     <format default="html"></format>
+    <lifecycle>sample</lifecycle>    
 </webscript>
