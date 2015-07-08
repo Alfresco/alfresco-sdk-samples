@@ -7,17 +7,24 @@
     <!-- The bootstrap-context.xml file is used for patch definitions, importers, 
 		 workflow, and loading custom content models.  -->
 
-
     <!-- Registration of new models -->
-    <bean id="org.alfresco.demo.to_be_jar_archetype.dictionaryBootstrap" parent="dictionaryModelBootstrap" depends-on="dictionaryBootstrap">
+    <bean id="${project.artifactId}_.dictionaryBootstrap" parent="dictionaryModelBootstrap" depends-on="dictionaryBootstrap">
         <property name="models">
             <list>
                 <value>alfresco/module/${project.artifactId}/model/content-model.xml</value>
-                <value>alfresco/module/${project.artifactId}/model/workflow-model.xml</value>
             </list>
         </property>
     </bean>
-	
 
-
+    <bean id="myprocess.workflowBootstrap" parent="workflowDeployer">
+        <property name="workflowDefinitions">
+            <list>
+                <props>
+                    <prop key="engineId">activiti</prop>
+                    <prop key="location">alfresco/module/alfresco-simple-module/workflow/my-process.bpmn20.xml</prop>
+                    <prop key="mimetype">text/xml</prop>
+                </props>
+            </list>
+        </property>
+    </bean>
 </beans>
