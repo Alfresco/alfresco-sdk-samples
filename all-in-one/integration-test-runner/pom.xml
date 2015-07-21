@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>integration-test-runner</artifactId>
+    <name>Alfresco Integration Test Runner</name>
+    <description>Starts an embedded Tomcat 7 server, then executes all integration tests in this project, and then
+        shutdown Tomcat
+    </description>
+
+    <parent>
+        <groupId>org.alfresco.tutorial</groupId>
+        <artifactId>all-in-one</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <properties>
+        <groovy.version>2.4.4</groovy.version>
+    </properties>
+
+    <dependencies>
+        <!-- Tests are expressed in Groovy -->
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>${groovy.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Spock is a testing and specification framework for Java and Groovy applications (i.e. BDD framework).
+             What makes it stand out from the crowd is its beautiful and highly expressive specification language,
+             see https://code.google.com/p/spock/wiki/SpockBasics.
+             Thanks to its JUnit runner, Spock is compatible with most IDEs, build tools, and continuous integration servers.-->
+        <dependency>
+            <groupId>org.spockframework</groupId>
+            <artifactId>spock-core</artifactId>
+            <version>1.0-groovy-2.4</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.codehaus.groovy</groupId>
+                    <artifactId>groovy-all</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- Use JUnit to run Spock Tests -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Geb brings together the power of WebDriver, the elegance of jQuery content selection,
+            the robustness of Page Object modelling and the expressiveness of the Groovy language. -->
+        <dependency>
+            <groupId>org.gebish</groupId>
+            <artifactId>geb-spock</artifactId>
+            <version>0.10.0</version> <!-- 0.12.0 has some new stuff for page objects ... -->
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Use FireFox WebDriver to run the tests.
+            WebDriver is part of Selenium, but it does not require a Selenium Server to run your tests. -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-firefox-driver</artifactId>
+            <version>2.46.0</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <!-- Enable this profile to run the Integration Tests -->
+            <id>run-it</id>
+
+            <properties>
+                <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+                <alfresco.solr.dir>${project.parent.basedir}/${alfresco.data.location}/solr4</alfresco.solr.dir>
+                <alfresco.solr.home.dir>${alfresco.solr.dir}/config</alfresco.solr.home.dir>
+            </properties>
+
+            <build>
+                <plugins>
+                    <!-- Configure the GMaven plugin, it will compile the Groovy files for us -->
+                    <plugin>
+                        <groupId>org.codehaus.gmaven</groupId>
+                        <artifactId>gmaven-plugin</artifactId>
+                        <version>1.4</version>
+                        <configuration>
+                            <source>src/test/groovy</source>
+                            <providerSelection>1.8</providerSelection>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>testCompile</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.codehaus.gmaven.runtime</groupId>
+                                <artifactId>gmaven-runtime-2.0</artifactId>
+                                <version>1.5</version>
+                                <!-- Exlude default 2.0,1 Groovy so we can include 2.4 instead -->
+                                <exclusions>
+                                    <exclusion>
+                                        <groupId>org.codehaus.groovy</groupId>
+                                        <artifactId>groovy-all</artifactId>
+                                    </exclusion>
+                                </exclusions>
+                            </dependency>
+
+                            <!-- Include 2.4 that is matching Spock transformer -->
+                            <dependency>
+                                <groupId>org.codehaus.groovy</groupId>
+                                <artifactId>groovy-all</artifactId>
+                                <version>${groovy.version}</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+
+                    <!-- The Failsafe plugin is used to run the integration tests,  -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>2.18.1</version>
+                        <configuration>
+                            <!-- By default any class that follows naming convention
+                                 "**/IT*.java", "**/*IT.java", and "**/*ITCase.java" will be considered an integration test.
+                                 So add Spock Spec files as tests to run. -->
+                            <includes>
+                                <include>**/*Spec.*</include>
+                            </includes>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>integration-test</id>
+                                <phase>integration-test</phase>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>verify-test</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.apache.maven.surefire</groupId>
+                                <artifactId>surefire-junit47</artifactId>
+                                <version>2.18.1</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+
+                    <!-- Copy Alfresco.war web application context file, and substitute properties, so Tomcat can pick it up,
+                         plugin version picked up from alfresco-sdk-parent-2.x.pom pluginManagement definition -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>copy-tomcat-resources</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${project.build.directory}/contexts</outputDirectory>
+                                    <resources>
+                                        <resource>
+                                            <directory>../runner/tomcat</directory>
+                                            <filtering>true</filtering>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <!-- Run Tomcat 7 embedded with Alfresco.war context,
+                         plugin version picked up from alfresco-sdk-parent.pom pluginManagement definition,
+                         which also brings in the H2 database lib -->
+                    <plugin>
+                        <groupId>org.apache.tomcat.maven</groupId>
+                        <artifactId>tomcat7-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>start-tomcat</id>
+                                <goals>
+                                    <goal>run</goal>
+                                    <!-- run un-packaged as dynamic webapp -->
+                                </goals>
+                                <phase>pre-integration-test</phase>
+                                <configuration>
+                                    <fork>true</fork>
+                                    <!-- Fork so tests can be run in parallel -->
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>stop-tomcat</id>
+                                <goals>
+                                    <goal>shutdown</goal>
+                                </goals>
+                                <phase>post-integration-test</phase>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <ignorePackaging>true</ignorePackaging>
+                            <useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader>
+                            <path>/</path>
+                            <delegate>false</delegate>
+                            <systemProperties>
+                                <solr.solr.home>${alfresco.solr.home.dir}</solr.solr.home>
+                            </systemProperties>
+
+                            <!-- Note. If you have integration tests that require Share or Solr then you would have
+                                       to add those webapps too, see the runner project for info on how to do that. -->
+                            <webapps>
+                                <webapp>
+                                    <groupId>${project.groupId}</groupId>
+                                    <artifactId>repo</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>war</type>
+                                    <!-- Make sure webapp is loaded with context and everything,
+                                         if set to 'false' then you will get 404 when trying to access the webapp from browser -->
+                                    <asWebapp>true</asWebapp>
+                                    <contextPath>/alfresco</contextPath>
+                                    <contextFile>${project.build.directory}/contexts/context-repo.xml</contextFile>
+                                </webapp>
+                                <webapp>
+                                    <groupId>${project.groupId}</groupId>
+                                    <artifactId>share</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>war</type>
+                                    <asWebapp>true</asWebapp>
+                                    <contextPath>/share</contextPath>
+                                    <contextFile>${project.build.directory}/contexts/context-share.xml</contextFile>
+                                </webapp>
+                                <webapp>
+                                    <groupId>${alfresco.groupId}</groupId>
+                                    <artifactId>alfresco-solr4</artifactId>
+                                    <version>${alfresco.version}</version>
+                                    <type>war</type>
+                                    <asWebapp>true</asWebapp>
+                                    <contextPath>/solr4</contextPath>
+                                    <contextFile>${project.build.directory}/contexts/context-solr.xml</contextFile>
+                                </webapp>
+                            </webapps>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>

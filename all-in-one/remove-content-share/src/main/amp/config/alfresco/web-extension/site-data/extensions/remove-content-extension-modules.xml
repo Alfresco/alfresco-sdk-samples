@@ -1,0 +1,25 @@
+<extension>
+    <modules>
+        <module>
+            <id>Remove content from Share (hide My Sites)</id>
+            <version>1.0</version>
+            <auto-deploy>true</auto-deploy>
+            <components>
+                <component>
+                    <region-id>component-1-1</region-id>
+                    <source-id>user/{userid}/dashboard</source-id>
+                    <scope>page</scope>
+                    <sub-components>
+                        <sub-component id="default">
+                            <evaluations>
+                                <evaluation id="guaranteedToHide">
+                                    <render>false</render>
+                                </evaluation>
+                            </evaluations>
+                        </sub-component>
+                    </sub-components>
+                </component>
+            </components>
+        </module>
+    </modules>
+</extension>

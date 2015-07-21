@@ -1,0 +1,21 @@
+<extension>
+    <modules>
+        <module>
+            <id>Add new content to footer</id>
+            <version>1.0</version>
+            <auto-deploy>true</auto-deploy>
+            <components>
+                <component>
+                    <region-id>footer</region-id>
+                    <source-id>global</source-id>
+                    <scope>global</scope>
+                    <sub-components>
+                        <sub-component id="New_Content" index="25">
+                            <url>/tutorials/new-content</url>
+                        </sub-component>
+                    </sub-components>
+                </component>
+            </components>
+        </module>
+    </modules>
+</extension>

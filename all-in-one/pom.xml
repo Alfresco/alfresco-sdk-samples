@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.alfresco.tutorial</groupId>
+    <artifactId>all-in-one</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>Alfresco Repository and Share Quickstart with database and an embedded Tomcat runner.</name>
+    <description>This All-in-One project allows to manage all the components involved in Alfresco development (Repo,
+        Share, Solr4, AMPs) in one project
+    </description>
+    <packaging>pom</packaging>
+
+    <parent>
+        <groupId>org.alfresco.maven</groupId>
+        <artifactId>alfresco-sdk-parent</artifactId>
+        <version>2.1.0</version>
+    </parent>
+
+    <!-- 
+       SDK properties have sensible defaults in the SDK parent,
+       but you can override the properties below to use another version.
+       For more available properties see the alfresco-sdk-parent POM.
+       -->
+    <properties>
+        <!-- The following are default values for data location, Alfresco Community version, and Records Management Module version.
+             Uncomment if you need to change (Note. current default version for Enterprise edition is 5.0.1)
+          <alfresco.version>5.0.d</alfresco.version>
+          <alfresco.rm.version>2.3</alfresco.rm.version>
+          <alfresco.data.location>alf_data_dev</alfresco.data.location> -->
+
+        <!-- This control the root logging level for all apps uncomment and change, defaults to WARN
+            <app.log.root.level>WARN</app.log.root.level>
+        -->
+
+        <!-- Set the enviroment to use, this controls which properties will be picked in src/test/properties
+             for embedded run, defaults to the 'local' environment. See SDK Parent POM for more info.
+        <env>local</env>
+        -->
+
+        <!-- The Alfresco Share web application is accessible via this URL -->
+        <share.client.url>http://localhost:8080/share</share.client.url>
+    </properties>
+
+    <!-- Here we realize the connection with the Alfresco selected platform (e.g.version and edition) -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- This will import the dependencyManagement for all artifacts in the selected Alfresco plaftorm
+                 (see http://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Importing_Dependencies)
+                 NOTE: You still need to define dependencies in your POM, but you can omit version as it's enforced by this dependencyManagement.
+                 NOTE: It defaults to the latest version this SDK pom has been tested with, but alfresco version can/should be overridden in your project's pom
+             -->
+            <dependency>
+                <groupId>${alfresco.groupId}</groupId>
+                <artifactId>alfresco-platform-distribution</artifactId>
+                <version>${alfresco.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <!-- Compress JavaScript files and store as *-min.js -->
+            <plugin>
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>yuicompressor-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.alfresco.maven.plugin</groupId>
+                <artifactId>alfresco-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <!-- Invoke your build with -Prun to run the multimodule project and enable rapid dev mode in your IDE.
+                 See 'run' profile in the sub modules pom.xml for further behavioral details.
+             -->
+            <id>run</id>
+            <properties>
+                <!-- While running in rapid dev mode with -Prun, we don't want amp web resources 
+                    to be added to the war, so we can load them directly from the AMP project (see 
+                    runner/tomcat/context-*.xml for more details) -->
+                <maven.alfresco.includeWebResources>false</maven.alfresco.includeWebResources>
+            </properties>
+        </profile>
+    </profiles>
+
+    <modules>
+        <module>repo-amp</module>
+        <module>add-content-share</module>
+        <module>remove-content-share</module>
+        <module>override-webscript-i18n-props-share</module>
+        <module>override-webscript-controller-share</module>
+        <module>repo</module>
+        <module>share</module>
+        <module>solr-config</module>
+        <module>runner</module>
+        <module>integration-test-runner</module>
+    </modules>
+</project>

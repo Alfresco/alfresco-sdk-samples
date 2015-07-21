@@ -1,0 +1,15 @@
+<extension>
+    <modules>
+        <module>
+            <id>Override i18n labels for Footer</id>
+            <version>1.0</version>
+            <auto-deploy>true</auto-deploy>
+            <customizations>
+                <customization>
+                    <targetPackageRoot>org.alfresco.components.footer</targetPackageRoot>
+                    <sourcePackageRoot>org.alfresco.tutorials.customization</sourcePackageRoot>
+                </customization>
+            </customizations>
+        </module>
+    </modules>
+</extension>

@@ -1,4 +1,16 @@
-# Alfresco SDK Examples
+# Alfresco SDK Tutorials
+
+The new tutorials for the Share extension points are located in the /all-in-one SDK 2.1 project.
+There is a new integration-test-runner project that uses Geb,Spock, and Groovy for testing.
+
+Each tutorial is contained in it's own Share extension project, such as add-content-share, remove-content-share,
+override-webscript-controller-share etc.
+
+To try it out do:
+ all-in-one$ mvn clean install -Prun-it
+
+
+# Alfresco SDK Examples (OLD)
 
 © 2014 Alfresco Software, Inc. All Rights Reserved. See license.txt.
 
