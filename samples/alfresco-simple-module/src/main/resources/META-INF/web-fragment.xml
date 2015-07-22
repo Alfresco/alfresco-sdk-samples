@@ -1,7 +1,7 @@
 <web-fragment>
 	<servlet>
 		<servlet-name>test-servlet</servlet-name>
-		<servlet-class>org.alfresco.demo.to_be_jar_archetype.demoamp.TestServlet</servlet-class>
+		<servlet-class>org.alfresco.demo.module.TestServlet</servlet-class>
 	</servlet>
 	
 	<servlet-mapping>
