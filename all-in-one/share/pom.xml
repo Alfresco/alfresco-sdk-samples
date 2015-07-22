@@ -29,25 +29,31 @@
         <!-- AMPs with sample extensionws -->
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>add-content-share</artifactId>
+            <artifactId>add-page-content-share</artifactId>
             <version>${project.version}</version>
             <type>amp</type>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>remove-content-share</artifactId>
+            <artifactId>remove-page-content-share</artifactId>
             <version>${project.version}</version>
             <type>amp</type>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>override-webscript-i18n-props-share</artifactId>
+            <artifactId>customize-webscript-i18n-props-share</artifactId>
             <version>${project.version}</version>
             <type>amp</type>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>override-webscript-controller-share</artifactId>
+            <artifactId>customize-webscript-controller-share</artifactId>
+            <version>${project.version}</version>
+            <type>amp</type>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>customize-webscript-template-share</artifactId>
             <version>${project.version}</version>
             <type>amp</type>
         </dependency>
@@ -87,22 +93,27 @@
                         <!-- Add / sort your AMPs here -->
                         <overlay>
                             <groupId>${project.groupId}</groupId>
-                            <artifactId>add-content-share</artifactId>
+                            <artifactId>add-page-content-share</artifactId>
                             <type>amp</type>
                         </overlay>
                         <overlay>
                             <groupId>${project.groupId}</groupId>
-                            <artifactId>remove-content-share</artifactId>
+                            <artifactId>remove-page-content-share</artifactId>
                             <type>amp</type>
                         </overlay>
                         <overlay>
                             <groupId>${project.groupId}</groupId>
-                            <artifactId>override-webscript-i18n-props-share</artifactId>
+                            <artifactId>customize-webscript-i18n-props-share</artifactId>
                             <type>amp</type>
                         </overlay>
                         <overlay>
                             <groupId>${project.groupId}</groupId>
-                            <artifactId>override-webscript-controller-share</artifactId>
+                            <artifactId>customize-webscript-controller-share</artifactId>
+                            <type>amp</type>
+                        </overlay>
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>customize-webscript-template-share</artifactId>
                             <type>amp</type>
                         </overlay>
                         <!-- Uncomment if you are using RM module -->

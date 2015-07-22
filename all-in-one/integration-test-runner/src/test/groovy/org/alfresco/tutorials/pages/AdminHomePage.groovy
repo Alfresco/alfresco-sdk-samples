@@ -64,6 +64,17 @@ class AdminHomePage extends Page {
         //    <span>Supplied free of charge with
         copyrightText { $("span.copyright span").text() }
 
-        //webViewTitle  { $("span.copyright span").text() }
+        /*
+        <div class="dashlet webview webview-mode-default resizable yui-resize" id="yui-gen4">
+          <div class="title">
+             <span target="_blank" class="default-title" id="page_x002e_component-2-2_x002e_user_x007e_admin_x007e_dashboard_x0023_default-default-title">Web View</span>
+             <span target="_blank" class="notsecure-title" id="page_x002e_component-2-2_x002e_user_x007e_admin_x007e_dashboard_x0023_default-notsecure-title">Web View</span>
+             <a target="_blank" class="iframe-title" id="page_x002e_component-2-2_x002e_user_x007e_admin_x007e_dashboard_x0023_default-iframe-title" href="http://www.alfresco.com">Alfresco!</a>
+          </div>
+         */
+        webViewTitle  { $("div.title a.iframe-title").text() }
+
+        //  <div id="additional-footer">
+        additonalFooterText { $("div#additional-footer").text() }
     }
 }

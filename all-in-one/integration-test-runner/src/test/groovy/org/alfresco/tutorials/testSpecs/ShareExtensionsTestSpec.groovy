@@ -43,7 +43,7 @@ class ShareExtensionsTestSpec extends GebReportingSpec {
         at AdminHomePage
     }
 
-    def "Test for New Content"() {
+    def "Test for new dashboard page content"() {
         when: "I'm at the Admin User Dashboard Page"
         at AdminHomePage
 
@@ -51,7 +51,7 @@ class ShareExtensionsTestSpec extends GebReportingSpec {
         newContentDiv.text() == "Hello World!"
     }
 
-    def "Test for Removed Content"() {
+    def "Test for removed dashboard page content"() {
         when: "I'm at the Admin User Dashboard Page"
         at AdminHomePage
 
@@ -59,7 +59,7 @@ class ShareExtensionsTestSpec extends GebReportingSpec {
         !mySitesDiv
     }
 
-    def "Test for Customized Footer Copyright Label"() {
+    def "Test for customized footer copyright label"() {
         when: "I'm at the Admin User Dashboard Page"
         at AdminHomePage
 
@@ -67,13 +67,21 @@ class ShareExtensionsTestSpec extends GebReportingSpec {
         copyrightText == "This is free software. Copyright Alfresco forever"
     }
 
-    /*
-    def "Test for Customized Web View Dashlet"() {
+    def "Test for customized Web View dashlet"() {
         when: "I'm at the Admin User Dashboard Page"
         at AdminHomePage
 
         then: "There should be a customized Web View Dashlet displaying http://www.alfresco.com"
         webViewTitle == "Alfresco!"
-    }*/
+    }
+
+    def "Test for additional custom content in footer"() {
+        when: "I'm at the Admin User Dashboard Page"
+        at AdminHomePage
+
+        then: "There should be some additional text before the out-of-the=box footer"
+        additonalFooterText == "Additional Footer!"
+    }
+
 }
 

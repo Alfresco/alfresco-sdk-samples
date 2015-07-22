@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<presets>
+    <!-- Override wll known preset used to generate the default User dashboard.
+         Add the Web View Dashlet so we can check if customization works. -->
+    <preset id="user-dashboard">
+        <components>
+            <!-- title
+            <component>
+                <scope>page</scope>
+                <region-id>title</region-id>
+                <source-id>user/${userid}/dashboard</source-id>
+                <url>/components/title/user-dashboard-title</url>
+            </component>
+            -->
+            <!-- dashboard components -->
+            <component>
+                <scope>page</scope>
+                <region-id>full-width-dashlet</region-id>
+                <source-id>user/${userid}/dashboard</source-id>
+                <url>/components/dashlets/dynamic-welcome</url>
+                <properties>
+                    <dashboardType>user</dashboardType>
+                </properties>
+            </component>
+            <component>
+                <scope>page</scope>
+                <region-id>component-1-1</region-id>
+                <source-id>user/${userid}/dashboard</source-id>
+                <url>/components/dashlets/my-sites</url>
+            </component>
+            <component>
+                <scope>page</scope>
+                <region-id>component-1-2</region-id>
+                <source-id>user/${userid}/dashboard</source-id>
+                <url>/components/dashlets/my-tasks</url>
+            </component>
+            <component>
+                <scope>page</scope>
+                <region-id>component-2-1</region-id>
+                <source-id>user/${userid}/dashboard</source-id>
+                <url>/components/dashlets/my-activities</url>
+            </component>
+            <component>
+                <scope>page</scope>
+                <region-id>component-2-2</region-id>
+                <source-id>user/${userid}/dashboard</source-id>
+                <url>/components/dashlets/webview</url>
+            </component>
+            <component>
+                <scope>page</scope>
+                <region-id>component-2-3</region-id>
+                <source-id>user/${userid}/dashboard</source-id>
+                <url>/components/dashlets/my-documents</url>
+                <properties>
+                    <height>240</height>
+                </properties>
+            </component>
+        </components>
+        <pages>
+            <page id="user/${userid}/dashboard">
+                <title>User Dashboard</title>
+                <title-id>page.userDashboard.title</title-id>
+                <description>Users dashboard page</description>
+                <description-id>page.userDashboard.description</description-id>
+                <template-instance>dashboard-2-columns-wide-right</template-instance>
+                <authentication>user</authentication>
+            </page>
+        </pages>
+    </preset>
+
+</presets>

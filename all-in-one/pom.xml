@@ -91,10 +91,11 @@
 
     <modules>
         <module>repo-amp</module>
-        <module>add-content-share</module>
-        <module>remove-content-share</module>
-        <module>override-webscript-i18n-props-share</module>
-        <module>override-webscript-controller-share</module>
+        <module>add-page-content-share</module>
+        <module>remove-page-content-share</module>
+        <module>customize-webscript-i18n-props-share</module>
+        <module>customize-webscript-controller-share</module>
+        <module>customize-webscript-template-share</module>
         <module>repo</module>
         <module>share</module>
         <module>solr-config</module>
