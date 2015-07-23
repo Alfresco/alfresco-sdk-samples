@@ -52,7 +52,7 @@ public class DemoComponent extends AbstractModuleComponent {
     @Override
     protected void executeInternal() throws Throwable {
         System.out.println("DemoComponent has been executed");
-        log.debug("Test debug logging. Congratulation your AMP is working");
+        log.debug("Test debug logging. Congratulations your JAR is working");
         log.info("This is only for information purposed. Better remove me from the log in Production");
     }
 

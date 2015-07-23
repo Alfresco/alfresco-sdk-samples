@@ -24,9 +24,15 @@
         <type name="myc:doc">
             <title>Sample Document Type</title>
             <parent>cm:content</parent>
+            <properties>
+           		<property name="myc:property">
+           		    <title>Sample Property</title>
+               		<type>d:text</type>
+            	</property>
+            </properties>
             <associations>
-                <association name="myc:relatedDocuments">
-                    <title>Related Documents</title>
+                <association name="myc:association">
+                    <title>Sample Association</title>
                     <source>
                         <mandatory>false</mandatory>
                         <many>true</many>
@@ -38,9 +44,6 @@
                     </target>
                 </association>
             </associations>
-            <mandatory-aspects>
-                <aspect>cm:generalclassifiable</aspect>
-            </mandatory-aspects>
         </type>
     </types>
 

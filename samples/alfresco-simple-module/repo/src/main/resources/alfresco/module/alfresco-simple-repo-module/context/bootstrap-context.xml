@@ -21,7 +21,7 @@
             <list>
                 <props>
                     <prop key="engineId">activiti</prop>
-                    <prop key="location">alfresco/module/alfresco-simple-module/workflow/my-process.bpmn20.xml</prop>
+                    <prop key="location">alfresco/module/alfresco-simple-repo-module/workflow/my-process.bpmn20.xml</prop>
                     <prop key="mimetype">text/xml</prop>
                 </props>
             </list>

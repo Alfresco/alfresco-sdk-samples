@@ -10,6 +10,6 @@ public class Demo
 {
 	public void init()
 	{
-		System.out.println("SDK Demo AMP class has been loaded");
+		System.out.println("SDK Sample Repo JAR class has been loaded");
 	}
 }

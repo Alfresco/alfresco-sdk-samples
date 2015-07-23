@@ -3,9 +3,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.alfresco.demo</groupId>
-    <artifactId>alfresco-simple-module</artifactId>
+    <artifactId>alfresco-simple-repo-module</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>Alfresco JAR Module Project</name>
+    <name>Alfresco Repo JAR Module Project</name>
     <packaging>jar</packaging>
     <description>UNSUPPORTED experiment on loading Alfresco modules as JARs - use for investigation / development purposes - not PRODUCTION</description>
 
