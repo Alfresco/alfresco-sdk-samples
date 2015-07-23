@@ -19,11 +19,11 @@
 <head lang="en">
 	<meta charset="UTF-8">
 	<title>Alfresco Custom JSP</title>
-	<link href="../css/demoamp.css" rel='stylesheet' type="text/css"/>
-	<script src="../scripts/demoamp.js" type="text/javascript"></script>
+	<link href="../css/demojar.css" rel='stylesheet' type="text/css"/>
+	<script src="../scripts/demojar.js" type="text/javascript"></script>
 </head>
 <body>
-This is a demo JSP. When running with -Pamp-to-war, just change this text and it will be automatically reloaded!
+This is a demo JSP.
 <div onclick="tryMe('From Javascript')"><a href="#">Click on Me</a>.</div>
 </body>
 </html>

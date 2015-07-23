@@ -26,8 +26,8 @@
         <property name="moduleId" value="${project.artifactId}" />  <!-- See module.properties -->
         <property name="name" value="exampleComponent" />
         <property name="description" value="A demonstration component" />
-        <property name="sinceVersion" value="1.0" />
-        <property name="appliesFromVersion" value="1.0" />
+        <property name="sinceVersion" value="1.0-SNAPSHOT" />
+        <property name="appliesFromVersion" value="1.0-SNAPSHOT" />
         <property name="nodeService" ref="NodeService" />
         <property name="nodeLocatorService" ref="nodeLocatorService" />
     </bean>

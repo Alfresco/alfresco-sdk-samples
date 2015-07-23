@@ -1,4 +1,4 @@
-package org.alfresco.demo.to_be_jar_archetype.demoamp.test;
+package org.alfresco.demo.to_be_jar_archetype.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

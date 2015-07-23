@@ -7,7 +7,7 @@
     <version>1.0-SNAPSHOT</version>
     <name>Alfresco Repo JAR Module Project</name>
     <packaging>jar</packaging>
-    <description>UNSUPPORTED experiment on loading Alfresco modules as JARs - use for investigation / development purposes - not PRODUCTION</description>
+    <description>UNSUPPORTED experiment on loading Alfresco repo modules as JARs - use for investigation / development purposes - not PRODUCTION</description>
 
     <parent>
         <groupId>org.alfresco.maven</groupId>
