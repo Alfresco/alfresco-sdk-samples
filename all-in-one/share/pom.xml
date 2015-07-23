@@ -57,6 +57,13 @@
             <version>${project.version}</version>
             <type>amp</type>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>add-create-menuitem-doclib-share</artifactId>
+            <version>${project.version}</version>
+            <type>amp</type>
+        </dependency>
+
         <!-- Uncomment if you are using RM (Records Management) module -->
         <!--
         <dependency>
@@ -116,6 +123,12 @@
                             <artifactId>customize-webscript-template-share</artifactId>
                             <type>amp</type>
                         </overlay>
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>add-create-menuitem-doclib-share</artifactId>
+                            <type>amp</type>
+                        </overlay>
+
                         <!-- Uncomment if you are using RM module -->
                         <!--
                         <overlay>

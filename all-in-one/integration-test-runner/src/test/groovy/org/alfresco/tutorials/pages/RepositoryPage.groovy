@@ -20,27 +20,40 @@ package org.alfresco.tutorials.pages
 import geb.Page
 
 /**
- * Alfresco Share Login Page Object
+ * Alfresco Share Repository Browser Page Object
  *
  * @author marting.bergljung@alfresco.com
  */
-class LoginPage extends Page {
+class RepositoryPage extends Page {
     // The relative URL of the page;
     // used by the to() method to determine which URL to send the HTTP request to.
-    static url = "page"
+    static url = "page/repository"
 
     // A closure that indicates whether the current page is this one or not -
     // called by the at() method; it should return a boolean, but you can also include assertions.
-    static at = { title == "Alfresco » Login" }
+    static at = { title == "Alfresco » Repository Browser" }
 
     // A description of the page content, allowing for easy access to the parts declared here.
     // If it is not working for some content items then have a look at the Geb reports directory,
     // which contains the HTML that Geb is seeing... (i.e.
     // integration-test-runner/target/geb-reports/org/alfresco/tutorials/testSpecs/SurfModuleExtensionsTestSpec)
     static content = {
-        loginForm { $("form") }
+        /*
+        <div class="create-content">
+            <span class="yui-button yui-push-button yui-menu-button" id="template_x002e_documentlist_v2_x002e_repository_x0023_default-createContent-button">
+                <span class="first-child">
+                    <button type="button" aria-haspopup="true" tabindex="0"
+                            id="template_x002e_documentlist_v2_x002e_repository_x0023_default-createContent-button-button">
+                                    Create... ▾</button>
+        */
+        createMenuButton { $("div.create-content span span button", text: startsWith("Create...")) }
 
-        // Note. submit button is not input but button in final HTML.
-        submitButton(to: AdminHomePage) { $("button", type: "button") }
+        /*
+        <div class="bd">
+            <ul class="first-of-type">
+                <li id="yui-gen0" class="yuimenuitem first-of-type" groupindex="0" index="0">
+                    <a rel="" href="/share/page/create-content?destination=%7BnodeRef%7D&amp;itemId=acme:document&amp;mimeType=text/plain" class="yuimenuitemlabel">
+                    */
+        createAcmeDocumentLink(to: CreateAcmeDocumentPage) { $("a", href : contains("itemId=acme:document")) }
     }
 }

@@ -9,12 +9,13 @@
 
 
     <!-- Registration of new models -->
-    <bean id="org.alfresco.tutorial.dictionaryBootstrap" parent="dictionaryModelBootstrap" depends-on="dictionaryBootstrap">
+    <bean id="org.alfresco.tutorial.dictionaryBootstrap"
+          parent="dictionaryModelBootstrap"
+          depends-on="dictionaryBootstrap">
         <property name="models">
             <list>
                 <value>alfresco/module/${project.artifactId}/model/content-model.xml</value>
                 <value>alfresco/module/${project.artifactId}/model/workflow-model.xml</value>
-
             </list>
         </property>
     </bean>

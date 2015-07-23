@@ -1,0 +1,63 @@
+<extension>
+    <modules>
+        <!-- This module is dependent on the custom content model setup in the repo-amp module -->
+        <module>
+            <id>Add a new menu item to Create... menu in DocLib</id>
+            <version>1.0</version>
+            <auto-deploy>true</auto-deploy>
+            <configurations>
+                <!-- Add the menu item used to create text documents with the acme:document type applied
+                     to the Create... drop down menu -->
+                <config evaluator="string-compare" condition="DocumentLibrary">
+                    <create-content>
+                        <content id="plain-text" label="create.acmedoc.menu.item.label" icon="text" type="pagelink">
+                            <param name="page">create-content?destination={nodeRef}&amp;itemId=acme:document&amp;mimeType=text/plain</param>
+                        </content>
+                    </create-content>
+                </config>
+
+                <!-- Configure the Create form for the custom type acme:document
+                        (note. the custom type does not have any custom properties at the moment) -->
+                <config evaluator="model-type" condition="acme:document">
+                    <forms>
+                        <form>
+                            <field-visibility>
+                                <show id="cm:name"/>
+                                <show id="cm:content" force="true"/>
+                                <show id="cm:title" force="true"/>
+                                <show id="cm:description" force="true"/>
+                                <show id="mimetype"/>
+                                <show id="app:editInline" force="true"/>
+                            </field-visibility>
+                            <appearance>
+                                <field id="cm:name">
+                                    <control>
+                                        <control-param name="maxLength">255</control-param>
+                                    </control>
+                                </field>
+                                <field id="cm:title">
+                                    <control template="/org/alfresco/components/form/controls/textfield.ftl"/>
+                                </field>
+                                <field id="cm:content" label-id="">
+                                    <control>
+                                        <control-param name="editorAppearance">explorer</control-param>
+                                    </control>
+                                </field>
+                                <field id="mimetype">
+                                    <control template="/org/alfresco/components/form/controls/hidden.ftl">
+                                        <control-param name="contextProperty">mimeType</control-param>
+                                    </control>
+                                </field>
+                                <field id="app:editInline">
+                                    <control template="/org/alfresco/components/form/controls/hidden.ftl">
+                                        <control-param name="contextProperty">editInline</control-param>
+                                    </control>
+                                </field>
+                            </appearance>
+                        </form>
+                    </forms>
+                </config>
+            </configurations>
+        </module>
+    </modules>
+</extension>

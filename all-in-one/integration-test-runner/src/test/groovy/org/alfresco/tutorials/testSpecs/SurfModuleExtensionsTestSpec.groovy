@@ -22,13 +22,15 @@ import org.alfresco.tutorials.pages.*
 import spock.lang.Stepwise
 
 /**
+ * Tests for Share Extension Point: Surf Module Extensions.
+ *
  * We extend our test specification from GebReportingSpec. You can also extend from GebSpec but GebReportingSpec will
  * automatically create a screenshot if your test fails, which is more convenient.
  * Please note that you need Firefox to be installed if you want to run the tests.
  */
 // Make sure we run tests in the order they are written in the class and re-use browser context for each test
 @Stepwise
-class ShareExtensionsTestSpec extends GebReportingSpec {
+class SurfModuleExtensionsTestSpec extends GebReportingSpec {
 
     def "Test valid login"() {
         given: "I'm at the login page"
@@ -79,9 +81,31 @@ class ShareExtensionsTestSpec extends GebReportingSpec {
         when: "I'm at the Admin User Dashboard Page"
         at AdminHomePage
 
-        then: "There should be some additional text before the out-of-the=box footer"
+        then: "There should be some additional text before the out-of-the-box footer"
         additonalFooterText == "Additional Footer!"
     }
 
+    def "Test navigating to the Repository Browser page"() {
+        given: "I'm at the Admin User Dashboard Page"
+        to AdminHomePage
+
+        when: "I click on the Repository link in the top menu"
+        repositoryLink.click()
+
+        then: "I'm redirected to the Repository Browser page"
+        at RepositoryPage
+    }
+
+    def "Test creating a new text document with acme:document type set"() {
+        given: "I'm at the Repository Browser page"
+        to RepositoryPage
+
+        when: "I click on the 'Create an Acme Text Document' link in the 'Create...' drop down menu"
+        createMenuButton.click()
+        createAcmeDocumentLink.click()
+
+        then: "I'm redirected to the Create Content Page"
+        at CreateAcmeDocumentPage
+    }
 }
 

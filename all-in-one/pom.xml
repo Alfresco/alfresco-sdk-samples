@@ -96,6 +96,7 @@
         <module>customize-webscript-i18n-props-share</module>
         <module>customize-webscript-controller-share</module>
         <module>customize-webscript-template-share</module>
+        <module>add-create-menuitem-doclib-share</module>
         <module>repo</module>
         <module>share</module>
         <module>solr-config</module>

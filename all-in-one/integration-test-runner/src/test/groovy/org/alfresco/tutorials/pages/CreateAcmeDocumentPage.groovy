@@ -20,27 +20,23 @@ package org.alfresco.tutorials.pages
 import geb.Page
 
 /**
- * Alfresco Share Login Page Object
+ * Alfresco Share Create Content (Acme Document) Page Object
  *
  * @author marting.bergljung@alfresco.com
  */
-class LoginPage extends Page {
+class CreateAcmeDocumentPage extends Page {
     // The relative URL of the page;
     // used by the to() method to determine which URL to send the HTTP request to.
-    static url = "page"
+    static url = "page/create-content"
 
     // A closure that indicates whether the current page is this one or not -
     // called by the at() method; it should return a boolean, but you can also include assertions.
-    static at = { title == "Alfresco » Login" }
+    static at = { title == "Alfresco » Create Content" }
 
     // A description of the page content, allowing for easy access to the parts declared here.
     // If it is not working for some content items then have a look at the Geb reports directory,
     // which contains the HTML that Geb is seeing... (i.e.
     // integration-test-runner/target/geb-reports/org/alfresco/tutorials/testSpecs/SurfModuleExtensionsTestSpec)
     static content = {
-        loginForm { $("form") }
-
-        // Note. submit button is not input but button in final HTML.
-        submitButton(to: AdminHomePage) { $("button", type: "button") }
     }
 }

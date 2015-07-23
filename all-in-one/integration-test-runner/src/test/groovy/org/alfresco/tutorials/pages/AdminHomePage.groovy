@@ -36,6 +36,16 @@ class AdminHomePage extends Page {
     // A description of the page content, allowing for easy access to the parts declared here.
     static content = {
         /*
+        <span data-dojo-attach-point="containerNode,textDirNode" id="HEADER_REPOSITORY_text"
+	          class="alf-menu-bar-label-node">
+            <a href="/share/page/repository" title="Repository"
+                class="alfresco-navigation-_HtmlAnchorMixin" tabindex="-1">Repository
+            </a>
+        </span>
+         */
+        repositoryLink(to: RepositoryPage) { $("span#HEADER_REPOSITORY_text a") }
+
+        /*
            <h1 class="alfresco-header-Title alfresco-debug-Info highlight" id="HEADER_TITLE" widgetid="HEADER_TITLE">
              <div class="alfresco-debug-WidgetInfo" id="uniqName_1_49" widgetid="uniqName_1_49">
                 <img data-dojo-attach-event="ondijitclick:showInfo" alt="Information about widget HEADER_TITLE" class="image" src="/share/res/js/aikau/1.0.8.1/alfresco/debug/css/images/info-16.png" />
