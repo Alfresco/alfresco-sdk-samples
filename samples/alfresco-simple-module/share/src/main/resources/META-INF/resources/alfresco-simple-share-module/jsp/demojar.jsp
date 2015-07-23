@@ -1,13 +1,13 @@
-<!--
+<!-- 
     Licensed to the Apache Software Foundation (ASF) under one or more
 	contributor license agreements.  See the NOTICE file distributed with
 	this work for additional information regarding copyright ownership.
 	The ASF licenses this file to You under the Apache License, Version 2.0
 	(the "License"); you may not use this file except in compliance with
 	the License.  You may obtain a copy of the License at
-
+	
 	http://www.apache.org/licenses/LICENSE-2.0
-
+	
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,14 +17,13 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-    <meta charset="UTF-8">
-    <title>UNSUPPORTED experiment on loading Alfresco modules as JARs</title>
-    <link href="css/demojar.css" rel='stylesheet' type="text/css"/>
+	<meta charset="UTF-8">
+	<title>Alfresco Custom JSP</title>
+	<link href="../css/demojar.css" rel='stylesheet' type="text/css"/>
+	<script src="../scripts/demojar.js" type="text/javascript"></script>
 </head>
 <body>
-<div>This is loaded from a Jar</div>
-<div><a href="jsp/demojar.jsp">Try this JSP</a></div>
-<div><a href="/alfresco/service/sample/helloworld">Try this webscript</a></div>
-<div><a href="/alfresco/test-servlet">Try this test servlet</a></div>
+This is a demo JSP.
+<div onclick="tryMe('From Javascript')"><a href="#">Click on Me</a>.</div>
 </body>
 </html>
