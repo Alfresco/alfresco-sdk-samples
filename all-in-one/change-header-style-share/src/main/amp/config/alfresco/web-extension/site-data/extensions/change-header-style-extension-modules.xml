@@ -1,0 +1,21 @@
+<extension>
+    <modules>
+        <module>
+            <id>Change the styling of the Share header</id>
+            <version>1.0</version>
+            <auto-deploy>true</auto-deploy>
+            <customizations>
+                <customization>
+                    <!-- Load our CSS file whenever some Alfresco Web Script is loaded,
+                         basically load it for every page displayed -->
+                    <targetPackageRoot>org.alfresco</targetPackageRoot>
+                    <sourcePackageRoot /> <!-- Needed to avoid
+                     ERROR [surf.extensibility.XMLHelper] [localhost-startStop-1] The required element <sourcePackageRoot> was not found in element <customization> -->
+                    <dependencies>
+                        <css>/res/customize/components/header/header.css</css>
+                    </dependencies>
+                </customization>
+            </customizations>
+        </module>
+    </modules>
+</extension>

@@ -86,5 +86,9 @@ class AdminHomePage extends Page {
 
         //  <div id="additional-footer">
         additonalFooterText { $("div#additional-footer").text() }
+
+        // <div data-dojo-attach-point="parentNode" class="alfresco-layout-LeftAndRight widgets alfresco-header-Header alfresco-debug-Info highlight"
+        //      id="SHARE_HEADER" widgetid="SHARE_HEADER">
+        headerDiv { $("div#SHARE_HEADER") }
     }
 }

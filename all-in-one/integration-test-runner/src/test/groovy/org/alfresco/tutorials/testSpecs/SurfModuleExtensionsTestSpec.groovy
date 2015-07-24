@@ -107,5 +107,13 @@ class SurfModuleExtensionsTestSpec extends GebReportingSpec {
         then: "I'm redirected to the Create Content Page"
         at CreateAcmeDocumentPage
     }
+
+    def "Test that header/menu has custom background color"() {
+        given: "I'm at the Admin User Dashboard Page"
+        to AdminHomePage
+
+        expect: "The background color for heading/menu to be custom green"
+        headerDiv.css("background-color") == "rgba(121, 146, 18, 1)" // same as "#799212"
+    }
 }
 

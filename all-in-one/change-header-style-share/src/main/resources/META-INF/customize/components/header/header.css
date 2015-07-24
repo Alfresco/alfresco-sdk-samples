@@ -1,0 +1,12 @@
+/*
+Note. the CSS classes used to be:
+ .alfresco-share .alf-header {...}
+ when they were contained in  webapps/share/js/alfresco/header/css/Header.css
+But now with Aikau these classes/CSS is contained in the Aikau JAR in webapps/share/WEB-INF/lib.
+And called as per below definition.
+So if it does not work change the class names as per above.
+*/
+
+.alfresco-share .alfresco-header-Header {
+    background-color: #799212; /* Overriding the black background color */
+}
