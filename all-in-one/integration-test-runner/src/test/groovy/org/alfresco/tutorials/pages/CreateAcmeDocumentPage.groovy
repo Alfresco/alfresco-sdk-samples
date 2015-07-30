@@ -38,5 +38,6 @@ class CreateAcmeDocumentPage extends Page {
     // which contains the HTML that Geb is seeing... (i.e.
     // integration-test-runner/target/geb-reports/org/alfresco/tutorials/testSpecs/SurfModuleExtensionsTestSpec)
     static content = {
+        createForm { $("form") }
     }
 }

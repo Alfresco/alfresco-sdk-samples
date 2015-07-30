@@ -14,7 +14,7 @@
     -->
 
     <!-- Add module specific messages and labels -->
-    <bean id="org.alfresco.tutorial.addcontent.share-amp.resources"
+    <bean id="org.alfresco.tutorial.removecontent.share-amp.resources"
           class="org.springframework.extensions.surf.util.ResourceBundleBootstrapComponent">
         <property name="resourceBundles">
             <list>

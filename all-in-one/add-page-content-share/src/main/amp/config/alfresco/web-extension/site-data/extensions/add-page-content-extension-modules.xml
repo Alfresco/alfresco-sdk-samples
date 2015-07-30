@@ -10,6 +10,7 @@
                     <source-id>global</source-id>
                     <scope>global</scope>
                     <sub-components>
+                        <!-- The 'default' sub-component will have an index of 50 -->
                         <sub-component id="New_Content" index="25">
                             <url>/tutorials/new-content</url>
                         </sub-component>

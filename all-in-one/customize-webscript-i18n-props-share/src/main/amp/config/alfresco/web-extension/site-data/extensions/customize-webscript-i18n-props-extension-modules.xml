@@ -1,13 +1,13 @@
 <extension>
     <modules>
         <module>
-            <id>Customize i18n labels for Footer</id>
+            <id>Customize Web Script Properties for Footer</id>
             <version>1.0</version>
             <auto-deploy>true</auto-deploy>
             <customizations>
                 <customization>
                     <targetPackageRoot>org.alfresco.components.footer</targetPackageRoot>
-                    <sourcePackageRoot>org.alfresco.tutorials.customization</sourcePackageRoot>
+                    <sourcePackageRoot>org.alfresco.tutorials.customization.footer.i18n</sourcePackageRoot>
                 </customization>
             </customizations>
         </module>

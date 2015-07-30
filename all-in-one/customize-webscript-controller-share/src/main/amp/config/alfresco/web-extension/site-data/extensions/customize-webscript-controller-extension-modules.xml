@@ -7,7 +7,7 @@
             <customizations>
                 <customization>
                     <targetPackageRoot>org.alfresco.components.dashlets</targetPackageRoot>
-                    <sourcePackageRoot>org.alfresco.tutorials.customization</sourcePackageRoot>
+                    <sourcePackageRoot>org.alfresco.tutorials.customization.webview.controller</sourcePackageRoot>
                 </customization>
             </customizations>
         </module>

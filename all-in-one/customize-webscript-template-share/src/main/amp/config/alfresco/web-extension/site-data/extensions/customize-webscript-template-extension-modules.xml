@@ -7,7 +7,7 @@
             <customizations>
                 <customization>
                     <targetPackageRoot>org.alfresco.components.footer</targetPackageRoot>
-                    <sourcePackageRoot>org.alfresco.tutorials.customization</sourcePackageRoot>
+                    <sourcePackageRoot>org.alfresco.tutorials.customization.footer.template</sourcePackageRoot>
                 </customization>
             </customizations>
         </module>

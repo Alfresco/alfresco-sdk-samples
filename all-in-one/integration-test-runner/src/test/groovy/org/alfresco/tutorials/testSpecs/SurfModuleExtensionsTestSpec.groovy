@@ -106,6 +106,7 @@ class SurfModuleExtensionsTestSpec extends GebReportingSpec {
 
         then: "I'm redirected to the Create Content Page"
         at CreateAcmeDocumentPage
+        createForm.prop_acme_documentId != null
     }
 
     def "Test that header/menu has custom background color"() {

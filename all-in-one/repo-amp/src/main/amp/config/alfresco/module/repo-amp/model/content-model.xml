@@ -30,6 +30,12 @@
         <type name="acme:document">
             <title>Base document type</title>
             <parent>cm:content</parent>
+            <properties>
+                <property name="acme:documentId">
+                    <title>Document Identification Number</title>
+                    <type>d:text</type>
+                </property>
+            </properties>
         </type>
 
     </types>
