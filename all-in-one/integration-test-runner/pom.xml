@@ -18,6 +18,7 @@
 
     <properties>
         <groovy.version>2.4.4</groovy.version>
+        <selenium.version>2.46.0</selenium.version>
     </properties>
 
     <dependencies>
@@ -68,7 +69,19 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-firefox-driver</artifactId>
-            <version>2.46.0</version>
+            <version>${selenium.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- org.openqa.selenium.support.ui.Select is required when interacting with select elements.
+             This class is part of the selenium-support jar, which is not part of the WebDriver core that is
+             depended on by each of the drivers.
+             This means we need to add it as an explicit dependency.
+             The use of this class was introduced in Geb 0.6.1 due to changes in WebDriver 2.6.0 -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-support</artifactId>
+            <version>${selenium.version}</version>
             <scope>test</scope>
         </dependency>
 

@@ -46,6 +46,15 @@ class AdminHomePage extends Page {
         repositoryLink(to: RepositoryPage) { $("span#HEADER_REPOSITORY_text a") }
 
         /*
+            <span data-dojo-attach-point="containerNode,textDirNode" id="HEADER_ADMIN_CONSOLE_text"
+                  class="alf-menu-bar-label-node">
+                <a href="/share/page/console/admin-console/application" title="Admin Tools"
+                   class="alfresco-navigation-_HtmlAnchorMixin" tabindex="-1">Admin Tools
+                </a>
+         */
+        adminToolsLink(to: AdminToolsPage) { $("span#HEADER_ADMIN_CONSOLE_text a") }
+
+        /*
            <h1 class="alfresco-header-Title alfresco-debug-Info highlight" id="HEADER_TITLE" widgetid="HEADER_TITLE">
              <div class="alfresco-debug-WidgetInfo" id="uniqName_1_49" widgetid="uniqName_1_49">
                 <img data-dojo-attach-event="ondijitclick:showInfo" alt="Information about widget HEADER_TITLE" class="image" src="/share/res/js/aikau/1.0.8.1/alfresco/debug/css/images/info-16.png" />
@@ -67,7 +76,7 @@ class AdminHomePage extends Page {
         /*
         <div class="title">My Sites</div>
          */
-        mySitesDiv { $("div.title").text() == "My Sites" }
+        mySitesDivExists { $("div.title").text() == "My Sites" }
 
         // <span class="copyright">
         // <a href="#" onclick="Alfresco.module.getAboutShareInstance().show(); return false;"><img src="/share/res/components/images/alfresco-share-logo.png" alt="Alfresco Share" border="0"/></a>
@@ -90,5 +99,26 @@ class AdminHomePage extends Page {
         // <div data-dojo-attach-point="parentNode" class="alfresco-layout-LeftAndRight widgets alfresco-header-Header alfresco-debug-Info highlight"
         //      id="SHARE_HEADER" widgetid="SHARE_HEADER">
         headerDiv { $("div#SHARE_HEADER") }
+
+        /*
+        <div tabindex="-1" role="menuitem" data-dojo-attach-point="focusNode" class="dijitReset dijitInline dijitMenuItemLabel alfresco-debug-Info highlight dijitMenuItem dijitPopupMenuItem"
+            style="-moz-user-select: none;" id="HEADER_SITES_MENU" aria-label="Sites " widgetid="HEADER_SITES_MENU"
+         */
+        headerSitesMenuDiv { $("div#HEADER_SITES_MENU")}
+
+        /*
+        <div>
+            ...
+               <span class="align-right yui-button-align">
+                  <span class="first-child">
+                   <a class="theme-color-1" href="/share/page/start-workflow">
+                      <img width="16" style="vertical-align: text-bottom" src="/share/res/components/images/workflow-16.png" />
+                        Start Workflow
+                   </a>
+
+                   Note. myTasksDashletStartWorkflowLink { $("a", href : "/share/page/start-workflow") }
+                        does not work for some reason...
+         */
+        myTasksDashletStartWorkflowLink { $("a", href : contains("/share/page/start-workflow")) }
     }
 }

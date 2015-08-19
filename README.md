@@ -1,13 +1,33 @@
 # Alfresco SDK Tutorials
 
 The new tutorials for the Share extension points are located in the /all-in-one SDK 2.1 project.
-There is a new integration-test-runner project that uses Geb,Spock, and Groovy for testing.
-
 Each tutorial is contained in it's own Share extension project, such as add-content-share, remove-content-share,
 override-webscript-controller-share etc.
 
-To try it out do:
- all-in-one$ mvn clean install -Prun-it
+## Running with all tutorials applied
+
+To kick off Alfresco (Repo, Share, and Solr), with all the Tutorials applied 
+to the Share WAR, use the following command:
+
+	all-in-one$ mvn clean install -Prun
+
+One of the samples (add-theme-share) brings in a newer version of Aikau to support LESS.
+To control what version of Aikau that is used, it can be specified on command line:
+ 
+	all-in-one$ mvn clean install -Daikau.version=1.0.30 -Prun
+
+## Running functional tests for all tutorials 
+
+There is a new 'integration-test-runner' project that uses Geb,Spock, and Groovy for functional testing.
+
+To run all the tests do:
+ 
+	all-in-one$ mvn clean install -Prun-it
+ 
+To control what version of Aikau that is used, it can be specified on command line:
+ 
+	all-in-one$ mvn clean install -Daikau.version=1.0.30 -Prun-it
+  
 
 
 # Alfresco SDK Examples (OLD)

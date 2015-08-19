@@ -58,7 +58,7 @@ class SurfModuleExtensionsTestSpec extends GebReportingSpec {
         at AdminHomePage
 
         then: "I should not see the My Sites Dashlet, which was removed by Surf Extension Module"
-        !mySitesDiv
+        !mySitesDivExists
     }
 
     def "Test for customized footer copyright label"() {
