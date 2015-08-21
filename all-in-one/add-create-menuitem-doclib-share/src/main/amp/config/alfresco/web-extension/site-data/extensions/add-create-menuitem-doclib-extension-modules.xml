@@ -10,7 +10,7 @@
                      to the Create... drop down menu -->
                 <config evaluator="string-compare" condition="DocumentLibrary">
                     <create-content>
-                        <content id="acme-plain-text" label="Create an Acme Text Document..." icon="text" index="1" type="pagelink">
+                        <content id="acme-plain-text" label="create.acmedoc.menu.item.label" icon="text" index="1" type="pagelink">
                             <param name="page">create-content?destination={nodeRef}&amp;itemId=acme:document&amp;mimeType=text/plain</param>
                         </content>
                     </create-content>

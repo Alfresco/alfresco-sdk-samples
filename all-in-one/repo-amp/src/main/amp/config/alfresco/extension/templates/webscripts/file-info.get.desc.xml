@@ -1,0 +1,7 @@
+<webscript>
+    <shortname>Sample Webscript that returns Audit data</shortname>
+    <description>Returns the audit data for file with passed in node reference</description>
+    <url>/sample/fileinfo?nodeRef={nodeRef}</url>
+    <authentication>user</authentication>
+    <format default="json"></format>
+</webscript>

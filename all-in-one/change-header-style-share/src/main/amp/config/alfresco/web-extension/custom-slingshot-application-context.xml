@@ -14,7 +14,7 @@
     -->
 
     <!-- Add module specific messages and labels -->
-    <bean id="org.alfresco.tutorial.changeHeaderStyle.share-amp.resources"
+    <bean id="org.alfresco.tutorial.change-header-style.resources"
           class="org.springframework.extensions.surf.util.ResourceBundleBootstrapComponent">
         <property name="resourceBundles">
             <list>

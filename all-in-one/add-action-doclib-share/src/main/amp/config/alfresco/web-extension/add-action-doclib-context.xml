@@ -10,17 +10,20 @@
 
       Note. Any configuration related to the whole Share.war webapp
             (i.e. not specific to this share extension) should be
-             placed in the tomcat/shared/classes/alfresco/web-extension/custom-slingshot-application-context.xml file
+             placed in the tomcat/shared/classes/alfresco/web-extension/add-action-doclib-share-context.xml file
     -->
 
     <!-- Add module specific messages and labels -->
-    <bean id="org.alfresco.tutorial.addCreateMenuitemDoclib.share-amp.resources"
+    <bean id="org.alfresco.tutorial.add-action-doclib.resources"
           class="org.springframework.extensions.surf.util.ResourceBundleBootstrapComponent">
         <property name="resourceBundles">
             <list>
-                <value>alfresco.web-extension.messages.custom</value>
+                <value>alfresco.web-extension.messages.add-doclib-actions-custom</value>
             </list>
         </property>
     </bean>
 
+    <!-- An evaluator that will check if a content node has the cm:emailed aspect applied -->
+    <bean id="alfresco.tutorials.evaluator.isEmailed"
+          class="org.alfresco.tutorial.doclibaction.evaluator.CheckIfDocIsEmailedEvaluator" />
 </beans>

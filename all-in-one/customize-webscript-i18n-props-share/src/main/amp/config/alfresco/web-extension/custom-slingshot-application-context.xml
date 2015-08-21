@@ -14,7 +14,7 @@
     -->
 
     <!-- Add module specific messages and labels -->
-    <bean id="org.alfresco.tutorial.customizeWSi18n.share-amp.resources"
+    <bean id="org.alfresco.tutorial.customize-webscript-i18n.resources"
           class="org.springframework.extensions.surf.util.ResourceBundleBootstrapComponent">
         <property name="resourceBundles">
             <list>

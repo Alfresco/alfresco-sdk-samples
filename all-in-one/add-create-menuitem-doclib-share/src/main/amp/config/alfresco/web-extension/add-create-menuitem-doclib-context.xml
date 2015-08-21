@@ -14,11 +14,11 @@
     -->
 
     <!-- Add module specific messages and labels -->
-    <bean id="org.alfresco.tutorial.add-page-content.resources"
+    <bean id="org.alfresco.tutorial.add-create-menuitem-doclib.resources"
           class="org.springframework.extensions.surf.util.ResourceBundleBootstrapComponent">
         <property name="resourceBundles">
             <list>
-                <value>alfresco.web-extension.messages.custom</value>
+                <value>alfresco.web-extension.messages.add-create-menuitem-doclib-custom</value>
             </list>
         </property>
     </bean>

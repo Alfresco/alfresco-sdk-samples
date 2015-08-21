@@ -91,12 +91,14 @@
 
     <modules>
         <module>repo-amp</module>
+        <module>add-action-repo</module>
         <module>add-page-content-share</module>
         <module>remove-page-content-share</module>
         <module>customize-webscript-i18n-props-share</module>
         <module>customize-webscript-controller-share</module>
         <module>customize-webscript-template-share</module>
         <module>add-create-menuitem-doclib-share</module>
+        <module>add-action-doclib-share</module>
         <module>change-header-style-share</module>
         <module>add-theme-share</module>
         <module>repo</module>

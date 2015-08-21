@@ -14,11 +14,11 @@
     -->
 
     <!-- Add module specific messages and labels -->
-    <bean id="org.alfresco.tutorial.addcontent.share-amp.resources"
+    <bean id="org.alfresco.tutorial.add-theme.resources"
           class="org.springframework.extensions.surf.util.ResourceBundleBootstrapComponent">
         <property name="resourceBundles">
             <list>
-                <value>alfresco.web-extension.messages.custom</value>
+                <value>alfresco.web-extension.messages.add-theme-custom</value>
             </list>
         </property>
     </bean>
