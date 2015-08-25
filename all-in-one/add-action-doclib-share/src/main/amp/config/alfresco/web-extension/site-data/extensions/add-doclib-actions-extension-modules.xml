@@ -1,7 +1,7 @@
 <extension>
     <modules>
         <module>
-            <id>Add Send-as-Email Document Libarary Action</id>
+            <id>Add Document Libarary Actions (Send-as-Email, Call WS, Show Msg, Go to Google)</id>
             <version>1.0</version>
             <auto-deploy>true</auto-deploy>
             <configurations>
@@ -89,7 +89,7 @@
 
                         <!-- The Go To Google action will be visible also in Folder browse view -->
                         <actionGroup id="folder-browse">
-                            <action index="400" id="alfresco.tutorials.doclib.action.goToGoogle" />
+                            <action index="403" id="alfresco.tutorials.doclib.action.goToGoogle" />
                         </actionGroup>
                     </actionGroups>
                 </config>

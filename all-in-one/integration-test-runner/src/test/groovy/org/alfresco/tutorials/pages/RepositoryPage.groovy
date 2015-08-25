@@ -55,5 +55,10 @@ class RepositoryPage extends Page {
                     <a rel="" href="/share/page/create-content?destination=%7BnodeRef%7D&amp;itemId=acme:document&amp;mimeType=text/plain" class="yuimenuitemlabel">
                     */
         createAcmeDocumentLink(to: CreateAcmeDocumentPage) { $("a", href : contains("itemId=acme:document")) }
+
+        /*
+        <a rel="|path|/Data%20Dictionary|" class="filter-change" href="#">Data Dictionary</a>
+         */
+        dataDictionaryFolderLink(to : RepositoryPage) { $("a", rel : contains("|path|/Data%20Dictionary|")) }
     }
 }
