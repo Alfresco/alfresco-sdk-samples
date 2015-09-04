@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.alfresco.demo</groupId>
+    <artifactId>alfresco-simple-share-module</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>Alfresco Share JAR Module Project</name>
+    <packaging>jar</packaging>
+    <description>UNSUPPORTED experiment on loading Alfresco Share modules as JARs - use for investigation / development purposes - not PRODUCTION</description>
+
+    <parent>
+        <groupId>org.alfresco.maven</groupId>
+        <artifactId>alfresco-sdk-parent</artifactId>
+        <version>2.1.0</version>
+    </parent>
+
+    <!--
+       | SDK properties have sensible defaults in the SDK parent,
+       | but you can override the properties below to use another version.
+       | For more available properties see the alfresco-sdk-parent POM.
+       -->
+    <properties>
+        <!-- Defines the target WAR artifactId to run this amp, only used with the -Pamp-to-war switch
+        | Allowed values: alfresco | share. In this case it's configured to use OOTB share -->
+        <alfresco.client.war>${alfresco.share.artifactId}</alfresco.client.war>
+        <alfresco.client.contextPath>/share</alfresco.client.contextPath>
+        <!-- Since Alfresco is already running on port 8080, we run Share on port 8081 -->
+        <maven.tomcat.port>8081</maven.tomcat.port>
+
+        <!-- Used in share-config-custom.xml. By default points to standard location of Alfresco -->
+        <alfresco.repo.url>http://localhost:8080/alfresco</alfresco.repo.url>
+
+        <!-- Defines the Alfresco version to work against.
+             Community versions are typically identified by major.minor.character (4.2.a),
+             while Enterprise versions are identified by major.minor.digit (4.2.0)
+        -->
+        <alfresco.version>5.0.d</alfresco.version>
+
+        <!-- Defines the log level used in log4j.properties -->
+        <app.log.root.level>WARN</app.log.root.level>
+
+    </properties>
+
+    <!-- Here we realize the connection with the Alfresco selected platform
+        (e.g.version and edition) -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- This will import the dependencyManagement for all artifacts in the selected Alfresco version/edition
+                (see http://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Importing_Dependencies)
+                NOTE: You still need to define dependencies in your POM, but you can omit version as it's enforced by this dependencyManagement. NOTE: It defaults
+                to the latest version this SDK pom has been tested with, but alfresco version can/should be overridden in your project's pom -->
+            <dependency>
+                <groupId>${alfresco.groupId}</groupId>
+                <artifactId>alfresco-platform-distribution</artifactId>
+                <version>${alfresco.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- Following dependencies are needed for compiling Java code in src/main/java;  -->
+    <dependencies>
+        <dependency>
+            <groupId>${alfresco.groupId}</groupId>
+            <artifactId>share</artifactId>
+            <version>${alfresco.version}</version>
+            <classifier>classes</classifier>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.extensions.surf</groupId>
+            <artifactId>spring-surf-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+    
+    <profiles>
+        <!--
+            Brings in the extra Enterprise specific repository classes,
+            if the 'enterprise' profile has been activated, needs to be activated manually.
+            -->
+        <profile>
+            <id>enterprise</id>
+            <dependencies>
+                <dependency>
+                    <groupId>${alfresco.groupId}</groupId>
+                    <artifactId>alfresco-enterprise-repository</artifactId>
+                    <version>${alfresco.version}</version>
+                    <scope>provided</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+
+        <profile>
+            <id>run</id>
+			<properties>
+				<skipTests>true</skipTests>
+			</properties>
+            <build>
+            	<plugins>
+            	 	<!-- Fetch and unpack Alfresco Share WAR (share.war) -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>unpack-alfresco</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>unpack</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${app.amp.client.war.folder}</outputDirectory>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>${alfresco.groupId}</groupId>
+                                            <artifactId>share</artifactId>
+                                            <type>war</type>
+                                            <version>${alfresco.version}</version>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    
+            		<plugin>
+                        <groupId>org.apache.tomcat.maven</groupId>
+                        <artifactId>tomcat7-maven-plugin</artifactId>
+                        <version>2.2</version>
+                        <executions>
+                            <execution>
+                                <id>run-embedded</id>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <phase>integration-test</phase>
+                                <configuration>
+                                    <ignorePackaging>true</ignorePackaging>
+                                    <useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader>
+                                    <systemProperties>
+                                        <java.io.tmpdir>${project.build.directory}</java.io.tmpdir>
+                                    </systemProperties>
+                                    <contextFile>${project.basedir}/tomcat/context.xml</contextFile>
+                                    <delegate>true</delegate>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+            	</plugins>
+            </build>
+        </profile>
+   </profiles>
+    <distributionManagement>
+         <snapshotRepository>
+                <id>alfresco-internal</id>
+            <url>https://artifacts.alfresco.com/nexus/content/repositories/internal-snapshots/</url>
+                  </snapshotRepository>
+    </distributionManagement>
+
+</project>
