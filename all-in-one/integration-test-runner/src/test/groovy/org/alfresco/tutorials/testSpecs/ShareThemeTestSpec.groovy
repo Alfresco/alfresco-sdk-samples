@@ -20,38 +20,37 @@ package org.alfresco.tutorials.testSpecs
 import geb.spock.GebReportingSpec
 import org.alfresco.tutorials.pages.AdminHomePage
 import org.alfresco.tutorials.pages.AdminToolsPage
-import org.alfresco.tutorials.pages.CreateAcmeDocumentPage
 import org.alfresco.tutorials.pages.LoginPage
-import org.alfresco.tutorials.pages.RepositoryPage
 import spock.lang.Stepwise
 
 /**
  * Tests for Share Extension Point: Share Themes
- *
+ * <p/>
  * We extend our test specification from GebReportingSpec. You can also extend from GebSpec but GebReportingSpec will
- * automatically create a screenshot if your test fails, which is more convenient.
+ * automatically create a screenshot if your test fails, and scrape HTML, which is more convenient.
+ * <p/>
  * Please note that you need Firefox to be installed if you want to run the tests.
  */
-// Make sure we run tests in the order they are written in the class and re-use browser context for each test
+// Assume a workflow.
+// Make sure we run each test method in the order they are written in the class and re-use browser context for each test.
+// If one method fails the test will stop.
 @Stepwise
 class ShareThemeTestSpec extends GebReportingSpec {
 
     def "Test valid login"() {
-        given: "I'm at the login page"
+        given: "I am at the login page"
         to LoginPage
 
-        when: "I enter a valid username and password"
-        loginForm.username = "admin"
-        loginForm.password = "admin"
-        submitButton.click()
+        when: "I enter a valid Administrator username and password and click login"
+        login("admin", "admin")
 
-        then: "I'm redirected to the User Dashboard page, which displays my username"
+        then: "I'm redirected to the Admin User Dashboard page"
         at AdminHomePage
     }
 
     def "Test navigating to the Admin Tools page"() {
         given: "I'm at the Admin User Dashboard Page"
-        to AdminHomePage
+        at AdminHomePage
 
         when: "I click on the Admin Tools link in the top menu"
         adminToolsLink.click()
@@ -62,7 +61,7 @@ class ShareThemeTestSpec extends GebReportingSpec {
 
     def "Test selecting the Tutorial Theme from the Drop down"() {
         given: "I'm at the Admin Tools page"
-        to AdminToolsPage
+        at AdminToolsPage
 
         when: "I select the 'Tutorial Theme' in the 'Theme' drop down menu and click Apply button"
         themeDropDown = 'Tutorial Theme'
@@ -73,7 +72,7 @@ class ShareThemeTestSpec extends GebReportingSpec {
     }
 
     def "Test that the new Tutorial Theme is applied to both Aikau and YUI bits"() {
-        given: "I'm at the Admin User Dashboard Page"
+        given: "I navigate to the Admin User Dashboard Page"
         to AdminHomePage
 
         expect: "The color for menu texts to be yellow (Aikau) and dashlet links to be purple (YUI)"

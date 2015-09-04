@@ -43,7 +43,7 @@ class AdminHomePage extends Page {
             </a>
         </span>
          */
-        repositoryLink(to: RepositoryPage) { $("span#HEADER_REPOSITORY_text a") }
+        repositoryLink(to: RepositoryBrowseCompanyHomeFolderPage) { $("span#HEADER_REPOSITORY_text a") }
 
         /*
             <span data-dojo-attach-point="containerNode,textDirNode" id="HEADER_ADMIN_CONSOLE_text"
@@ -60,8 +60,10 @@ class AdminHomePage extends Page {
                 <img data-dojo-attach-event="ondijitclick:showInfo" alt="Information about widget HEADER_TITLE" class="image" src="/share/res/js/aikau/1.0.8.1/alfresco/debug/css/images/info-16.png" />
              </div>
              <a data-dojo-attach-point="textNode" class="text" href="#">Administrator Dashboard</a></h1>
+
+             Wair for the header to appear...
              */
-        dashboardName { $("h1#HEADER_TITLE a").text() }
+        dashboardName(wait: true) { $("h1#HEADER_TITLE a").text() }
 
         /*
         <div id="alf-ft">

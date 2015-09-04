@@ -9,6 +9,9 @@ import org.openqa.selenium.firefox.FirefoxProfile
 
 driver = {
     FirefoxProfile profile = new FirefoxProfile()
+    // Advanced Actions API relies on native events, such as moveToElement
+    // Explicitly enable native events (this is mandatory on Linux system, since they  are not enabled by default)
+    profile.setEnableNativeEvents(true);
     new FirefoxDriver(profile)
 }
 

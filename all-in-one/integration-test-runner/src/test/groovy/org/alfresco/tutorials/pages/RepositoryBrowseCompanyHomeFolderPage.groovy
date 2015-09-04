@@ -17,14 +17,12 @@
  */
 package org.alfresco.tutorials.pages
 
-import geb.Page
-
 /**
- * Alfresco Share Repository Browser Page Object
+ * Repository Browse Page - /Company Home level
  *
  * @author marting.bergljung@alfresco.com
  */
-class RepositoryPage extends Page {
+class RepositoryBrowseCompanyHomeFolderPage extends AbstractRepositoryBrowsePage {
     // The relative URL of the page;
     // used by the to() method to determine which URL to send the HTTP request to.
     static url = "page/repository"
@@ -39,26 +37,34 @@ class RepositoryPage extends Page {
     // integration-test-runner/target/geb-reports/org/alfresco/tutorials/testSpecs/SurfModuleExtensionsTestSpec)
     static content = {
         /*
-        <div class="create-content">
-            <span class="yui-button yui-push-button yui-menu-button" id="template_x002e_documentlist_v2_x002e_repository_x0023_default-createContent-button">
-                <span class="first-child">
-                    <button type="button" aria-haspopup="true" tabindex="0"
-                            id="template_x002e_documentlist_v2_x002e_repository_x0023_default-createContent-button-button">
-                                    Create... ▾</button>
-        */
-        createMenuButton { $("div.create-content span span button", text: startsWith("Create...")) }
-
-        /*
-        <div class="bd">
-            <ul class="first-of-type">
-                <li id="yui-gen0" class="yuimenuitem first-of-type" groupindex="0" index="0">
-                    <a rel="" href="/share/page/create-content?destination=%7BnodeRef%7D&amp;itemId=acme:document&amp;mimeType=text/plain" class="yuimenuitemlabel">
+            <tbody tabindex="0" class="yui-dt-data">
+                <tr class="yui-dt-rec yui-dt-first yui-dt-even" id="yui-rec51">
+                    <td headers="yui-dt28-th-nodeRef " class="yui-dt28-col-nodeRef yui-dt-col-nodeRef yui-dt-first" style="width: 16px;">
+                        <div class="yui-dt-liner" style="width: 16px;">
+                            <label id="label_for_checkbox-yui-rec51" for="checkbox-yui-rec51" style="font-size: 0em;">Check Data Dictionary</label>
+                            <input id="checkbox-yui-rec51" type="checkbox" name="fileChecked" value="workspace://SpacesStore/b45963fb-3797-47ec-be59-03bbda9a4926">
+                        </div>
+                    </td>
+                    ...
                     */
-        createAcmeDocumentLink(to: CreateAcmeDocumentPage) { $("a", href : contains("itemId=acme:document")) }
+        dataDictionaryFolderRow(wait:true) { $("tbody.yui-dt-data tr", 0) }
+
+
 
         /*
         <a rel="|path|/Data%20Dictionary|" class="filter-change" href="#">Data Dictionary</a>
+
+        This is dynamic content so wait for the Data Dictionary folder link to appear...
          */
-        dataDictionaryFolderLink(to : RepositoryPage) { $("a", rel : contains("|path|/Data%20Dictionary|")) }
+        dataDictionaryFolderLink(wait : true, to : RepositoryBrowseCompanyHomeFolderPage) { $("a", rel : contains("|path|/Data%20Dictionary|")) }
+
+        /*
+        <a title="Go to Google" class="simple-link" href="http://www.google.com" style="background-image:url(/share/res/components/documentlibrary/actions/google-16.png)"
+        target="_blank" id="yui-gen511"><span id="yui-gen513">Go to Google</span></a>
+
+        This is dynamic content so wait for the DocLib action to appear...
+        */
+        goToGoogleActionPopupMenuItem(wait : true) { $("a", title: "Go to Google") }
+
     }
 }

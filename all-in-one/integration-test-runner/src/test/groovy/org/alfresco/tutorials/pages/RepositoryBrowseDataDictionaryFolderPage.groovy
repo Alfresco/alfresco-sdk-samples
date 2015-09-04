@@ -17,37 +17,31 @@
  */
 package org.alfresco.tutorials.pages
 
-import geb.Page
-
 /**
- * Alfresco Share Login Page Object
+ * Repository Browse Page - /Company Home/Data Dictionary level
  *
  * @author marting.bergljung@alfresco.com
  */
-class LoginPage extends Page {
+class RepositoryBrowseDataDictionaryFolderPage extends AbstractRepositoryBrowsePage {
     // The relative URL of the page;
     // used by the to() method to determine which URL to send the HTTP request to.
-    static url = "page"
+    static url = "page/repository#filter=path%7C%2FData%2520Dictionary%7C&page=1"
 
     // A closure that indicates whether the current page is this one or not -
     // called by the at() method; it should return a boolean, but you can also include assertions.
-    static at = { title == "Alfresco » Login" }
+    static at = { title == "Alfresco » Repository Browser" }
 
     // A description of the page content, allowing for easy access to the parts declared here.
     // If it is not working for some content items then have a look at the Geb reports directory,
     // which contains the HTML that Geb is seeing... (i.e.
     // integration-test-runner/target/geb-reports/org/alfresco/tutorials/testSpecs/SurfModuleExtensionsTestSpec)
     static content = {
-        loginForm() { $("form") }
+        /*
+        <a href="#" class="filter-change" rel="|path|/Data%20Dictionary/Scripts|" id="yui-gen600">Scripts</a>
 
-        // Note. submit button is not input but button in final HTML.
-        submitButton(to: AdminHomePage) { $("button", type: "button") }
-    }
+        This is dynamic content so wait for the Scripts folder link to appear...
+         */
+        scriptsFolderLink(wait : true, to : RepositoryBrowseScriptsFolderPage) { $("a", rel : contains("|path|/Data%20Dictionary/Scripts|")) }
 
-    void login(String usernameVal, String passwordVal) {
-        username = usernameVal
-        password = passwordVal
-
-        submitButton.click()
     }
 }
