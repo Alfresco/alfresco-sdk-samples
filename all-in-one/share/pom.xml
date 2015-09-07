@@ -26,7 +26,8 @@
             <version>${alfresco.version}</version>
             <type>war</type>
         </dependency>
-        <!-- AMPs with sample extensionws -->
+
+        <!-- AMPs with Share Extension Point samples -->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>add-page-content-share</artifactId>
@@ -81,16 +82,13 @@
             <version>${project.version}</version>
             <type>amp</type>
         </dependency>
-
-        <!-- Uncomment if you are using RM (Records Management) module -->
-        <!--
         <dependency>
-            <groupId>${alfresco.groupId}</groupId>
-            <artifactId>alfresco-rm-share</artifactId>
-            <version>${alfresco.rm.version}</version>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>add-metadata-template-doclib-share</artifactId>
+            <version>${project.version}</version>
             <type>amp</type>
         </dependency>
-        -->
+
     </dependencies>
 
     <build>
@@ -115,7 +113,8 @@
                             <!-- To allow inclusion of META-INF -->
                             <excludes/>
                         </overlay>
-                        <!-- Add / sort your AMPs here -->
+
+                        <!-- AMPs with Share Extension Point samples -->
                         <overlay>
                             <groupId>${project.groupId}</groupId>
                             <artifactId>add-page-content-share</artifactId>
@@ -161,15 +160,12 @@
                             <artifactId>add-action-doclib-share</artifactId>
                             <type>amp</type>
                         </overlay>
-
-                        <!-- Uncomment if you are using RM module -->
-                        <!--
                         <overlay>
-                            <groupId>${alfresco.groupId}</groupId>
-                            <artifactId>alfresco-rm-share</artifactId>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>add-metadata-template-doclib-share</artifactId>
                             <type>amp</type>
                         </overlay>
-                        -->
+
                     </overlays>
                 </configuration>
             </plugin>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>add-metadata-template-doclib-share</artifactId>
+    <name>Alfresco Tutorials (Document Library) - Add Metadata Template</name>
+    <packaging>amp</packaging>
+    <description>Tutorial that demonstrates how to add a custom metadata template to the Document Library.</description>
+
+    <parent>
+        <groupId>org.alfresco.tutorial</groupId>
+        <artifactId>all-in-one</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <!-- 
+        SDK properties have sensible defaults in the SDK parent,
+        but you can override the properties below to use another version.
+        For more available properties see the alfresco-sdk-parent POM.
+       -->
+    <properties>
+        <!-- Defines the target WAR artifactId to run this amp, only used with the -Pamp-to-war switch
+             Allowed values: alfresco | share. In this case it's configured to use OOTB share -->
+        <app.amp.client.war.artifactId>share</app.amp.client.war.artifactId>
+
+        <!-- Defines the log level used in log4j.properties -->
+        <app.log.root.level>WARN</app.log.root.level>
+    </properties>
+
+    <!-- Following dependencies are needed for compiling Java code in src/main/java;  -->
+    <dependencies>
+        <dependency>
+            <groupId>${alfresco.groupId}</groupId>
+            <artifactId>share</artifactId>
+            <version>${alfresco.version}</version>
+            <classifier>classes</classifier>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.extensions.surf</groupId>
+            <artifactId>spring-surf-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+</project>
