@@ -7,7 +7,8 @@
             <configurations>
                 <config evaluator="string-compare" condition="DocumentLibrary">
                     <metadata-templates>
-                        <template id="default">
+                        <template id="acmeDocMetadataTemplate">
+                            <evaluator>alfresco.tutorials.evaluator.isAcmeDocument</evaluator>
                             <banner index="10" id="lockBanner" evaluator="evaluator.doclib.metadata.hasLockBanner">{lockBanner}</banner>
                             <banner index="20" id="syncTransientError" evaluator="evaluator.doclib.metadata.hasSyncTransientErrorBanner">{syncTransientError}</banner>
                             <banner index="30" id="syncFailed" evaluator="evaluator.doclib.metadata.hasSyncFailedBanner">{syncFailed}</banner>
@@ -22,8 +23,8 @@
                     </metadata-templates>
                 </config>
 
-                <!-- Bring in custom JavaScript functions called by the callWebScript and showCustomMessage
-                     DocLib actions defined above -->
+                <!-- Bring in custom JavaScript functions called to render the
+                     acmeDocumentIdCustomRendition property above -->
                 <config evaluator="string-compare" condition="DocLibCustom">
                     <dependencies>
                         <js src="components/documentlibrary/custom-metadata-template-renderer.js"/>
