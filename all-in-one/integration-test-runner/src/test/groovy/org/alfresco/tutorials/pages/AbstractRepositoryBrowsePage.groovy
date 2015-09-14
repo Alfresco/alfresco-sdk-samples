@@ -93,6 +93,43 @@ abstract class AbstractRepositoryBrowsePage extends Page {
         Only visible if hover over document list row, and then clicking 'More...' menu item
         */
         sendAsEmailActionPopupMenuItem(required: false) { $("a", title: "Send as Email") }
+
+        /**
+         * Send-as-email form - Cancel button
+         *
+         <form action="/share/proxy/alfresco/api/action/send-as-email/formprocessor"
+                            enctype="application/json" accept-charset="utf-8" method="post" id="alf-id186-form" forms-runtime="listening" onsubmit="return false;">
+
+            <input type="hidden" value="workspace://SpacesStore/b92072cd-ce37-45d2-ae6b-072218a3fe6b" name="alf_destination" id="alf-id186-form-destination" />
+
+            <div class="form-fields" id="alf-id186-form-fields">
+                ...
+            <div class="form-buttons" id="alf-id186-form-buttons">
+                <span class="yui-button yui-submit-button" id="alf-id186-form-submit">
+                    <span class="first-child">
+                        <button type="button" tabindex="0" id="alf-id186-form-submit-button" name="-">OK</button></span></span> 
+                <span class="yui-button yui-push-button" id="alf-id186-form-cancel">
+                    <span class="first-child">
+                        <button type="button" tabindex="0" id="alf-id186-form-cancel-button" name="-">Cancel</button></span></span>
+
+            This form is not required to be on the page, but when we expect it to be there we also wait for it to appear...
+         */
+        sendAsEmailActionForm(wait: true, required: false) { $("form", action: contains("send-as-email")) }
+    }
+
+    /**
+     * Fill in the Send-As-Email action form and then cancel out of it.
+     *
+     * @param toAddress the address you want to send the email to
+     * @param subject the subject of the email
+     * @param bodyText the body text of the email
+     */
+    boolean fillInAndCancelSendAsEmailForm(String toAddress, String subject, String bodyText) {
+        sendAsEmailActionForm.prop_to = toAddress
+        sendAsEmailActionForm.prop_subject = subject
+        sendAsEmailActionForm.prop_body_text = bodyText
+        sendAsEmailActionForm.find("button", text: "Cancel").click()
+        return true;
     }
 
     /*

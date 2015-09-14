@@ -23,7 +23,6 @@ import org.alfresco.tutorials.pages.LoginPage
 import org.alfresco.tutorials.pages.RepositoryBrowseCompanyHomeFolderPage
 import org.alfresco.tutorials.pages.RepositoryBrowseDataDictionaryFolderPage
 import org.alfresco.tutorials.pages.RepositoryBrowseScriptsFolderPage
-import org.alfresco.tutorials.pages.SendAsEmailFormPage
 import spock.lang.Stepwise
 
 /**
@@ -134,8 +133,18 @@ class DocLibTestSpec extends GebReportingSpec {
             sendAsEmailActionPopupMenuItem.click()
         }
 
-        then: "a Send-as-Email DocLib action form is displayed"
-        at SendAsEmailFormPage
+        then: "I should be able to cancel out of the Send-as-Email DocLib action form after filling it in"
+        fillInAndCancelSendAsEmailForm("someone@alfresco.com", "Email with attachments", "This is the body of the email")
+    }
+
+    def "Test that the custom Metadata template for Acme Document Type works"() {
+        given: "I navigate to the Repository Browser Page top folder"
+        to RepositoryBrowseCompanyHomeFolderPage
+
+        expect: "to see a text file with property acme:documentId displayed in 2 ways"
+        acmeTextFileRow
+        acmeTextFileRowDocId_1
+        acmeTextFileRowDocId_2
     }
 }
 

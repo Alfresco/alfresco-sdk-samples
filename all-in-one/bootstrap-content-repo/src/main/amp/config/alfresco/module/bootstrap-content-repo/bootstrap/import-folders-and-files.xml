@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view:view xmlns:cm="http://www.alfresco.org/model/content/1.0"
+		   xmlns:view="http://www.alfresco.org/view/repository/1.0"
+		   xmlns:sys="http://www.alfresco.org/model/system/1.0"
+		   xmlns:app="http://www.alfresco.org/model/application/1.0"
+		   xmlns:acme="http://www.acme.org/model/content/1.0">
+<view:metadata>
+	<view:exportBy>admin</view:exportBy>
+	<view:exportDate>2015-09-10T16:14:20.368+01:00</view:exportDate>
+	<view:exporterVersion>4.2.0 (r54676-b4795)</view:exporterVersion>
+	<view:exportOf>/app:company_home</view:exportOf>
+</view:metadata>
+<acme:document view:childName="cm:acmedocument.txt">
+	<view:aspects>
+		<cm:auditable></cm:auditable>
+		<sys:referenceable></sys:referenceable>
+		<cm:titled></cm:titled>
+		<sys:localized></sys:localized>
+		<app:inlineeditable></app:inlineeditable>
+	</view:aspects>
+	<view:acl></view:acl>
+	<view:properties>
+		<cm:name>acmedocument.txt</cm:name>
+		<sys:node-dbid>854</sys:node-dbid>
+		<sys:store-identifier>SpacesStore</sys:store-identifier>
+		<sys:locale>en_GB_</sys:locale>
+		<cm:content>contentUrl=classpath:alfresco/module/bootstrap-content-repo/bootstrap/someacmedoc.txt|mimetype=text/plain|size=30|encoding=UTF-8|locale=en_GB_</cm:content>
+		<acme:documentId>DOC001</acme:documentId>
+		<cm:title>
+			<view:mlvalue view:locale="en">SomeTitle</view:mlvalue>
+		</cm:title>
+		<cm:modified>2015-09-10T16:11:07.875+01:00</cm:modified>
+		<sys:node-uuid>34e4a654-b45e-4be1-80db-25da1e4c82a7</sys:node-uuid>
+		<app:editInline>true</app:editInline>
+		<cm:created>2015-09-10T16:10:49.142+01:00</cm:created>
+		<sys:store-protocol>workspace</sys:store-protocol>
+		<cm:creator>admin</cm:creator>
+		<cm:description>
+			<view:mlvalue view:locale="en">SomeDesc</view:mlvalue>
+		</cm:description>
+		<cm:modifier>admin</cm:modifier>
+	</view:properties>
+</acme:document>
+</view:view>

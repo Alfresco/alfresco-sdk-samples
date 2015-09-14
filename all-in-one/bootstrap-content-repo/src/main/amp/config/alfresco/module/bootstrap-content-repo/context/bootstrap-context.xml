@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <!-- Bootstrap Title and Description messages for patches -->
+
+    <bean id="org.alfresco.tutorial.bootstrap.patches.resourceBundle"
+          class="org.alfresco.i18n.ResourceBundleBootstrapComponent">
+        <property name="resourceBundles">
+            <list>
+                <value>alfresco.module.bootstrap-content-repo.messages.patch-messages</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Bootstrap folder and file content -->
+
+    <bean id="org.alfresco.tutorial.bootstrap.patch.foldersAndFilesLoader"
+          class="org.alfresco.repo.admin.patch.impl.GenericBootstrapPatch"
+          parent="basePatch" >
+        <property name="id"><value>org.alfresco.tutorial.bootstrap.patch.foldersAndFilesLoader</value></property>
+        <property name="description"><value>org.alfresco.tutorial.bootstrap.patch.foldersAndFilesLoader.description</value></property>
+        <property name="fixesFromSchema"><value>0</value></property>
+        <property name="fixesToSchema"><value>${version.schema}</value></property>
+        <property name="targetSchema"><value>10000</value></property>
+        <property name="importerBootstrap">
+            <ref bean="spacesBootstrap" />
+        </property>
+        <!-- Can be used to check if something already exists, if it does then the patch will not be executed -->
+        <property name="checkPath">
+            <value>/${spaces.company_home.childname}/cm:acmedocument.txt</value>
+        </property>
+        <property name="bootstrapView">
+            <props>
+                <prop key="path">/${spaces.company_home.childname}</prop>
+                <prop key="location">alfresco/module/bootstrap-content-repo/bootstrap/import-folders-and-files.xml</prop>
+            </props>
+        </property>
+    </bean>
+	
+
+
+</beans>

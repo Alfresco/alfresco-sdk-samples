@@ -44,6 +44,12 @@
             <version>${project.version}</version>
             <type>amp</type>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>bootstrap-content-repo</artifactId>
+            <version>${project.version}</version>
+            <type>amp</type>
+        </dependency>
 
         <!-- Uncomment if you are using SPP (SharePoint Protocol Support) for Online Edit etc -->
         <!--
@@ -96,6 +102,11 @@
                         <overlay>
                             <groupId>${project.groupId}</groupId>
                             <artifactId>add-action-repo</artifactId>
+                            <type>amp</type>
+                        </overlay>
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>bootstrap-content-repo</artifactId>
                             <type>amp</type>
                         </overlay>
                         <!-- Uncomment if you are using SPP -->

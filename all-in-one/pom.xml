@@ -92,6 +92,7 @@
     <modules>
         <module>repo-amp</module>
         <module>add-action-repo</module>
+        <module>bootstrap-content-repo</module>
         <module>add-page-content-share</module>
         <module>remove-page-content-share</module>
         <module>customize-webscript-i18n-props-share</module>

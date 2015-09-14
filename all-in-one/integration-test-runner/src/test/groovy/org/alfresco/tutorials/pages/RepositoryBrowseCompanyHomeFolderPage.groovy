@@ -25,7 +25,7 @@ package org.alfresco.tutorials.pages
 class RepositoryBrowseCompanyHomeFolderPage extends AbstractRepositoryBrowsePage {
     // The relative URL of the page;
     // used by the to() method to determine which URL to send the HTTP request to.
-    static url = "page/repository"
+    static url = "page/repository#filter="
 
     // A closure that indicates whether the current page is this one or not -
     // called by the at() method; it should return a boolean, but you can also include assertions.
@@ -66,5 +66,73 @@ class RepositoryBrowseCompanyHomeFolderPage extends AbstractRepositoryBrowsePage
         */
         goToGoogleActionPopupMenuItem(wait : true) { $("a", title: "Go to Google") }
 
+        /*
+            <h3 class="filename">
+                <span title="Rename" class="insitu-edit"></span>
+                <form id="alf-id228" method="post" action="http://localhost:8080/share/proxy/alfresco/api/node/workspace/SpacesStore/34e4a654-b45e-4be1-80db-25da1e4c82a7/formprocessor"
+                    class="insitu-edit">
+                </form>
+                <span id="alf-id210">
+                    <a href="/share/page/document-details?nodeRef=workspace://SpacesStore/34e4a654-b45e-4be1-80db-25da1e4c82a7">acmedocument.txt</a>
+                </span>
+                <span class="title">(SomeTitle)</span>
+                <span class="document-version">1.0</span>
+            </h3>
+        */
+        acmeTextFileRow(wait:true) { $("h3.filename span", text: contains("acmedocument.txt")) }
+
+
+        /*
+            <div class="detail">
+                <span class="item">Modified <span title="Thu 10 Sep 2015 16:11:07">4 days ago</span> by
+                    <a href="/share/page/user/admin/profile">Administrator</a>
+                </span>
+                <span class="item">30 bytes</span>
+            </div>
+            <div class="detail">
+                <span class="item" id="alf-id211">SomeDesc</span>
+            </div>
+            <div class="detail">
+                <span title="Tag" class="insitu-edit"></span>
+                <form id="alf-id229" method="post" action="http://localhost:8080/share/proxy/alfresco/api/node/workspace/SpacesStore/34e4a654-b45e-4be1-80db-25da1e4c82a7/formprocessor"
+                    class="insitu-edit">
+                </form>
+                <span class="item" id="alf-id212">
+                    <span class="faded">No Tags</span>
+                </span>
+            </div>
+            <div class="detail">
+                <span class="item">
+                    <em>Acme Doc ID</em>
+                        : DOC001
+                        </span>
+            </div>
+            <div class="detail">
+                <span class="item item-social">
+                    <a tabindex="0" title="Add document to favorites" class="favourite-action" href="#">Favorite</a>
+                </span>
+                <span class="item item-social item-separator">
+                    <a tabindex="0" title="Like this document" class="like-action" href="#">Like</a>
+                    <span class="likes-count">0</span>
+                </span>
+                <span class="item item-social item-separator">
+                    <a tabindex="0" title="Comment on this document" class="comment" href="/share/page/document-details?nodeRef=workspace://SpacesStore/34e4a654-b45e-4be1-80db-25da1e4c82a7#comment">Comment</a>
+                </span>
+                <span class="item item-separator">
+                    <span class="item-social" id="alf-id213">
+                        <a title="Share document" class="quickshare-action" href="#" tabindex="0">Share</a>
+                        <span class="quickshare-indicator"> </span>
+                    </span>
+                </span>
+            </div>
+            <div class="detail">
+                <span><em>Acme Doc ID</em>: <h2>DOC001</h2></span>
+            </div>
+        </div>
+        </td>
+         */
+
+        acmeTextFileRowDocId_1(wait:true) { $("div.detail span.item em", text: contains("Acme Doc ID")) }
+        acmeTextFileRowDocId_2(wait:true) { $("div.detail span h2", text: contains("DOC001")) }
     }
 }
