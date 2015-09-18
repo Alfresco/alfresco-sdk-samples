@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model name="acme:contentModel" xmlns="http://www.alfresco.org/model/dictionary/1.0">
+<model name="myc:contentModel" xmlns="http://www.alfresco.org/model/dictionary/1.0">
 
     <!-- Optional meta-data about the model -->
-    <description>Document Model for the fictive company Acme</description>
-    <author>James Alfresco</author>
+    <description>Document Content Model sample</description>
+    <author>My Name</author>
     <version>1.0</version>
 
     <imports>
@@ -17,26 +17,11 @@
 
     <!-- Custom namespace for your domain -->
     <namespaces>
-        <namespace uri="http://www.acme.org/model/content/1.0" prefix="acme"/>
+        <namespace uri="http://www.mycompany.com/model/content/1.0" prefix="myc"/>
     </namespaces>
 
     <!-- ===============================================================================================================
         Constraints, Types, and Aspects go here...
         -->
-    <types>
-        <!--
-            Enterprise-wide Document root type
-        -->
-        <type name="acme:document">
-            <title>Base document type</title>
-            <parent>cm:content</parent>
-            <properties>
-                <property name="acme:documentId">
-                    <title>Document Identification Number</title>
-                    <type>d:text</type>
-                </property>
-            </properties>
-        </type>
 
-    </types>
 </model>

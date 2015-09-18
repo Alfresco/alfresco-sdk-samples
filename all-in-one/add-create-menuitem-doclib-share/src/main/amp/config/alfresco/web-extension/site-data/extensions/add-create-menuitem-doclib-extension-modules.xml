@@ -16,54 +16,9 @@
                     </create-content>
                 </config>
 
-                <!-- Configure the Create form for the custom type acme:document
-                    This form configuration is copied from the out-of-the-box
-                    tomcat/webapps/share/WEB-INF/classes/alfresco/share-form-config.xml
-                    where the cm:content form configuration is used as a starting point.
-                    Note the updated condition and the added acme:documentId property. -->
-                <config evaluator="model-type" condition="acme:document">
-                    <forms>
-                        <form>
-                            <field-visibility>
-                                <show id="cm:name"/>
-                                <show id="cm:content" force="true"/>
-                                <show id="cm:title" force="true"/>
-                                <show id="cm:description" force="true"/>
-                                <show id="acme:documentId" force="true"/>
-                                <show id="mimetype"/>
-                                <show id="app:editInline" force="true"/>
-                            </field-visibility>
-                            <appearance>
-                                <field id="cm:name">
-                                    <control>
-                                        <control-param name="maxLength">255</control-param>
-                                    </control>
-                                </field>
-                                <field id="cm:title">
-                                    <control template="/org/alfresco/components/form/controls/textfield.ftl"/>
-                                </field>
-                                <field id="cm:content" label-id="">
-                                    <control>
-                                        <control-param name="editorAppearance">explorer</control-param>
-                                    </control>
-                                </field>
-                                <field id="acme:documentId">
-                                    <control template="/org/alfresco/components/form/controls/textfield.ftl"/>
-                                </field>
-                                <field id="mimetype">
-                                    <control template="/org/alfresco/components/form/controls/hidden.ftl">
-                                        <control-param name="contextProperty">mimeType</control-param>
-                                    </control>
-                                </field>
-                                <field id="app:editInline">
-                                    <control template="/org/alfresco/components/form/controls/hidden.ftl">
-                                        <control-param name="contextProperty">editInline</control-param>
-                                    </control>
-                                </field>
-                            </appearance>
-                        </form>
-                    </forms>
-                </config>
+                <!-- For the Create form configuration for acme:document
+                    see custom-content-model-share/src/main/resources/META-INF/share-config-custom.xml
+                     -->
             </configurations>
         </module>
     </modules>

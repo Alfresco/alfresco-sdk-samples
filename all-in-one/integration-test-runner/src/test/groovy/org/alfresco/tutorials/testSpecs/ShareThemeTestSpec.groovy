@@ -38,7 +38,7 @@ import spock.lang.Stepwise
 class ShareThemeTestSpec extends GebReportingSpec {
 
     def "Test valid login"() {
-        given: "I am at the login page"
+        given: "I navigate to the login page"
         to LoginPage
 
         when: "I enter a valid Administrator username and password and click login"

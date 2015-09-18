@@ -93,6 +93,8 @@
         <module>repo-amp</module>
         <module>add-action-repo</module>
         <module>bootstrap-content-repo</module>
+        <module>custom-content-model-repo</module>
+        <module>custom-content-model-share</module>
         <module>add-page-content-share</module>
         <module>remove-page-content-share</module>
         <module>customize-webscript-i18n-props-share</module>

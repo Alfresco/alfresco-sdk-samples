@@ -88,6 +88,12 @@
             <version>${project.version}</version>
             <type>amp</type>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>custom-content-model-share</artifactId>
+            <version>${project.version}</version>
+            <type>amp</type>
+        </dependency>
 
     </dependencies>
 
@@ -163,6 +169,11 @@
                         <overlay>
                             <groupId>${project.groupId}</groupId>
                             <artifactId>add-metadata-template-doclib-share</artifactId>
+                            <type>amp</type>
+                        </overlay>
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>custom-content-model-share</artifactId>
                             <type>amp</type>
                         </overlay>
 

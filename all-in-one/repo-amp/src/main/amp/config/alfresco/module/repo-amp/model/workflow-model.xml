@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model name="myw:workflowModel" xmlns="http://www.alfresco.org/model/dictionary/1.0">
     <!-- Optional meta-data about the model -->
-    <description>Workflow Model for Repo Extension X</description>
+    <description>Workflow Content Model sample</description>
     <author>My Name</author>
     <version>1.0</version>
 
