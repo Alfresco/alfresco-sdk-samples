@@ -145,6 +145,9 @@
         </plugins>
     </build>
 
+    <!-- The run and run-it profile configuration is the same, but cannot be easily configured in one place, such
+        as a pluginManagement section, as it would effect the above maven-war-plugin configuration ....
+    -->
     <profiles>
         <!-- Overrides the run profile to disable securecomms and add rapid development configuration -->
         <profile>
@@ -212,13 +215,61 @@
                 </dependency>
             </dependencies>
         </profile>
-
         <profile>
             <id>run-it</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>prepare-exploded-war</id>
+                                <goals>
+                                    <goal>exploded</goal>
+                                </goals>
+                                <phase>prepare-package</phase>
+                            </execution>
+                            <execution>
+                                <id>default-war</id>
+                                <configuration>
+                                    <webXml>${project.build.directory}/${project.build.finalName}-nossl/WEB-INF/web.xml</webXml>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- Replaces web.xml where applicable, commenting out the security-constraints -->
+                    <plugin>
+                        <groupId>com.google.code.maven-replacer-plugin</groupId>
+                        <artifactId>replacer</artifactId>
+                        <executions>
+                            <execution>
+                                <id>disable-securecomms</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>replace</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <ignoreErrors>true</ignoreErrors>
+                            <file>${project.build.directory}/${project.build.finalName}/WEB-INF/web.xml</file>
+                            <outputDir>${project.build.directory}/${project.build.finalName}-nossl/WEB-INF/</outputDir>
+                            <preserveDir>false</preserveDir>
+                            <replacements>
+                                <replacement>
+                                    <token><![CDATA[<!-- Toggle securecomms placeholder start -->]]></token>
+                                    <value><![CDATA[<!--]]></value>
+                                </replacement>
+                                <replacement>
+                                    <token><![CDATA[<!-- Toggle securecomms placeholder end -->]]></token>
+                                    <value><![CDATA[-->]]></value>
+                                </replacement>
+                            </replacements>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
             <dependencies>
-                <!-- If we are Integration Testing with Tomcat embedded with the H2 database then bring in the
-                   Alfresco Rapid Application Development (RAD) JAR, which among other things have all
-                   the H2 Database dialect db scripts copied from the PostgreSQL scripts. -->
                 <dependency>
                     <groupId>org.alfresco.maven</groupId>
                     <artifactId>alfresco-rad</artifactId>

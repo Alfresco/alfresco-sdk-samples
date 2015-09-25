@@ -18,10 +18,13 @@
 
     <properties>
         <groovy.version>2.4.4</groovy.version>
+        <spock.version>1.0-groovy-2.4</spock.version>
         <selenium.version>2.46.0</selenium.version>
     </properties>
 
     <dependencies>
+        <!--==================== Bring in support for testing with Groovy an Spock BDD ==============================-->
+
         <!-- Tests are expressed in Groovy -->
         <dependency>
             <groupId>org.codehaus.groovy</groupId>
@@ -37,7 +40,7 @@
         <dependency>
             <groupId>org.spockframework</groupId>
             <artifactId>spock-core</artifactId>
-            <version>1.0-groovy-2.4</version>
+            <version>${spock.version}</version>
             <scope>test</scope>
             <exclusions>
                 <exclusion>
@@ -55,12 +58,15 @@
             <scope>test</scope>
         </dependency>
 
+        <!--==================== Bring in support for Remote Web Testing with Geb backed by Selenium ================-->
+
         <!-- Geb brings together the power of WebDriver, the elegance of jQuery content selection,
             the robustness of Page Object modelling and the expressiveness of the Groovy language. -->
         <dependency>
             <groupId>org.gebish</groupId>
             <artifactId>geb-spock</artifactId>
-            <version>0.10.0</version> <!-- 0.12.0 has some new stuff for page objects ... -->
+            <version>0.10.0</version>
+            <!-- 0.12.0 has some new stuff for page objects ... -->
             <scope>test</scope>
         </dependency>
 
@@ -85,13 +91,202 @@
             <scope>test</scope>
         </dependency>
 
+
+        <!--==================== Bring in support for testing Spring applications from Spock ========================-->
+
+        <!-- Integrate Spring’s test framework into Spock -->
+        <dependency>
+            <groupId>org.spockframework</groupId>
+            <artifactId>spock-spring</artifactId>
+            <version>${spock.version}</version>
+            <scope>test</scope>
+            <exclusions>
+                <!-- Exclude Spring and Groovy so we can specify separately -->
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-test</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-beans</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.codehaus.groovy</groupId>
+                    <artifactId>groovy-all</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- Bring in Spring Test so we can use @ContextConfiguration and load Alfresco Spring context -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>3.0.6.RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Bring in Spring Beans so we can use  @Autowired and @Qualifier -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>3.2.10.RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--==================== Bring in Alfresco specific components needed during Spring context tests ===========-->
+
+        <!-- Contains the main Alfresco Spring context file alfresco/application-context.xml -->
+        <dependency>
+            <groupId>${alfresco.groupId}</groupId>
+            <artifactId>alfresco-repository</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <!-- Exclude Groovy so we can specify separately -->
+                <exclusion>
+                    <groupId>org.codehaus.groovy</groupId>
+                    <artifactId>groovy-all</artifactId>
+                </exclusion>
+                <!-- Exclude Guava 11.0.2 so we can get the newer 14.0.1 version used by the Geb tests -->
+                <exclusion>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- Contains for example NoopAuthenticationListener -->
+        <dependency>
+            <groupId>org.alfresco</groupId>
+            <artifactId>alfresco-remote-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Explicitly define h2 SQL scripts dependency so we can get to
+             alfresco/ibatis/#resource.dialect#/activities-insert-SqlMap.xml.
+              This is needed as the SDK enables testing based on "enable-alfresco-testing" profile,
+              which is activated via <exists>src/test/java</exists>, and we are using groovy, and not maven...-->
+        <dependency>
+            <groupId>org.alfresco.maven</groupId>
+            <artifactId>alfresco-rad</artifactId>
+            <version>${maven.alfresco.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Bring in the Repository WAR (repo.war but really alfresco.war) so we can:
+            * Unpack it in /target
+            * And copy over classes, xml, properties, txt to /target/test-classes (this includes all the Repo AMP config)
+            -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>repo</artifactId>
+            <version>${project.version}</version>
+            <type>war</type>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Dependencies on Repository JARs under tests, this is needed so you can:
+            * get to any components that are under test, such as the DemoComponent -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>repo-amp</artifactId>
+            <version>${project.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.build.directory}/repoWar/WEB-INF/lib/repo-amp.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>add-action-repo</artifactId>
+            <version>${project.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.build.directory}/repoWar/WEB-INF/lib/add-action-repo.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>bootstrap-content-repo</artifactId>
+            <version>${project.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.build.directory}/repoWar/WEB-INF/lib/bootstrap-content-repo.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>custom-content-model-repo</artifactId>
+            <version>${project.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.build.directory}/repoWar/WEB-INF/lib/custom-content-model-repo.jar</systemPath>
+        </dependency>
+
+        <!-- Explicitly define h2 dependency as we don't have src/test/properties/local/alfresco-global.properties,
+             which would bring it in automatically,useful also when not building with Maven -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+
+            <!-- Unpack the Repo.war so we can get to all the Repo AMP configuration and the Repo AMP JARs -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>unpack-dependencies</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <includeTypes>war</includeTypes>
+                            <includes>
+                                **/WEB-INF/classes/**/*.class,**/WEB-INF/classes/**/*.xml,**/WEB-INF/classes/**/*.properties,**/WEB-INF/classes/**/*.txt,**/WEB-INF/lib/*.jar
+                            </includes>
+                            <outputDirectory>${project.build.directory}/repoWar</outputDirectory>
+                            <overWriteReleases>false</overWriteReleases>
+                            <overWriteSnapshots>false</overWriteSnapshots>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                            <excludeTransitive>true</excludeTransitive>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Move unpacked Repo.war WEB-INF/classes content to target/test-classes so it is available during testing -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy WAR content to test-classes</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/test-classes</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.build.directory}/repoWar/WEB-INF/classes</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
 
     <profiles>
         <profile>
             <!-- Enable this profile to run the Integration Tests -->
             <id>run-it</id>
 
+            <!-- Properties used by th Solr Webapp when deployed by tomcat7-maven-plugin -->
             <properties>
                 <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
                 <alfresco.solr.dir>${project.parent.basedir}/${alfresco.data.location}/solr4</alfresco.solr.dir>
@@ -139,7 +334,40 @@
                         </dependencies>
                     </plugin>
 
-                    <!-- The Failsafe plugin is used to run the integration tests,  -->
+                    <!-- Run the Repo side tests as standard JUnit tests (Spring context tests)
+                         before the embedded Tomcat container is loaded -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>${maven.surefire.version}</version>
+                        <configuration>
+                            <argLine>${app.testing.jvm.args}</argLine>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>context-test</id> <!-- No container is running, only loading Spring context -->
+                                <goals>
+                                    <goal>test</goal>
+                                </goals>
+                                <phase>test</phase>
+                                <configuration>
+                                    <includes>
+                                        <include>**/*TestSpec.java</include>
+                                    </includes>
+                                    <additionalClasspathElements>
+                                        <!--<additionalClasspathElement>${project.build.directory}/repoWar/WEB-INF/classes</additionalClasspathElement>
+                                        <additionalClasspathElement>${project.build.directory}/repoWar/WEB-INF/lib/add-action-repo.jar</additionalClasspathElement>
+                                        <additionalClasspathElement>${project.build.directory}/repoWar/WEB-INF/lib/custom-content-model-repo.jar</additionalClasspathElement>
+                                        <additionalClasspathElement>${project.build.directory}/repoWar/WEB-INF/lib/repo-amp.jar</additionalClasspathElement>
+                                        <additionalClasspathElement>${project.build.directory}/repoWar/WEB-INF/lib/bootstrap-content-repo.jar</additionalClasspathElement>
+                                        -->
+                                    </additionalClasspathElements>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <!-- The Failsafe plugin is used to run the Integration Tests against a Tomcat container -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-failsafe-plugin</artifactId>
@@ -147,9 +375,9 @@
                         <configuration>
                             <!-- By default any class that follows naming convention
                                  "**/IT*.java", "**/*IT.java", and "**/*ITCase.java" will be considered an integration test.
-                                 So add Spock Spec files as tests to run. -->
+                                 So add Spock IT Spec files as tests to run. -->
                             <includes>
-                                <include>**/*Spec.*</include>
+                                <include>**/*ITSpec.*</include>
                             </includes>
                         </configuration>
                         <executions>
@@ -202,7 +430,7 @@
                         </executions>
                     </plugin>
 
-                    <!-- Run Tomcat 7 embedded with Alfresco.war context,
+                    <!-- Run Tomcat 7 embedded with Alfresco.war, share.war and solr4.war context,
                          plugin version picked up from alfresco-sdk-parent.pom pluginManagement definition,
                          which also brings in the H2 database lib -->
                     <plugin>
@@ -237,9 +465,6 @@
                             <systemProperties>
                                 <solr.solr.home>${alfresco.solr.home.dir}</solr.solr.home>
                             </systemProperties>
-
-                            <!-- Note. If you have integration tests that require Share or Solr then you would have
-                                       to add those webapps too, see the runner project for info on how to do that. -->
                             <webapps>
                                 <webapp>
                                     <groupId>${project.groupId}</groupId>

@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.alfresco.tutorials.testSpecs
+package org.alfresco.tutorials.testSpecs.integration
 
 import geb.spock.GebReportingSpec
 import org.alfresco.tutorials.pages.AdminHomePage
@@ -37,7 +37,7 @@ import spock.lang.Stepwise
 // Make sure we run each test method in the order they are written in the class and re-use browser context for each test.
 // If one method fails the test will stop.
 @Stepwise
-class DocLibTestSpec extends GebReportingSpec {
+class DocLibITSpec extends GebReportingSpec {
     def "Test valid login"() {
         given: "I navigate to the login page"
         to LoginPage
