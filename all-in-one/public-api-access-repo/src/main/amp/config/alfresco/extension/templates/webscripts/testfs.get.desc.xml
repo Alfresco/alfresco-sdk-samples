@@ -1,0 +1,6 @@
+<webscript>
+    <shortname>Test Foundation Services</shortname>
+    <description>This Web Script is used to test the Foundation Services API</description>
+    <url>/sample/testfs</url>
+    <authentication>user</authentication>
+</webscript>

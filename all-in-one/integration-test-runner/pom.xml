@@ -23,7 +23,7 @@
     </properties>
 
     <dependencies>
-        <!--==================== Bring in support for testing with Groovy an Spock BDD ==============================-->
+        <!--==================== Bring in support for testing with Groovy and Spock BDD =============================-->
 
         <!-- Tests are expressed in Groovy -->
         <dependency>
@@ -90,7 +90,6 @@
             <version>${selenium.version}</version>
             <scope>test</scope>
         </dependency>
-
 
         <!--==================== Bring in support for testing Spring applications from Spock ========================-->
 
@@ -213,6 +212,13 @@
             <version>${project.version}</version>
             <scope>system</scope>
             <systemPath>${project.build.directory}/repoWar/WEB-INF/lib/custom-content-model-repo.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>public-api-access-repo</artifactId>
+            <version>${project.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.build.directory}/repoWar/WEB-INF/lib/public-api-access-repo.jar</systemPath>
         </dependency>
 
         <!-- Explicitly define h2 dependency as we don't have src/test/properties/local/alfresco-global.properties,
@@ -354,14 +360,6 @@
                                     <includes>
                                         <include>**/*TestSpec.java</include>
                                     </includes>
-                                    <additionalClasspathElements>
-                                        <!--<additionalClasspathElement>${project.build.directory}/repoWar/WEB-INF/classes</additionalClasspathElement>
-                                        <additionalClasspathElement>${project.build.directory}/repoWar/WEB-INF/lib/add-action-repo.jar</additionalClasspathElement>
-                                        <additionalClasspathElement>${project.build.directory}/repoWar/WEB-INF/lib/custom-content-model-repo.jar</additionalClasspathElement>
-                                        <additionalClasspathElement>${project.build.directory}/repoWar/WEB-INF/lib/repo-amp.jar</additionalClasspathElement>
-                                        <additionalClasspathElement>${project.build.directory}/repoWar/WEB-INF/lib/bootstrap-content-repo.jar</additionalClasspathElement>
-                                        -->
-                                    </additionalClasspathElements>
                                 </configuration>
                             </execution>
                         </executions>

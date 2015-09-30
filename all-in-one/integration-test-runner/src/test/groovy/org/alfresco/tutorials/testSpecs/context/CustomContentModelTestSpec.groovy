@@ -78,6 +78,7 @@ class CustomContentModelTestSpec extends Specification {
         serviceRegistry.nodeService.getType(nodeRef).equals(type)
         serviceRegistry.nodeService.hasAspect(nodeRef, createQName("securityClassified"))
         serviceRegistry.nodeService.hasAspect(nodeRef, aspect)
+        serviceRegistry.nodeService.getProperty(nodeRef, createQName("contractName")).equals("The first contract")
         readTextContent(nodeRef).equals(textContent)
 
         cleanup:
