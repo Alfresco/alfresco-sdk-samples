@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>add-web-script-repo</artifactId>
+    <name>Alfresco Tutorials (Web Scripts) - Add a new Repository Web Script</name>
+    <packaging>amp</packaging>
+    <description>Tutorial that adds a new repository web script that can search for ACME documents based on keywords.</description>
+
+    <parent>
+        <groupId>org.alfresco.tutorial</groupId>
+        <artifactId>all-in-one</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    
+    <properties>
+        <!-- Property overrides are mostly done in parent pom -->
+    </properties>
+
+    <!-- Following dependencies are needed for compiling Java code in src/main/java;
+            <scope>provided</scope> is inherited for each of the following;
+            for more info, please refer to alfresco-platform-distribution POM -->
+    <dependencies>
+        <dependency>
+            <groupId>${alfresco.groupId}</groupId>
+            <artifactId>alfresco-repository</artifactId>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+
+        <!--
+            Brings in the extra Enterprise specific repository classes,
+            if the 'enterprise' profile has been activated, needs to be activated manually. -->
+        <profile>
+            <id>enterprise</id>
+            <dependencies>
+                <dependency>
+                    <groupId>${alfresco.groupId}</groupId>
+                    <artifactId>alfresco-enterprise-repository</artifactId>
+                    <version>${alfresco.version}</version>
+                    <scope>provided</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+
+        <!-- If we are running in embedded Tomcat skip unit tests -->
+        <profile>
+            <id>run</id>
+            <properties>
+                <skipTests>true</skipTests>
+            </properties>
+        </profile>
+    </profiles>
+</project>

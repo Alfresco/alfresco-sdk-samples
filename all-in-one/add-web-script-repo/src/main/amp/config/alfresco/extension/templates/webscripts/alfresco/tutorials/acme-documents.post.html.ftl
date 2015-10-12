@@ -1,0 +1,1 @@
+<p>The ACME Document was added successfully with the node reference: ${nodeRef}</p>

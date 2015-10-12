@@ -1,0 +1,6 @@
+<webscript>
+    <shortname>JSON Response</shortname>
+    <description>Simple Web Script with Java backed controller that responds with a piece of JSON, no template</description>
+    <url>/tutorial/jsonresponse</url>
+    <format default="json"></format>
+</webscript>

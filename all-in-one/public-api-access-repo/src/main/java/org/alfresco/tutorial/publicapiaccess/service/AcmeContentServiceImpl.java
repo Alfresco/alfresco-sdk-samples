@@ -57,9 +57,6 @@ public class AcmeContentServiceImpl implements AcmeContentService {
         this.serviceRegistry = serviceRegistry;
     }
 
-    public void readSomeThing() {
-    }
-
     /**
      * Create a contract file under the /Company Home folder.
      * This will be done in a read-write transaction, retry until successful or 20 trials.

@@ -1,0 +1,8 @@
+<webscript>
+    <shortname>Hello World</shortname>
+    <description>Hello World Sample Web Script that responds back with a greeting</description>
+    <url>/tutorial/helloworld</url>
+    <format default="html"></format>
+    <authentication>user</authentication>
+    <family>Alfresco Tutorials</family>
+</webscript>

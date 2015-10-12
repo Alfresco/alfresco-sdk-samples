@@ -4,4 +4,5 @@
     <url>/sample/fileinfo?nodeRef={nodeRef}</url>
     <authentication>user</authentication>
     <format default="json"></format>
+    <family>Alfresco Tutorials</family>
 </webscript>

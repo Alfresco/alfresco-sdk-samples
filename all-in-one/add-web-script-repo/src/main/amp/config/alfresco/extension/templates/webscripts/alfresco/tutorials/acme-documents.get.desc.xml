@@ -1,0 +1,7 @@
+<webscript>
+    <shortname>Search ACME Documents</shortname>
+    <description>Returns metadata as JSON for all ACME documents in the repository that matches search keyword</description>
+    <url>/tutorial/acmedocs?q={keyword}</url>
+    <authentication>user</authentication>
+    <format default="json"></format>
+</webscript>
