@@ -19,7 +19,7 @@
     <properties>
         <groovy.version>2.4.4</groovy.version>
         <spock.version>1.0-groovy-2.4</spock.version>
-        <selenium.version>2.46.0</selenium.version>
+        <selenium.version>2.48.2</selenium.version>
     </properties>
 
     <dependencies>
@@ -89,6 +89,24 @@
             <artifactId>selenium-support</artifactId>
             <version>${selenium.version}</version>
             <scope>test</scope>
+        </dependency>
+
+        <!--==================== Bring in support for REST API testing (i.e. testing Web Scripts ====================-->
+
+        <dependency>
+            <groupId>org.codehaus.groovy.modules.http-builder</groupId>
+            <artifactId>http-builder</artifactId>
+            <version>0.7.1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.codehaus.groovy</groupId>
+                    <artifactId>groovy-all</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.httpcomponents</groupId>
+                    <artifactId>httpclient</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!--==================== Bring in support for testing Spring applications from Spock ========================-->
@@ -171,6 +189,15 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Explicitly define h2 dependency as we don't have src/test/properties/local/alfresco-global.properties,
+              which would bring it in automatically,useful also when not building with Maven -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
+            <scope>test</scope>
+        </dependency>
+
         <!-- Bring in the Repository WAR (repo.war but really alfresco.war) so we can:
             * Unpack it in /target
             * And copy over classes, xml, properties, txt to /target/test-classes (this includes all the Repo AMP config)
@@ -184,49 +211,48 @@
         </dependency>
 
         <!-- Dependencies on Repository JARs under tests, this is needed so you can:
-            * get to any components that are under test, such as the DemoComponent -->
+            * get to any components that are under test, such as the DemoComponent,
+             Note that the maven-jar-plugin is used in each repo AMP project to produce these JARs. -->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>repo-amp</artifactId>
             <version>${project.version}</version>
-            <scope>system</scope>
-            <systemPath>${project.build.directory}/repoWar/WEB-INF/lib/repo-amp.jar</systemPath>
+            <classifier>classes</classifier>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>add-action-repo</artifactId>
             <version>${project.version}</version>
-            <scope>system</scope>
-            <systemPath>${project.build.directory}/repoWar/WEB-INF/lib/add-action-repo.jar</systemPath>
+            <classifier>classes</classifier>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>bootstrap-content-repo</artifactId>
             <version>${project.version}</version>
-            <scope>system</scope>
-            <systemPath>${project.build.directory}/repoWar/WEB-INF/lib/bootstrap-content-repo.jar</systemPath>
+            <classifier>classes</classifier>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>custom-content-model-repo</artifactId>
             <version>${project.version}</version>
-            <scope>system</scope>
-            <systemPath>${project.build.directory}/repoWar/WEB-INF/lib/custom-content-model-repo.jar</systemPath>
+            <classifier>classes</classifier>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>public-api-access-repo</artifactId>
             <version>${project.version}</version>
-            <scope>system</scope>
-            <systemPath>${project.build.directory}/repoWar/WEB-INF/lib/public-api-access-repo.jar</systemPath>
+            <classifier>classes</classifier>
+            <scope>test</scope>
         </dependency>
-
-        <!-- Explicitly define h2 dependency as we don't have src/test/properties/local/alfresco-global.properties,
-             which would bring it in automatically,useful also when not building with Maven -->
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>${h2.version}</version>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>add-web-script-repo</artifactId>
+            <version>${project.version}</version>
+            <classifier>classes</classifier>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -234,7 +260,7 @@
     <build>
         <plugins>
 
-            <!-- Unpack the Repo.war so we can get to all the Repo AMP configuration and the Repo AMP JARs -->
+            <!-- Unpack the Repo.war so we can get to all the Repo AMP configuration and classes -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -247,9 +273,7 @@
                         </goals>
                         <configuration>
                             <includeTypes>war</includeTypes>
-                            <includes>
-                                **/WEB-INF/classes/**/*.class,**/WEB-INF/classes/**/*.xml,**/WEB-INF/classes/**/*.properties,**/WEB-INF/classes/**/*.txt,**/WEB-INF/lib/*.jar
-                            </includes>
+                            <includes>**/WEB-INF/classes/**/*.class,**/WEB-INF/classes/**/*.xml,**/WEB-INF/classes/**/*.properties,**/WEB-INF/classes/**/*.txt</includes>
                             <outputDirectory>${project.build.directory}/repoWar</outputDirectory>
                             <overWriteReleases>false</overWriteReleases>
                             <overWriteSnapshots>false</overWriteSnapshots>

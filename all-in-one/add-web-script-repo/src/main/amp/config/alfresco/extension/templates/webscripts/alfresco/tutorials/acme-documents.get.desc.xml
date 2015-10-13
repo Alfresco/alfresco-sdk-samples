@@ -1,6 +1,33 @@
 <webscript>
     <shortname>Search ACME Documents</shortname>
-    <description>Returns metadata as JSON for all ACME documents in the repository that matches search keyword</description>
+    <description>Returns metadata as JSON for all ACME documents in the repository that matches search keyword.
+    For example, a call like "http://localhost:8080/alfresco/service/tutorial/acmedocs?q=sample" will
+        give a response looking something like this:
+
+        {
+          acmeDocs: [
+            {
+                name: "acmedocument.txt",
+                creator: "admin",
+                createdDate: "Thu, 10 Sep 2015 16:10:49 BST",
+                modifier: "admin",
+                modifiedDate: "Thu, 10 Sep 2015 16:11:07 BST",
+                docId: "DOC001",
+                securityClass: "Unknown"
+            },
+            {
+                name: "anotherdoc.txt",
+                creator: "admin",
+                createdDate: "Thu, 08 Oct 2015 13:47:08 BST",
+                modifier: "admin",
+                modifiedDate: "Mon, 12 Oct 2015 13:46:46 BST",
+                docId: "DOC002",
+                securityClass: "Strictly Confidential"
+            }
+          ]
+        }
+
+    </description>
     <url>/tutorial/acmedocs?q={keyword}</url>
     <authentication>user</authentication>
     <format default="json"></format>
