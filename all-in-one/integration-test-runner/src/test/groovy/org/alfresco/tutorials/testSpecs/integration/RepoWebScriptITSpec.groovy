@@ -48,7 +48,7 @@ class RepoWebScriptITSpec extends Specification {
         response.contentType == "text/html"
 
         and: "Returned HTML page should contain Hello World"
-        assert response.data.text().contains("Hello World")
+        response.data.text().contains("Hello World")
     }
 
     @Unroll("Search for #keyword matches #expectedResult document")
@@ -64,11 +64,12 @@ class RepoWebScriptITSpec extends Specification {
 
         and:
         response.data.acmeDocs.size == expectedResult
+        response.data.acmeDocs[0].name == expectedName
 
         where:
-        keyword    | expectedResult
-        "Sample"   | 1
-        "Sampled"  | 1
-        "Sampling" | 1
+        keyword    | expectedResult | expectedName
+        "Sample"   | 1              | "acmedocument.txt"
+        "Sampled"  | 1              | "acmedocument.txt"
+        "Sampling" | 1              | "acmedocument.txt"
     }
 }

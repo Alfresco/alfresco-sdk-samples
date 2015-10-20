@@ -15,7 +15,141 @@
         </property>
     </bean>
 
-    <!-- Bootstrap folder and file content -->
+    <!-- Load User Profiles (must be loaded before user account info) -->
+
+    <bean id="org.alfresco.tutorial.bootstrap.patch.userProfilesLoader"
+          class="org.alfresco.repo.admin.patch.impl.GenericBootstrapPatch"
+          parent="basePatch" >
+        <property name="id"><value>org.alfresco.tutorial.bootstrap.patch.userProfilesLoader</value></property>
+        <property name="description"><value>org.alfresco.tutorial.bootstrap.patch.userProfilesLoader.description</value></property>
+        <property name="fixesFromSchema"><value>0</value></property>
+        <property name="fixesToSchema"><value>${version.schema}</value></property>
+        <property name="targetSchema"><value>10000</value></property>
+        <property name="importerBootstrap">
+            <ref bean="spacesBootstrap" />
+        </property>
+        <property name="bootstrapView">
+            <props>
+                <prop key="path">/${system.system_container.childname}/${system.people_container.childname}</prop>
+                <prop key="location">alfresco/module/bootstrap-content-repo/bootstrap/import-user-profiles.xml</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- Load User Account Info -->
+
+    <bean id="org.alfresco.tutorial.bootstrap.patch.usersLoader"
+          class="org.alfresco.repo.admin.patch.impl.GenericBootstrapPatch"
+          parent="basePatch" >
+        <property name="id"><value>org.alfresco.tutorial.bootstrap.patch.usersLoader</value></property>
+        <property name="description"><value>org.alfresco.tutorial.bootstrap.patch.usersLoader.description</value></property>
+        <property name="fixesFromSchema"><value>0</value></property>
+        <property name="fixesToSchema"><value>${version.schema}</value></property>
+        <property name="targetSchema"><value>10000</value></property>
+        <property name="dependsOn" >
+            <list>
+                <ref bean="org.alfresco.tutorial.bootstrap.patch.userProfilesLoader" />
+            </list>
+        </property>
+        <property name="importerBootstrap">
+            <ref bean="userBootstrap" />
+        </property>
+        <property name="bootstrapView">
+            <props>
+                <prop key="path">/${alfresco_user_store.system_container.childname}/${alfresco_user_store.user_container.childname}</prop>
+                <prop key="location">alfresco/module/bootstrap-content-repo/bootstrap/import-users.xml</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- Load Groups -->
+
+    <bean id="org.alfresco.tutorial.bootstrap.patch.groupsLoader"
+          class="org.alfresco.repo.admin.patch.impl.GenericBootstrapPatch"
+          parent="basePatch" >
+        <property name="id"><value>org.alfresco.tutorial.bootstrap.patch.groupsLoader</value></property>
+        <property name="description"><value>org.alfresco.tutorial.bootstrap.patch.groupsLoader.description</value></property>
+        <property name="fixesFromSchema"><value>0</value></property>
+        <property name="fixesToSchema"><value>${version.schema}</value></property>
+        <property name="targetSchema"><value>10000</value></property>
+        <property name="importerBootstrap">
+            <ref bean="spacesBootstrap" />
+        </property>
+        <property name="bootstrapView">
+            <props>
+                <prop key="path">/${alfresco_user_store.system_container.childname}</prop>
+                <prop key="location">alfresco/module/bootstrap-content-repo/bootstrap/import-groups.xml</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- Load Group Memberships-->
+
+    <bean id="org.alfresco.tutorial.bootstrap.patch.groupMembershipsLoader"
+          class="org.alfresco.repo.admin.patch.impl.GenericBootstrapPatch"
+          parent="basePatch" >
+        <property name="id"><value>org.alfresco.tutorial.bootstrap.patch.groupMembershipsLoader</value></property>
+        <property name="description"><value>org.alfresco.tutorial.bootstrap.patch.groupMembershipsLoader.description</value></property>
+        <property name="fixesFromSchema"><value>0</value></property>
+        <property name="fixesToSchema"><value>${version.schema}</value></property>
+        <property name="targetSchema"><value>10000</value></property>
+        <property name="dependsOn" >
+            <list>
+                <ref bean="org.alfresco.tutorial.bootstrap.patch.groupsLoader" />
+                <ref bean="org.alfresco.tutorial.bootstrap.patch.userProfilesLoader" />
+                <ref bean="org.alfresco.tutorial.bootstrap.patch.usersLoader" />
+            </list>
+        </property>
+        <property name="importerBootstrap">
+            <ref bean="spacesBootstrap" />
+        </property>
+        <property name="bootstrapView">
+            <props>
+                <prop key="path">/${system.system_container.childname}</prop>
+                <prop key="location">alfresco/module/bootstrap-content-repo/bootstrap/import-group-memberships.xml</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- Load a Share Site -->
+
+    <bean id="org.alfresco.tutorial.bootstrap.patch.alfrescoKBsiteLoader"
+          class="org.alfresco.repo.admin.patch.impl.SiteLoadPatch" parent="basePatch">
+        <property name="id"><value>org.alfresco.tutorial.bootstrap.patch.alfrescoKBsiteLoader</value></property>
+        <property name="description"><value>org.alfresco.tutorial.bootstrap.patch.alfrescoKBsiteLoader.description</value></property>
+        <property name="fixesFromSchema"><value>0</value></property>
+        <property name="fixesToSchema"><value>${version.schema}</value></property>
+        <property name="targetSchema"><value>10000</value></property>
+        <property name="dependsOn" >
+            <list>
+                <ref bean="org.alfresco.tutorial.bootstrap.patch.groupMembershipsLoader" />
+            </list>
+        </property>
+        <property name="spacesBootstrap" ref="siteLoadBootstrap-Spaces"/>
+        <property name="usersBootstrap" ref="siteLoadBootstrap-Users"/>
+        <property name="siteService" ref="siteService"/>
+        <property name="authorityService" ref="authorityService"/>
+        <property name="behaviourFilter" ref="policyBehaviourFilter"/>
+        <property name="siteName">
+            <value>alfresco-kb</value>
+        </property>
+        <property name="bootstrapViews">
+            <map>
+                <entry key="contents">
+                    <props>
+                        <prop key="location">alfresco/module/bootstrap-content-repo/bootstrap/alfresco-kb-site-contents.acp</prop>
+                    </props>
+                </entry>
+                <entry key="groups">
+                    <props>
+                        <prop key="location">alfresco/module/bootstrap-content-repo/bootstrap/alfresco-kb-site-groups.txt</prop>
+                    </props>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+        <!-- Load folders and files outside a Share site -->
 
     <bean id="org.alfresco.tutorial.bootstrap.patch.foldersAndFilesLoader"
           class="org.alfresco.repo.admin.patch.impl.GenericBootstrapPatch"

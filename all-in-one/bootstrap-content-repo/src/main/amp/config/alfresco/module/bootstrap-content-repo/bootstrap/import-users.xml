@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view:view xmlns:view="http://www.alfresco.org/view/repository/1.0"
+           xmlns:usr="http://www.alfresco.org/model/user/1.0"
+           xmlns:sys="http://www.alfresco.org/model/system/1.0">
+
+    <!-- Load the user account information -->
+    <usr:user view:childName="usr:alftest1">
+        <view:aspects>
+            <sys:referenceable></sys:referenceable>
+        </view:aspects>
+        <view:properties>
+            <usr:username>alftest1</usr:username>
+            <!-- MD4 Hash which can be generated following the instructions
+                http://wiki.alfresco.com/wiki/Security_and_Authentication#How_to_generate_the_correct_MD4_hash. -->
+            <usr:password>7ce21f17c0aee7fb9ceba532d0546ad6</usr:password> <!-- 1234 -->
+            <usr:accountExpires>false</usr:accountExpires>
+            <usr:credentialsExpire>false</usr:credentialsExpire>
+            <usr:accountLocked>false</usr:accountLocked>
+            <usr:enabled>true</usr:enabled>
+        </view:properties>
+    </usr:user>
+    <usr:user view:childName="usr:alftest2">
+        <view:aspects>
+            <sys:referenceable></sys:referenceable>
+        </view:aspects>
+        <view:properties>
+            <usr:username>alftest2</usr:username>
+            <usr:password>7ce21f17c0aee7fb9ceba532d0546ad6</usr:password> <!-- 1234 -->
+            <usr:accountExpires>false</usr:accountExpires>
+            <usr:credentialsExpire>false</usr:credentialsExpire>
+            <usr:accountLocked>false</usr:accountLocked>
+            <usr:enabled>true</usr:enabled>
+        </view:properties>
+    </usr:user>
+</view:view>

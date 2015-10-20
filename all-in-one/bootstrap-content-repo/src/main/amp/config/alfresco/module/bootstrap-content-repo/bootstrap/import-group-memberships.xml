@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view:view xmlns:view="http://www.alfresco.org/view/repository/1.0"
+           xmlns:cm="http://www.alfresco.org/model/content/1.0">
+
+    <view:reference view:pathref="${system.authorities_container.childname}/cm:GROUP_Knowledge_x0020_Base_x0020_Consumers">
+        <view:associations>
+            <cm:member>
+                <view:reference view:pathref="${system.people_container.childname}/cm:admin"
+                                view:childName="cm:admin" />
+            </cm:member>
+            <cm:member>
+                <view:reference view:pathref="${system.people_container.childname}/cm:alftest1"
+                                view:childName="cm:alftest1" />
+            </cm:member>
+        </view:associations>
+    </view:reference>
+
+    <view:reference view:pathref="${system.authorities_container.childname}/cm:GROUP_Knowledge_x0020_Base_x0020_Coordinators">
+        <view:associations>
+            <cm:member>
+                <view:reference view:pathref="${system.people_container.childname}/cm:admin"
+                                view:childName="cm:admin" />
+            </cm:member>
+            <cm:member>
+                <view:reference view:pathref="${system.people_container.childname}/cm:alftest2"
+                                view:childName="cm:alftest2" />
+            </cm:member>
+        </view:associations>
+    </view:reference>
+</view:view>

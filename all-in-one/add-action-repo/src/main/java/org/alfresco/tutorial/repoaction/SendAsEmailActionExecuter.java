@@ -22,13 +22,12 @@ import org.alfresco.error.AlfrescoRuntimeException;
 import org.alfresco.model.ContentModel;
 import org.alfresco.repo.action.ParameterDefinitionImpl;
 import org.alfresco.repo.action.executer.ActionExecuterAbstractBase;
+import org.alfresco.service.ServiceRegistry;
 import org.alfresco.service.cmr.action.Action;
 import org.alfresco.service.cmr.action.ParameterDefinition;
 import org.alfresco.service.cmr.dictionary.DataTypeDefinition;
 import org.alfresco.service.cmr.repository.ContentReader;
-import org.alfresco.service.cmr.repository.ContentService;
 import org.alfresco.service.cmr.repository.NodeRef;
-import org.alfresco.service.cmr.repository.NodeService;
 import org.alfresco.service.namespace.QName;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -56,15 +55,13 @@ public class SendAsEmailActionExecuter extends ActionExecuterAbstractBase {
     public static final String PARAM_EMAIL_SUBJECT_NAME = "subject";
     public static final String PARAM_EMAIL_BODY_NAME = "body_text";
 
-    private NodeService nodeService;
-    private ContentService contentService;
+    /**
+     * The Alfresco Service Registry that gives access to all public content services in Alfresco.
+     */
+    private ServiceRegistry serviceRegistry;
 
-    public void setNodeService(NodeService nodeService) {
-        this.nodeService = nodeService;
-    }
-
-    public void setContentService(ContentService contentService) {
-        this.contentService = contentService;
+    public void setServiceRegistry(ServiceRegistry serviceRegistry) {
+        this.serviceRegistry = serviceRegistry;
     }
 
     @Override
@@ -76,14 +73,15 @@ public class SendAsEmailActionExecuter extends ActionExecuterAbstractBase {
 
     @Override
     protected void executeImpl(Action action, NodeRef actionedUponNodeRef) {
-        if (nodeService.exists(actionedUponNodeRef) == true) {
+        if (serviceRegistry.getNodeService().exists(actionedUponNodeRef) == true) {
             // Get the email properties entered via Share Form
             String to = (String) action.getParameterValue(PARAM_EMAIL_TO_NAME);
             String subject = (String) action.getParameterValue(PARAM_EMAIL_SUBJECT_NAME);
             String body = (String) action.getParameterValue(PARAM_EMAIL_BODY_NAME);
 
             // Get document filename
-            Serializable filename = nodeService.getProperty(actionedUponNodeRef, ContentModel.PROP_NAME);
+            Serializable filename = serviceRegistry.getNodeService().getProperty(
+                    actionedUponNodeRef, ContentModel.PROP_NAME);
             if (filename == null) {
                 throw new AlfrescoRuntimeException("Document filename is null");
             }
@@ -137,7 +135,7 @@ public class SendAsEmailActionExecuter extends ActionExecuterAbstractBase {
                 properties.put(ContentModel.PROP_ADDRESSEE, to);
                 properties.put(ContentModel.PROP_SUBJECT, subject);
                 properties.put(ContentModel.PROP_SENTDATE, new Date());
-                nodeService.addAspect(actionedUponNodeRef, ContentModel.ASPECT_EMAILED, properties);
+                serviceRegistry.getNodeService().addAspect(actionedUponNodeRef, ContentModel.ASPECT_EMAILED, properties);
             } catch (MessagingException me) {
                 me.printStackTrace();
                 throw new AlfrescoRuntimeException("Could not send email: " + me.getMessage());
@@ -154,7 +152,8 @@ public class SendAsEmailActionExecuter extends ActionExecuterAbstractBase {
      */
     private byte[] getDocumentContentBytes(NodeRef documentRef, String documentFilename) {
         // Get a content reader
-        ContentReader contentReader = contentService.getReader(documentRef, ContentModel.PROP_CONTENT);
+        ContentReader contentReader = serviceRegistry.getContentService().getReader(
+                documentRef, ContentModel.PROP_CONTENT);
         if (contentReader == null) {
             logger.error("Content reader was null [filename=" + documentFilename + "][docNodeRef=" + documentRef + "]");
 

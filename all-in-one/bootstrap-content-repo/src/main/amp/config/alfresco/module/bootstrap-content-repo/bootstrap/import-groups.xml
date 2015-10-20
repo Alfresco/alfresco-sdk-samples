@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view:view xmlns:view="http://www.alfresco.org/view/repository/1.0"
+           xmlns:cm="http://www.alfresco.org/model/content/1.0"
+           xmlns:sys="http://www.alfresco.org/model/system/1.0">
+
+    <view:reference view:pathref="${system.authorities_container.childname}">
+        <view:associations>
+            <sys:children>
+                <cm:authorityContainer view:childName="cm:GROUP_Knowledge Base Consumers">
+                    <view:aspects>
+                        <sys:referenceable />
+                    </view:aspects>
+                    <view:properties>
+                        <sys:node-uuid>Knowledge Base Consumers</sys:node-uuid>
+                        <cm:name>GROUP_Knowledge Base Consumers</cm:name>
+                        <cm:authorityName>GROUP_Knowledge Base Consumers</cm:authorityName>
+                    </view:properties>
+                </cm:authorityContainer>
+                <cm:authorityContainer view:childName="cm:GROUP_Knowledge Base Coordinators">
+                    <view:aspects>
+                        <sys:referenceable />
+                    </view:aspects>
+                    <view:properties>
+                        <sys:node-uuid>Knowledge Base Coordinators</sys:node-uuid>
+                        <cm:name>GROUP_Knowledge Base Coordinators</cm:name>
+                        <cm:authorityName>GROUP_Knowledge Base Coordinators</cm:authorityName>
+                    </view:properties>
+                </cm:authorityContainer>
+            </sys:children>
+        </view:associations>
+    </view:reference>
+
+    <!-- Each group is also part of the AUTH.ALF and APP.DEFAULT zones -->
+    <view:reference view:pathref="${system.zones_container.childname}/cm:AUTH.ALF">
+        <view:associations>
+            <cm:inZone>
+                <view:reference view:pathref="${system.authorities_container.childname}/cm:GROUP_Knowledge_x0020_Base_x0020_Consumers"
+                                view:childName="cm:GROUP_Knowledge Base Consumers" />
+            </cm:inZone>
+            <cm:inZone>
+                <view:reference view:pathref="${system.authorities_container.childname}/cm:GROUP_Knowledge_x0020_Base_x0020_Coordinators"
+                                view:childName="cm:GROUP_Knowledge Base Coordinators" />
+            </cm:inZone>
+        </view:associations>
+    </view:reference>
+    <view:reference view:pathref="${system.zones_container.childname}/cm:APP.DEFAULT">
+        <view:associations>
+            <cm:inZone>
+                <view:reference view:pathref="${system.authorities_container.childname}/cm:GROUP_Knowledge_x0020_Base_x0020_Consumers"
+                                view:childName="cm:GROUP_Knowledge Base Consumers" />
+            </cm:inZone>
+            <cm:inZone>
+                <view:reference view:pathref="${system.authorities_container.childname}/cm:GROUP_Knowledge_x0020_Base_x0020_Coordinators"
+                                view:childName="cm:GROUP_Knowledge Base Coordinators" />
+            </cm:inZone>
+        </view:associations>
+    </view:reference>
+</view:view>
+

@@ -22,11 +22,8 @@
 	<bean id="send-as-email"
 		  class="org.alfresco.tutorial.repoaction.SendAsEmailActionExecuter"
 		  parent="action-executer">
-		<property name="nodeService">
-			<ref bean="NodeService" />
-		</property>
-		<property name="contentService">
-			<ref bean="ContentService" />
+		<property name="serviceRegistry">
+			<ref bean="ServiceRegistry" />
 		</property>
 	</bean>
     

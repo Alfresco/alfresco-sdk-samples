@@ -61,7 +61,7 @@ class AdminHomePage extends Page {
              </div>
              <a data-dojo-attach-point="textNode" class="text" href="#">Administrator Dashboard</a></h1>
 
-             Wair for the header to appear...
+             Wait for the header to appear...
              */
         dashboardName(wait: true) { $("h1#HEADER_TITLE a").text() }
 

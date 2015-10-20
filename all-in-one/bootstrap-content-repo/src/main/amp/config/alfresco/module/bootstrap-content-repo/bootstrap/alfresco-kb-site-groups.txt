@@ -1,0 +1,2 @@
+alftest2=GROUP_site_alfresco-kb_SiteManager
+alftest1=GROUP_site_alfresco-kb_SiteConsumer

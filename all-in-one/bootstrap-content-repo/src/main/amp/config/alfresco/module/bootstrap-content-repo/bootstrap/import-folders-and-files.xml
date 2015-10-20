@@ -4,12 +4,6 @@
 		   xmlns:sys="http://www.alfresco.org/model/system/1.0"
 		   xmlns:app="http://www.alfresco.org/model/application/1.0"
 		   xmlns:acme="http://www.acme.org/model/content/1.0">
-<view:metadata>
-	<view:exportBy>admin</view:exportBy>
-	<view:exportDate>2015-09-10T16:14:20.368+01:00</view:exportDate>
-	<view:exporterVersion>4.2.0 (r54676-b4795)</view:exporterVersion>
-	<view:exportOf>/app:company_home</view:exportOf>
-</view:metadata>
 <acme:document view:childName="cm:acmedocument.txt">
 	<view:aspects>
 		<cm:auditable></cm:auditable>

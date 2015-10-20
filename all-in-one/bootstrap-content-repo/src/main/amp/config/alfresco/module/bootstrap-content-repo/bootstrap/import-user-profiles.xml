@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view:view xmlns:view="http://www.alfresco.org/view/repository/1.0"
+           xmlns:cm="http://www.alfresco.org/model/content/1.0">
+    <cm:person view:childName="cm:alftest1">
+        <view:acl>
+            <view:ace view:access="ALLOWED">
+                <view:authority>alftest1</view:authority>
+                <view:permission>All</view:permission>
+            </view:ace>
+        </view:acl>
+        <view:properties>
+            <cm:firstName>Alf Test</cm:firstName>
+            <cm:lastName>Number 1</cm:lastName>
+            <cm:email>alftest1@alfresco.com</cm:email>
+            <cm:userName>alftest1</cm:userName>
+            <cm:homeFolder>/app:company_home/app:user_homes/cm:alftest1</cm:homeFolder>
+            <cm:organizationId>Alfresco</cm:organizationId>
+            <cm:sizeQuota>-1</cm:sizeQuota>
+            <cm:sizeCurrent>0</cm:sizeCurrent>
+        </view:properties>
+    </cm:person>
+    <cm:person view:childName="cm:alftest2">
+        <view:acl>
+            <view:ace view:access="ALLOWED">
+                <view:authority>alftest2</view:authority>
+                <view:permission>All</view:permission>
+            </view:ace>
+        </view:acl>
+        <view:properties>
+            <cm:firstName>Alf Test</cm:firstName>
+            <cm:lastName>Number 2</cm:lastName>
+            <cm:email>alftest2@alfresco.com</cm:email>
+            <cm:userName>alftest2</cm:userName>
+            <cm:homeFolder>/app:company_home/app:user_homes/cm:alftest2</cm:homeFolder>
+            <cm:organizationId>Alfresco</cm:organizationId>
+            <cm:sizeQuota>-1</cm:sizeQuota>
+            <cm:sizeCurrent>0</cm:sizeCurrent>
+        </view:properties>
+    </cm:person>
+</view:view>
