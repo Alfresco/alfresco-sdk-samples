@@ -19,8 +19,8 @@
 <beans>
 
 	<!-- Alfresco Repository Action identified by the Spring Bean ID -->
-	<bean id="send-as-email"
-		  class="org.alfresco.tutorial.repoaction.SendAsEmailActionExecuter"
+	<bean id="simple-action"
+		  class="org.alfresco.tutorial.scheduledjob.actions.SimpleRepoActionExecuter"
 		  parent="action-executer">
 		<property name="serviceRegistry">
 			<ref bean="ServiceRegistry" />

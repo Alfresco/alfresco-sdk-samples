@@ -96,6 +96,7 @@
         <module>bootstrap-content-repo</module>
         <module>public-api-access-repo</module>
         <module>custom-content-model-repo</module>
+        <module>schedule-job-repo</module>
         <module>custom-content-model-share</module>
         <module>add-page-content-share</module>
         <module>remove-page-content-share</module>

@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <bean id="org.alfresco.tutorial.scheduledjob.actions.ScheduledJobExecuter"
+          class="org.alfresco.tutorial.scheduledjob.actions.ScheduledJobExecuter">
+        <property name="serviceRegistry">
+            <ref bean="ServiceRegistry" />
+        </property>
+    </bean>
+
+    <bean id="org.alfresco.tutorial.scheduledjob.jobDetail"
+          class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass">
+            <value>org.alfresco.tutorial.scheduledjob.jobs.ScheduledJob</value>
+        </property>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="jobExecuter">
+                    <ref bean="org.alfresco.tutorial.scheduledjob.actions.ScheduledJobExecuter" />
+                </entry>
+                <entry key="jobLockService">
+                    <ref bean="jobLockService" />
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="org.alfresco.tutorial.scheduledjob.trigger"
+          class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="org.alfresco.tutorial.scheduledjob.jobDetail" />
+        </property>
+        <property name="cronExpression">
+            <value>${org.alfresco.tutorial.scheduledjob.cronexpression}</value>
+        </property>
+        <property name="startDelay">
+            <value>${org.alfresco.tutorial.scheduledjob.cronstartdelay}</value>
+        </property>
+    </bean>
+
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="org.alfresco.tutorial.scheduledjob.trigger"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- For Repo Action backed Scheduled Jobs -->
+
+    <bean id="templateActionModelFactory"
+          class="org.alfresco.repo.action.scheduled.FreeMarkerWithLuceneExtensionsModelFactory">
+        <property name="serviceRegistry">
+            <ref bean="ServiceRegistry" />
+        </property>
+    </bean>
+
+    <bean id="org.alfresco.tutorial.scheduledjob.repoaction.simpleTemplateActionDefinition"
+          class="org.alfresco.repo.action.scheduled.SimpleTemplateActionDefinition">
+        <property name="actionName">
+            <value>simple-action</value>
+        </property>
+        <property name="parameterTemplates">
+            <map>
+                <entry>
+                    <key><value>simpleParam</value></key>
+                    <value>Simple param value</value>
+                </entry>
+            </map>
+        </property>
+        <property name="templateActionModelFactory">
+            <ref bean="templateActionModelFactory" />
+        </property>
+        <property name="dictionaryService">
+            <ref bean="DictionaryService" />
+        </property>
+        <property name="actionService">
+            <ref bean="ActionService" />
+        </property>
+        <property name="templateService">
+            <ref bean="TemplateService" />
+        </property>
+    </bean>
+
+    <bean id="org.alfresco.tutorial.scheduledjob.repoaction.simpleRepoActionCronJob"
+          class="org.alfresco.repo.action.scheduled.CronScheduledQueryBasedTemplateActionDefinition">
+        <property name="transactionMode">
+            <value>UNTIL_FIRST_FAILURE</value>
+        </property>
+        <property name="compensatingActionMode">
+            <value>IGNORE</value>
+        </property>
+        <property name="searchService">
+            <ref bean="SearchService" />
+        </property>
+        <property name="templateService">
+            <ref bean="TemplateService" />
+        </property>
+        <property name="queryLanguage">
+            <value>lucene</value>
+        </property>
+        <property name="stores">
+            <list>
+                <value>workspace://SpacesStore</value>
+            </list>
+        </property>
+        <property name="queryTemplate">
+            <value>PATH:"/app:company_home/*"</value>
+        </property>
+        <property name="cronExpression">
+            <value>${org.alfresco.tutorial.scheduledjob.repoaction.cronexpression}</value>
+        </property>
+        <property name="jobName">
+            <value>SimpleRepoActionJob</value>
+        </property>
+        <property name="jobGroup">
+            <value>AlfrescoTutorialsJobGroup</value>
+        </property>
+        <property name="triggerName">
+            <value>triggerSimpleRepoAction</value>
+        </property>
+        <property name="triggerGroup">
+            <value>AlfrescoTutorialsTriggers</value>
+        </property>
+        <property name="scheduler">
+            <ref bean="schedulerFactory" />
+        </property>
+        <property name="actionService">
+            <ref bean="ActionService" />
+        </property>
+        <property name="templateActionModelFactory">
+            <ref bean="templateActionModelFactory" />
+        </property>
+        <property name="templateActionDefinition">
+            <ref bean="org.alfresco.tutorial.scheduledjob.repoaction.simpleTemplateActionDefinition" />
+        </property>
+        <property name="transactionService">
+            <ref bean="TransactionService" />
+        </property>
+        <property name="runAsUser">
+            <value>System</value>
+        </property>
+    </bean>
+
+</beans>

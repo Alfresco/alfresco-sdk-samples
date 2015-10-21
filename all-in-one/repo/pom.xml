@@ -68,6 +68,12 @@
             <version>${project.version}</version>
             <type>amp</type>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>schedule-job-repo</artifactId>
+            <version>${project.version}</version>
+            <type>amp</type>
+        </dependency>
 
         <!-- Uncomment if you are using SPP (SharePoint Protocol Support) for Online Edit etc -->
         <!--
@@ -142,7 +148,11 @@
                             <artifactId>add-web-script-repo</artifactId>
                             <type>amp</type>
                         </overlay>
-
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>schedule-job-repo</artifactId>
+                            <type>amp</type>
+                        </overlay>
 
                         <!-- Uncomment if you are using SPP -->
                         <!--
