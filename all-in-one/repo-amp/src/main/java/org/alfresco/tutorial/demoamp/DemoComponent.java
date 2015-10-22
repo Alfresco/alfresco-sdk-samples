@@ -17,9 +17,7 @@ limitations under the License.
 package org.alfresco.tutorial.demoamp;
 
 import org.alfresco.repo.module.AbstractModuleComponent;
-import org.alfresco.repo.nodelocator.NodeLocatorService;
 import org.alfresco.service.cmr.repository.NodeRef;
-import org.alfresco.service.cmr.repository.NodeService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -34,25 +32,14 @@ import org.apache.commons.logging.LogFactory;
 public class DemoComponent extends AbstractModuleComponent {
     Log log = LogFactory.getLog(DemoComponent.class);
 
-    private NodeService nodeService;
-
-    private NodeLocatorService nodeLocatorService;
-
-    public void setNodeService(NodeService nodeService) {
-        this.nodeService = nodeService;
-    }
-
-    public void setNodeLocatorService(NodeLocatorService nodeLocatorService) {
-        this.nodeLocatorService = nodeLocatorService;
-    }
-
     /**
-     * Bogus component execution
+     * This is the main method that needs to be implemented in every module component.
+     * It does the actual work.
      */
     @Override
     protected void executeInternal() throws Throwable {
         System.out.println("DemoComponent has been executed");
-        log.debug("Test debug logging. Congratulation your AMP is working");
+        log.debug("Test debug logging. Number of nodes in Company Home = " + childNodesCount(getCompanyHome()));
         log.info("This is only for information purposed. Better remove me from the log in Production");
     }
 
@@ -64,7 +51,7 @@ public class DemoComponent extends AbstractModuleComponent {
      * @return
      */
     public int childNodesCount(NodeRef nodeRef) {
-        return nodeService.countChildAssocs(nodeRef, true);
+        return serviceRegistry.getNodeService().countChildAssocs(nodeRef, true);
     }
 
     /**
@@ -72,9 +59,7 @@ public class DemoComponent extends AbstractModuleComponent {
      *
      * @return
      */
-    public NodeRef getCompanyHome()
-
-    {
-        return nodeLocatorService.getNode("companyhome", null, null);
+    public NodeRef getCompanyHome() {
+        return serviceRegistry.getNodeLocatorService().getNode("companyhome", null, null);
     }
 }

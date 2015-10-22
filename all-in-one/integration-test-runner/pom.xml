@@ -255,6 +255,13 @@
             <classifier>classes</classifier>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>schedule-job-repo</artifactId>
+            <version>${project.version}</version>
+            <classifier>classes</classifier>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -273,7 +280,7 @@
                         </goals>
                         <configuration>
                             <includeTypes>war</includeTypes>
-                            <includes>**/WEB-INF/classes/**/*.class,**/WEB-INF/classes/**/*.xml,**/WEB-INF/classes/**/*.properties,**/WEB-INF/classes/**/*.txt</includes>
+                            <includes>**/WEB-INF/classes/**</includes>
                             <outputDirectory>${project.build.directory}/repoWar</outputDirectory>
                             <overWriteReleases>false</overWriteReleases>
                             <overWriteSnapshots>false</overWriteSnapshots>

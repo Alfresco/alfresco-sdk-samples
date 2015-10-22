@@ -26,7 +26,7 @@
         </dependency>
     </dependencies>
 
-    <!-- Produce an extra bootstrap-content-repo-1.0-SNAPSHOT-classes.jar that can be used by the integration-test-runner project -->
+    <!-- Produce an extra schedule-job-repo-1.0-SNAPSHOT-classes.jar that can be used by the integration-test-runner project -->
     <build>
         <plugins>
             <plugin>
