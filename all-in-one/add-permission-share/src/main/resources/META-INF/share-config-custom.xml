@@ -1,0 +1,40 @@
+<!-- Share configuration related to this particular Share module extension, such as:
+     - Doclib action config
+     - Form config
+     - Aspect and Type config
+
+    Note. Any configuration related to the whole Share.war webapp
+           (i.e. not specific to this share extension) should be
+            placed in the environment specific config:
+             alfresco-allinone/share/src/main/resources/alfresco/web-extension/share-config-custom.xml file
+     -->
+<alfresco-config>
+    <config evaluator="string-compare" condition="DocLibActions">
+        <actions>
+            <action id="alfresco.tutorials.permissions.publishToWeb"
+                    icon="webpublish"
+                    type="javascript"
+                    label="alfresco.tutorials.permissions.publishToWeb.label">
+                <param name="function">onPublishToWeb</param>
+                <permissions>
+                    <permission allow="true">WebPublishPermission</permission>
+                </permissions>
+            </action>
+        </actions>
+        <actionGroups>
+            <actionGroup id="document-browse">
+                <action index="404" id="alfresco.tutorials.permissions.publishToWeb" />
+            </actionGroup>
+            <actionGroup id="document-details">
+                <action index="404" id="alfresco.tutorials.permissions.publishToWeb" />
+            </actionGroup>
+        </actionGroups>
+    </config>
+
+    <!-- Bring in custom JavaScript function called by the publishToWeb DocLib action defined above -->
+    <config evaluator="string-compare" condition="DocLibCustom">
+        <dependencies>
+            <js src="components/documentlibrary/custom-doclib-action-permissions.js" />
+        </dependencies>
+    </config>
+</alfresco-config>

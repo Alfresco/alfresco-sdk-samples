@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE permissions PUBLIC '-//ALFRESCO//DTD PERMISSIONS//EN' 'permissionSchema.dtd'>
+
+<permissions>
+
+    <!-- Namespaces used in type references -->
+    <namespaces>
+        <namespace uri="http://www.alfresco.org/model/system/1.0" prefix="sys"/>
+        <namespace uri="http://www.alfresco.org/model/content/1.0" prefix="cm"/>
+        <namespace uri="http://www.acme.org/model/content/1.0" prefix="acme"/>
+    </namespaces>
+
+    <!-- Define WebPublish permission for ACME files.
+         Order is important, permissionGroup(s) first, then permission(s) -->
+    <permissionSet type="acme:document" expose="selected">
+        <!-- Permission group for base WebPublish permission -->
+        <permissionGroup name="WebPublishPermission" expose="false" allowFullControl="false"/>
+        <!-- Permission group representing Web Publishing role -->
+        <permissionGroup name="WebPublisher" allowFullControl="false" expose="true">
+            <includePermissionGroup permissionGroup="WebPublishPermission" type="acme:document"/>
+        </permissionGroup>
+
+        <!-- Out-of-the-box content specific roles. -->
+        <permissionGroup name="AcmeCoordinator" allowFullControl="true" expose="true" />
+        <permissionGroup name="AcmeCollaborator" allowFullControl="false" expose="true">
+            <includePermissionGroup permissionGroup="Collaborator" type="cm:cmobject" />
+        </permissionGroup>
+        <permissionGroup name="AcmeEditor" allowFullControl="false" expose="true">
+            <includePermissionGroup permissionGroup="Editor" type="cm:cmobject" />
+        </permissionGroup>
+        <permissionGroup name="AcmeContributor" allowFullControl="false" expose="true">
+            <includePermissionGroup permissionGroup="Contributor" type="cm:cmobject" />
+        </permissionGroup>
+        <permissionGroup name="AcmeConsumer" allowFullControl="false" expose="true">
+            <includePermissionGroup permissionGroup="Consumer" type="cm:cmobject" />
+        </permissionGroup>
+
+        <!-- Base WebPublish permission -->
+        <permission name="_WebPublishPermission" expose="false">
+            <grantedToGroup permissionGroup="WebPublishPermission"/>
+        </permission>
+    </permissionSet>
+
+</permissions>

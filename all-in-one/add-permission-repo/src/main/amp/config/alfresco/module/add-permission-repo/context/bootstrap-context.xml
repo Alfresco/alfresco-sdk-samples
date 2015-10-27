@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <!-- The bootstrap-context.xml file is used for patch definitions, importers, 
+		 workflow, permissions, and loading custom content models.  -->
+
+    <!--
+        Bootstrap the custom permission model
+        -->
+    <bean id="org.alfresco.tutorial.customPermissionDefinitions" parent="permissionModelBootstrap">
+        <property name="model" value="alfresco/module/${project.artifactId}/model/customPermissionDefinitions.xml"/>
+    </bean>
+
+    <!-- Override to add the new custom Web Publish permission -->
+    <bean id="baseJsonConversionComponent" abstract="true">
+        <property name="nodeService" ref="NodeService"/>
+        <property name="publicServiceAccessService" ref="PublicServiceAccessService" />
+        <property name="namespaceService" ref="NamespaceService" />
+        <property name="fileFolderService" ref="FileFolderService" />
+        <property name="lockService" ref="LockService" />
+        <property name="permissionService" ref="PermissionService" />
+        <property name="contentService" ref="ContentService" />
+        <property name="userPermissions">
+            <list>
+                <value>Unlock</value>
+                <value>CancelCheckOut</value>
+                <value>ChangePermissions</value>
+                <value>CreateChildren</value>
+                <value>Delete</value>
+                <value>Write</value>
+                <value>WebPublishPermission</value>
+            </list>
+        </property>
+    </bean>
+
+</beans>

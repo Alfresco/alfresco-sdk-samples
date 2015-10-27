@@ -94,6 +94,12 @@
             <version>${project.version}</version>
             <type>amp</type>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>add-permission-share</artifactId>
+            <version>${project.version}</version>
+            <type>amp</type>
+        </dependency>
 
     </dependencies>
 
@@ -176,7 +182,11 @@
                             <artifactId>custom-content-model-share</artifactId>
                             <type>amp</type>
                         </overlay>
-
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>add-permission-share</artifactId>
+                            <type>amp</type>
+                        </overlay>
                     </overlays>
                 </configuration>
             </plugin>
