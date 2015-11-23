@@ -98,6 +98,7 @@
         <module>custom-content-model-repo</module>
         <module>schedule-job-repo</module>
         <module>add-permission-repo</module>
+        <module>custom-workflow-repo</module>
         <module>custom-content-model-share</module>
         <module>add-page-content-share</module>
         <module>remove-page-content-share</module>
@@ -110,6 +111,7 @@
         <module>change-header-style-share</module>
         <module>add-theme-share</module>
         <module>add-permission-share</module>
+        <module>custom-workflow-share</module>
         <module>repo</module>
         <module>share</module>
         <module>solr-config</module>

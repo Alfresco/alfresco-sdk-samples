@@ -80,6 +80,12 @@
             <version>${project.version}</version>
             <type>amp</type>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>custom-workflow-repo</artifactId>
+            <version>${project.version}</version>
+            <type>amp</type>
+        </dependency>
 
 
 
@@ -164,6 +170,11 @@
                         <overlay>
                             <groupId>${project.groupId}</groupId>
                             <artifactId>add-permission-repo</artifactId>
+                            <type>amp</type>
+                        </overlay>
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>custom-workflow-repo</artifactId>
                             <type>amp</type>
                         </overlay>
 

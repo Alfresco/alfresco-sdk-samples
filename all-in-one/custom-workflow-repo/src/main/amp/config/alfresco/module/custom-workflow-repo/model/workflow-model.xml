@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="acmew:workflowModel" xmlns="http://www.alfresco.org/model/dictionary/1.0">
+    <!-- Optional meta-data about the model -->
+    <description>Workflow Content Model sample</description>
+    <author>My Name</author>
+    <version>1.0</version>
+
+    <imports>
+        <!-- Import Alfresco Dictionary Definitions -->
+        <import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d"/>
+        <!-- Import Alfresco Content Domain Model Definitions -->
+        <import uri="http://www.alfresco.org/model/content/1.0" prefix="cm"/>
+        <!-- Import Alfresco Workflow Model Definitions -->
+        <import uri="http://www.alfresco.org/model/bpm/1.0" prefix="bpm"/>
+    </imports>
+
+    <!-- Custom namespace for your domain -->
+    <namespaces>
+        <namespace uri="http://www.acme.org/model/workflow/1.0" prefix="acmew"/>
+    </namespaces>
+
+    <!-- ===============================================================================================================
+        Constraints, Types, and Aspects go here...
+        -->
+
+    <types>
+        <type name="acmew:startInvoiceApprovalTask">
+            <parent>bpm:startTask</parent>
+            <mandatory-aspects>
+                <aspect>bpm:assignee</aspect>
+            </mandatory-aspects>
+        </type>
+
+        <type name="acmew:approveInvoiceTask">
+            <description>
+                The task is assigned to the approver selected by the initiator.
+            </description>
+            <parent>bpm:workflowTask</parent>
+            <properties>
+                <property name="acmew:invoiceApprovalOutcome">
+                    <type>d:text</type>
+                    <default>Rejected</default>
+                    <constraints>
+                        <constraint name="acmew:invoiceApprovalOutcomeOptions" type="LIST">
+                            <parameter name="allowedValues">
+                                <list>
+                                    <value>Approved</value>
+                                    <value>Rejected</value>
+                                </list>
+                            </parameter>
+                        </constraint>
+                    </constraints>
+                </property>
+            </properties>
+        </type>
+
+        <type name="acmew:clarifyInvoiceTask">
+            <description>
+                The task is assigned to the initiator when the invoice was rejected by the assigned approver.
+            </description>
+            <parent>bpm:workflowTask</parent>
+            <properties>
+                <property name="acmew:clarifyInvoiceOutcome">
+                    <type>d:text</type>
+                    <default>Rejected</default>
+                    <constraints>
+                        <constraint name="acmew:clarifyInvoiceOutcomeOptions" type="LIST">
+                            <parameter name="allowedValues">
+                                <list>
+                                    <value>OK</value>
+                                    <value>Rejected</value>
+                                </list>
+                            </parameter>
+                        </constraint>
+                    </constraints>
+                </property>
+            </properties>
+        </type>
+
+        <type name="acmew:preparePaymentTask">
+            <description>
+                The task is assigned to the ACCOUNTING group where one member
+                takes/claims the task and prepares payment of invoice.
+            </description>
+            <parent>bpm:workflowTask</parent>
+        </type>
+    </types>
+
+</model>
+
