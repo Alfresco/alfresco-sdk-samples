@@ -63,7 +63,7 @@ public class AcmeContentServiceImpl implements AcmeContentService {
      * Joins an ongoing transaction if one exists.
      */
     public NodeRef createContractFile(String filename, String contractTxt, AcmeContract contract) {
-        NodeRef nodeRefForContract = serviceRegistry.getTransactionService().getRetryingTransactionHelper().doInTransaction(
+        NodeRef nodeRefForContract = serviceRegistry.getRetryingTransactionHelper().doInTransaction(
                 new RetryingTransactionHelper.RetryingTransactionCallback<NodeRef>() {
                     public NodeRef execute() throws Throwable {
                         NodeRef parentFolderNodeRef =
@@ -108,7 +108,7 @@ public class AcmeContentServiceImpl implements AcmeContentService {
      * @param nodeRef the Alfresco Repo node reference to apply the aspect to
      */
     public void applyWebPublishedAspect(NodeRef nodeRef) {
-        Boolean result = serviceRegistry.getTransactionService().getRetryingTransactionHelper().doInTransaction(
+        Boolean result = serviceRegistry.getRetryingTransactionHelper().doInTransaction(
                 new RetryingTransactionHelper.RetryingTransactionCallback<Boolean>() {
                     public Boolean execute() throws Throwable {
                         Map<QName, Serializable> aspectProperties = new HashMap<QName, Serializable>();
