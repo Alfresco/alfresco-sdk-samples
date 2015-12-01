@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <!--  MySQL BLOB Storage Manager -->
+    <bean id="org.alfresco.tutorial.content.store.databaseAdapter"
+          class="org.alfresco.tutorial.contentstore.MySQLDatabaseAdapter" />
+
+    <!--  Custom Content Store where files are stored as BLOBs in a database
+
+    TO USE BLOB STORAGE FOR FILES UNCOMMENT THIS BEAN SO IT OVERRIDES THE STANDARD FILE CONTENT STORE!
+
+    <bean id="fileContentStore" class="org.alfresco.tutorial.contentstore.DbContentStore">
+        <property name="databaseAdapter" ref="org.alfresco.tutorial.content.store.databaseAdapter" />
+    </bean>
+-->
+</beans>
