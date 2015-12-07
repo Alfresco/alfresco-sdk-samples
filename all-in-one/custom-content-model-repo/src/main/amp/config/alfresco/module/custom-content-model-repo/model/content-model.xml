@@ -52,7 +52,7 @@
             All other custom document types should extend this one.
         -->
         <type name="acme:document">
-            <title>Base document type</title>
+            <title>ACME Base document type</title>
             <parent>cm:content</parent>
             <properties>
                 <property name="acme:documentId">
@@ -66,7 +66,7 @@
         </type>
 
         <type name="acme:contract">
-            <title>Contract document</title>
+            <title>ACME Contract document</title>
             <parent>acme:document</parent>
             <properties>
                 <property name="acme:contractName">
@@ -85,7 +85,7 @@
         </type>
 
         <type name="acme:policy">
-            <title>Policy document</title>
+            <title>ACME Policy document</title>
             <parent>acme:document</parent>
             <mandatory-aspects>
                 <aspect>cm:effectivity</aspect> <!-- example usage of out-of-the-box aspect -->
@@ -93,13 +93,13 @@
         </type>
 
         <type name="acme:whitePaper">
-            <title>White paper document</title>
+            <title>ACME White paper document</title>
             <parent>acme:document</parent>
         </type>
 
         <!-- A folder can have this type applied to represent a project container. -->
         <type name="acme:project">
-            <title>Project folder</title>
+            <title>ACME Project folder</title>
             <parent>cm:folder</parent>
             <properties>
                 <property name="acme:projectName">
@@ -140,7 +140,7 @@
     <aspects>
         <!-- A content item would have this aspect applied to indicate that it has been published on a website. -->
         <aspect name="acme:webPublished">
-            <title>Web published</title>
+            <title>ACME Web published</title>
             <description>Content has been published to website</description>
             <properties>
                 <property name="acme:publishedDate">
@@ -167,7 +167,7 @@
              faceted search is specifically enabled for best performance and we change
              default index config to not tokenize the value. -->
         <aspect name="acme:securityClassified">
-            <title>Security Classified</title>
+            <title>ACME Security Classified</title>
             <description>Content has been security classified</description>
             <properties>
                 <property name="acme:securityClassification">
@@ -192,7 +192,7 @@
             field that first looks up the Project details via project type for Project Name and then grabs the Project Number
             for the searching. -->
         <aspect name="acme:projectIdentifier">
-            <title>Project Identification</title>
+            <title>ACME Project Identification</title>
             <description>Unique project identifier</description>
             <properties>
                 <property name="acme:projectNumber">

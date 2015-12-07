@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <!-- ================== Custom PDF Metadata Extraction ================================================== -->
+
+    <bean id="extracter.PDFBox" class="org.alfresco.repo.content.metadata.PdfBoxMetadataExtracter"
+          parent="baseMetadataExtracter">
+        <property name="documentSelector" ref="pdfBoxEmbededDocumentSelector" />
+        <property name="inheritDefaultMapping">
+            <value>false</value>
+            <!-- do not inherit default mapping, then it does not work to set subject as title -->
+        </property>
+        <property name="mappingProperties">
+            <props>
+                <prop key="namespace.prefix.cm">http://www.alfresco.org/model/content/1.0</prop>
+                <prop key="namespace.prefix.acme">http://www.acme.org/model/content/1.0</prop>
+                <prop key="author">cm:author</prop>
+                <prop key="subject">cm:title</prop>
+                <prop key="Keywords">cm:description</prop>
+                <prop key="DocumentId">acme:documentId</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- ================== Custom XML Metadata Extraction =============================================== -->
+
+    <!--
+        ACME Document XPATH metadata extracter
+    -->
+    <bean id="org.alfresco.tutorial.metadataextracter.xml.AcmeDocXPathMetadataExtracter"
+          class="org.alfresco.repo.content.metadata.xml.XPathMetadataExtracter"
+          parent="baseMetadataExtracter"
+          init-method="init">
+        <!-- Content Model mapping -->
+        <property name="mappingProperties">
+            <bean class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+                <property name="location">
+                    <value>
+                        classpath:alfresco/module/${project.artifactId}/metadataextraction/acme-content-model-mappings.properties
+                    </value>
+                </property>
+            </bean>
+        </property>
+        <!-- XPath expressions to find props in ACME XML document -->
+        <property name="xpathMappingProperties">
+            <bean class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+                <property name="location">
+                    <value>
+                        classpath:alfresco/module/${project.artifactId}/metadataextraction/acme-xml-doc-xpath-mappings.properties
+                    </value>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+    <!--
+        A selector that uses the above metadata extracter for all XPath statements
+        -->
+    <bean id="org.alfresco.tutorial.metadataextracter.xml.selector.AcmeDocXPathSelector"
+          class="org.alfresco.repo.content.selector.XPathContentWorkerSelector"
+          init-method="init">
+        <property name="workers">
+            <map>
+                <entry key="/*">
+                    <ref bean="org.alfresco.tutorial.metadataextracter.xml.AcmeDocXPathMetadataExtracter"/>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    <!--
+        XML metadata extracter that uses the XPATH Extracter to get to the metadata in the ACME XML doc
+        -->
+    <bean id="org.alfresco.tutorial.metadataextracter.xml.AcmeDocXMLMetadataExtracter"
+            class="org.alfresco.repo.content.metadata.xml.XmlMetadataExtracter"
+            parent="baseMetadataExtracter">
+        <property name="overwritePolicy">
+            <value>EAGER</value> <!-- Put the extracted metadata into the content model property as long as it is not null -->
+        </property>
+        <property name="selectors">
+            <list>
+                <ref bean="org.alfresco.tutorial.metadataextracter.xml.selector.AcmeDocXPathSelector"/>
+            </list>
+        </property>
+    </bean>
+
+</beans>
