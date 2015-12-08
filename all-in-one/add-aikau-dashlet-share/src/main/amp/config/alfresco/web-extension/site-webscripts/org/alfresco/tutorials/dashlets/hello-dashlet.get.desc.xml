@@ -1,0 +1,6 @@
+<webscript>
+    <shortname>Hello Dashlet</shortname>
+    <description>A dashlet that displays an Alfresco logo and a Hello message</description>
+    <family>dashlet</family>
+    <url>/tutorials/dashlets/hello</url>
+</webscript>

@@ -106,6 +106,12 @@
             <version>${project.version}</version>
             <type>amp</type>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>add-aikau-dashlet-share</artifactId>
+            <version>${project.version}</version>
+            <type>amp</type>
+        </dependency>
 
     </dependencies>
 
@@ -196,6 +202,11 @@
                         <overlay>
                             <groupId>${project.groupId}</groupId>
                             <artifactId>custom-workflow-share</artifactId>
+                            <type>amp</type>
+                        </overlay>
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>add-aikau-dashlet-share</artifactId>
                             <type>amp</type>
                         </overlay>
                     </overlays>

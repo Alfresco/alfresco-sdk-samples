@@ -114,6 +114,7 @@
         <module>add-theme-share</module>
         <module>add-permission-share</module>
         <module>custom-workflow-share</module>
+        <module>add-aikau-dashlet-share</module>
         <module>repo</module>
         <module>share</module>
         <module>solr-config</module>
