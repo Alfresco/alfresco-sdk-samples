@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>custom-metadata-extracter-repo</artifactId>
-    <name>Alfresco Tutorials (Custom Metadata Extracter) - Define and Bootstrap custom metadata extracters</name>
+    <artifactId>custom-content-transformer-repo</artifactId>
+    <name>Alfresco Tutorials (Custom Content Transformer) - Define and Bootstrap custom content transformer</name>
     <packaging>amp</packaging>
-    <description>Tutorial that demonstrates how to define and bootstrap a custom metadata extracters, configuration and custom extractor implementation</description>
+    <description>Tutorial that demonstrates how to define and bootstrap custom content transformers, JSON -> TXT, JSON -> PDF</description>
 
     <parent>
         <groupId>org.alfresco.tutorial</groupId>
@@ -23,6 +23,12 @@
         <dependency>
             <groupId>${alfresco.groupId}</groupId>
             <artifactId>alfresco-repository</artifactId>
+        </dependency>
+
+        <!-- To get to org.alfresco.repo.content.MimetypeMap -->
+        <dependency>
+            <groupId>${alfresco.groupId}</groupId>
+            <artifactId>alfresco-data-model</artifactId>
         </dependency>
     </dependencies>
 

@@ -100,6 +100,7 @@
         <module>add-permission-repo</module>
         <module>custom-workflow-repo</module>
         <module>custom-metadata-extracter-repo</module>
+        <module>custom-content-transformer-repo</module>
         <module>custom-content-store-repo</module>
         <module>custom-content-model-share</module>
         <module>add-page-content-share</module>

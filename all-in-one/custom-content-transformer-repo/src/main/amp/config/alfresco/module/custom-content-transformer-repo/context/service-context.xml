@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+
+    <!-- The JSON -> HTML Transformer worker doing the real job by calling the Python script that does the transformation -->
+    <bean id="transformer.worker.json2html" class="org.alfresco.repo.content.transform.RuntimeExecutableContentTransformerWorker" >
+        <property name="mimetypeService">
+            <ref bean="mimetypeService" />
+        </property>
+        <property name="checkCommand">
+            <bean class="org.alfresco.util.exec.RuntimeExec">
+                <property name="commandsAndArguments">
+                    <map>
+                        <entry key=".*">
+                            <list>
+                                <value>ls</value>
+                                <value>/home/martin/Downloads/temp/transformation/convertJson2html.py</value>
+                            </list>
+                        </entry>
+                    </map>
+                </property>
+            </bean>
+        </property>
+        <property name="transformCommand">
+            <bean class="org.alfresco.util.exec.RuntimeExec">
+                <property name="commandsAndArguments">
+                    <map>
+                        <entry key=".*">
+                            <list>
+                                <value>/home/martin/Downloads/temp/transformation/convertJson2html.py</value>
+                                <value>${source}</value>
+                                <value>${target}</value>
+                            </list>
+                        </entry>
+                    </map>
+                </property>
+                <property name="errorCodes">
+                    <value>1,2</value>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+    <!-- The JSON -> HTML transformer -->
+    <bean id="transformer.json2html" class="org.alfresco.repo.content.transform.ProxyContentTransformer" parent="baseContentTransformer">
+        <property name="worker">
+            <ref bean="transformer.worker.json2html" />
+        </property>
+    </bean>
+
+</beans>
