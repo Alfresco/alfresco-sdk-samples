@@ -104,6 +104,12 @@
             <version>${project.version}</version>
             <type>amp</type>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>custom-mimetype-map-repo</artifactId>
+            <version>${project.version}</version>
+            <type>amp</type>
+        </dependency>
 
         <!-- Uncomment if you are using SPP (SharePoint Protocol Support) for Online Edit etc -->
         <!--
@@ -206,6 +212,11 @@
                         <overlay>
                             <groupId>${project.groupId}</groupId>
                             <artifactId>custom-content-transformer-repo</artifactId>
+                            <type>amp</type>
+                        </overlay>
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>custom-mimetype-map-repo</artifactId>
                             <type>amp</type>
                         </overlay>
 
