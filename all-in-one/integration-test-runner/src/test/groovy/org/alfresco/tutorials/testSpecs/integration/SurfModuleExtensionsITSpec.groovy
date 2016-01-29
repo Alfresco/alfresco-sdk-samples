@@ -110,6 +110,19 @@ class SurfModuleExtensionsITSpec extends GebReportingSpec {
         createForm.prop_acme_documentId != null
     }
 
+    // The Green Theme has been customized via LESS variable overrides
+    def "Test selecting the Green Theme from the Drop down"() {
+        given: "I navigate to the Admin Tools page"
+        to AdminToolsPage
+
+        when: "I select the 'Green Theme' in the 'Theme' drop down menu and click Apply button"
+        themeDropDown = 'Green Theme'
+        applyButton.click()
+
+        then: "I'm still on the Admin Tools Page"
+        at AdminToolsPage
+    }
+
     def "Test that header/menu has custom background color"() {
         given: "I navigate to the Admin User Dashboard Page"
         to AdminHomePage

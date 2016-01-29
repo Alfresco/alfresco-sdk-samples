@@ -34,7 +34,7 @@
 
     </dependencies>
 
-    <!-- Produce an extra custom-content-model-repo-1.0-SNAPSHOT-classes.jar that can be used by the integration-test-runner project -->
+    <!-- Produce an extra custom-content-store-repo-1.0-SNAPSHOT-classes.jar that can be used by the integration-test-runner project -->
     <build>
         <plugins>
             <plugin>

@@ -16,6 +16,41 @@
                     </create-content>
                 </config>
 
+                <!-- To replace and use permissions to decide what is displayed use something like this:
+
+                <config evaluator="string-compare" condition="DocumentLibrary" replace="true">
+                    <create-content>
+                        <content id="acme-plain-text" label="create.acmedoc.menu.item.label" icon="text" index="1" type="pagelink">
+                            <param name="page">create-content?destination={nodeRef}&amp;itemId=acme:document&amp;mimeType=text/plain</param>
+                        </content>
+                        <content id="folder" label="create-content.folder" icon="folder" index="5" type="javascript">
+                            <param name="function">onNewFolder</param>
+                            <permissions>
+                                <permission allow="true">CustomCreateContentPermission</permission>
+                            </permissions>
+                        </content>
+                        <content id="plain-text" label="create-content.text" type="pagelink" index="10" icon="text">
+                            <param name="page">create-content?destination={nodeRef}&amp;itemId=cm:content&amp;mimeType=text/plain</param>
+                            <permissions>
+                                <permission allow="true">CustomCreateContentPermission</permission>
+                            </permissions>
+                        </content>
+                        <content id="html" label="create-content.html" type="pagelink" index="20">
+                            <param name="page">create-content?destination={nodeRef}&amp;itemId=cm:content&amp;mimeType=text/html</param>
+                            <permissions>
+                                <permission allow="true">CustomCreateContentPermission</permission>
+                            </permissions>
+                        </content>
+                        <content id="xml" label="create-content.xml" type="pagelink" index="30">
+                            <param name="page">create-content?destination={nodeRef}&amp;itemId=cm:content&amp;mimeType=text/xml</param>
+                            <permissions>
+                                <permission allow="true">CustomCreateContentPermission</permission>
+                            </permissions>
+                        </content>
+                    </create-content>
+                </config>
+                -->
+
                 <!-- For the Create form configuration for acme:document
                     see custom-content-model-share/src/main/resources/META-INF/share-config-custom.xml
                      -->

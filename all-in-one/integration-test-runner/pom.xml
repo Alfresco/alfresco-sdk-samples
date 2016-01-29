@@ -262,6 +262,13 @@
             <classifier>classes</classifier>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>custom-content-store-repo</artifactId>
+            <version>${project.version}</version>
+            <classifier>classes</classifier>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
