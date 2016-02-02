@@ -1,0 +1,6 @@
+<webscript>
+   <shortname>Simple CMIS Example</shortname>
+   <description>Simple OpenCMIS example showing connect, query and list results via new alfresco-api endpoint</description>
+   <url>/tutorials/cmis-test</url>
+   <authentication>user</authentication>
+</webscript>

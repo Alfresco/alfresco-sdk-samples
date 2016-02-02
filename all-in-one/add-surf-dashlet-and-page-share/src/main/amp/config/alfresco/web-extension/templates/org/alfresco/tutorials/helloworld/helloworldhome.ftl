@@ -15,6 +15,7 @@
     <div id="bd">
         <@region id="people" scope="page" />
         <@region id="sites" scope="page" />
+        <@region id="topfolders" scope="page" />
     </div>
    </@>
 </@>
