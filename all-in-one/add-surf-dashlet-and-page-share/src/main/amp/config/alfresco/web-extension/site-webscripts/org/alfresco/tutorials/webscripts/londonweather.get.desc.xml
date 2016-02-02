@@ -1,0 +1,6 @@
+<webscript>
+    <shortname>London Weather</shortname>
+    <description>Simple Surf Web Script fetching London weather information</description>
+    <family>Share</family>
+    <url>/tutorial/london-weather</url>
+</webscript>

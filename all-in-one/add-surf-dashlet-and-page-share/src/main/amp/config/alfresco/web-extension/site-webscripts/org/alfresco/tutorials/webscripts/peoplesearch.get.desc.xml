@@ -1,0 +1,7 @@
+<webscript>
+  <shortname>Search People in Repo</shortname>
+  <description>Searches for People in the Alfresco repository - basically user search</description>
+  <url>/tutorial/people-search?filter={search filter}</url>
+  <authentication>user</authentication>
+  <format default="html"></format>
+</webscript>

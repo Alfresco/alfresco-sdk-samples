@@ -1,0 +1,7 @@
+<webscript>
+  <shortname>Get a list of sites</shortname>
+  <description>Fetches all the sites that exists in the Repository.</description>
+  <url>/tutorials/site-list</url>
+  <authentication>user</authentication>
+  <format default="html"></format>
+</webscript>

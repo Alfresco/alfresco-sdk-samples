@@ -117,6 +117,7 @@
         <module>add-permission-share</module>
         <module>custom-workflow-share</module>
         <module>add-aikau-dashlet-share</module>
+        <module>add-surf-dashlet-and-page-share</module>
         <module>repo</module>
         <module>share</module>
         <module>solr-config</module>
