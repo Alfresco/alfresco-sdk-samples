@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <!-- The bootstrap-context.xml file is used for patch definitions, importers,
+         workflow, permissions, and loading custom content models.  -->
+
+    <!--
+       Import the message bundle for the core i18n, non-UI stuff like patch messages
+       -->
+    <bean id="org.alfresco.tutorial.add-patch-repo.i18nResourceBundles"
+          class="org.alfresco.i18n.ResourceBundleBootstrapComponent">
+        <property name="resourceBundles">
+            <list>
+                <value>alfresco.module.add-patch-repo.messages.patch-messages</value>
+            </list>
+        </property>
+    </bean>
+
+    <!--
+        Patch that creates a folder under Company Home. Patches will be applied to the store once only.
+
+        This patch should always be run once on every new installation, regardless of Alfresco version,
+        so setting the 'fixesToSchema' value to '${version.schema}'.
+
+        Note. patches are sorted according to targetSchema, and lowest will be executed first.
+        -->
+    <bean id="patch.contentCreationPatch" class="org.alfresco.tutorial.patch.ContentCreationPatch"
+          parent="basePatch">
+        <property name="id">
+            <value>org.alfresco.tutorial.patch.contentCreationPatch</value>
+        </property>
+        <property name="description">
+            <value>org.alfresco.tutorial.patch.contentCreationPatch.description</value>
+        </property>
+        <property name="fixesFromSchema">
+            <value>0</value>
+        </property>
+        <property name="fixesToSchema">
+            <value>${version.schema}</value>
+        </property>
+        <property name="targetSchema">
+            <value>10000</value>
+        </property>
+        <property name="serviceRegistry">
+            <ref bean="ServiceRegistry"/>
+        </property>
+    </bean>
+
+</beans>
