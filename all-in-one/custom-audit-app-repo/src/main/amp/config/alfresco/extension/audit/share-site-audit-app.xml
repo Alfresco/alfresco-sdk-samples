@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Audit
+        xmlns="http://www.alfresco.org/repo/audit/model/3.2"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.alfresco.org/repo/audit/model/3.2 alfresco-audit-3.2.xsd"
+        >
+    <DataExtractors>
+        <DataExtractor name="simpleValue" registeredName="auditModel.extractor.simpleValue"/>
+        <DataExtractor name="nodeName" registeredName="auditModel.extractor.nodeName"/>
+        <DataExtractor name="nodeType" registeredName="auditModel.extractor.nodeType"/>
+
+        <!-- Custom data extractor -->
+        <DataExtractor name="siteName" class="org.alfresco.tutorial.audit.dataextractor.SiteNameDataExtractor"/>
+    </DataExtractors>
+
+    <PathMappings>
+        <PathMap source="/alfresco-access" target="/share-site-access"/>
+    </PathMappings>
+
+    <Application name="ShareSiteAccess" key="share-site-access">
+        <RecordValue key="access" dataExtractor="simpleValue" dataSource="/share-site-access/transaction/action"
+                     dataTrigger="/share-site-access/transaction/action"/>
+        <RecordValue key="nodepath" dataExtractor="simpleValue" dataSource="/share-site-access/transaction/path"
+                     dataTrigger="/share-site-access/transaction/path"/>
+        <RecordValue key="nodename" dataExtractor="nodeName" dataSource="/share-site-access/transaction/node"
+                     dataTrigger="/share-site-access/transaction/node"/>
+        <RecordValue key="nodetype" dataExtractor="nodeType" dataSource="/share-site-access/transaction/node"
+                     dataTrigger="/share-site-access/transaction/node"/>
+        <RecordValue key="site" dataExtractor="siteName" dataSource="/share-site-access/transaction/path"
+                     dataTrigger="/share-site-access/transaction/path"/>
+    </Application>
+</Audit>
