@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <!--
+       Import the message bundle for the Repo Admin Console customizations.
+       -->
+    <bean id="org.alfresco.tutorial.add-admin-console-component-repo.i18nResourceBundles"
+          class="org.alfresco.i18n.ResourceBundleBootstrapComponent">
+        <property name="resourceBundles">
+            <list>
+                <value>alfresco.module.add-admin-console-component-repo.messages.custom-admin-console</value>
+            </list>
+        </property>
+    </bean>
+
+
+
+</beans>

@@ -1,0 +1,10 @@
+<webscript>
+   <shortname>Cutomized Admin Console - Tutorial</shortname>
+   <description><![CDATA[Admin Console WebScript that displays a simple page.]]></description>
+   <url>/enterprise/admin/admin-tutorial</url>
+   <family>AdminConsole</family>
+   <format default="html">argument</format>
+   <authentication>admin</authentication>
+   <lifecycle>internal</lifecycle>
+   <transaction allow="readonly">required</transaction>
+</webscript>
