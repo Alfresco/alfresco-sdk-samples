@@ -105,6 +105,7 @@
         <module>add-patch-repo</module>
         <module>custom-audit-app-repo</module>
         <module>add-admin-console-component-repo</module>
+        <module>custom-authentication-repo</module>
         <module>custom-content-store-repo</module>
         <module>custom-content-model-share</module>
         <module>add-page-content-share</module>

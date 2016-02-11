@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE beans PUBLIC '-//SPRING//DTD BEAN//EN' 'http://www.springframework.org/dtd/spring-beans.dtd'>
+<beans>
+
+    <!-- Custom authenticationComponent bean implementation -->
+    <bean id="authenticationComponent"
+          class="org.alfresco.tutorial.repo.security.authentication.CustomAuthenticationComponentImpl"
+          parent="authenticationComponentBase">
+        <property name="allowGuestLogin"><value>${customauthenticator.allowGuestLogin}</value></property>
+        <property name="remoteAuthenticatorHostname"><value>${customauthenticator.remote.server.hostname}</value></property>
+        <property name="remoteAuthenticatorPort"><value>${customauthenticator.remote.server.port}</value></property>
+        <property name="nodeService">
+            <ref bean="nodeService" />
+        </property>
+        <property name="personService">
+            <ref bean="personService" />
+        </property>
+        <property name="transactionService">
+            <ref bean="transactionService" />
+        </property>
+        <property name="defaultAdministratorUserNames">
+            <set>
+                <value>${alfresco_user_store.adminusername}</value>
+                <value>administrator</value>
+            </set>
+        </property>
+        <property name="defaultGuestUserNames">
+            <set>
+                <value>${alfresco_user_store.guestusername}</value>
+            </set>
+        </property>
+    </bean>
+
+    <!-- Wrapped version to be used within subsystem -->
+    <bean id="AuthenticationComponent" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <list>
+                <value>org.alfresco.repo.security.authentication.AuthenticationComponent</value>
+            </list>
+        </property>
+        <property name="transactionManager">
+            <ref bean="transactionManager" />
+        </property>
+        <property name="target">
+            <ref bean="authenticationComponent" />
+        </property>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="*">${server.transaction.mode.default}</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- Override the localAuthenticationService Authentication service for chaining -->
+    <bean id="localAuthenticationService" class="org.alfresco.repo.security.authentication.AuthenticationServiceImpl">
+        <property name="ticketComponent">
+            <ref bean="ticketComponent"/>
+        </property>
+        <property name="authenticationComponent">
+            <ref bean="authenticationComponent"/>
+        </property>
+        <property name="sysAdminParams">
+            <ref bean="sysAdminParams"/>
+        </property>
+    </bean>
+
+</beans>
