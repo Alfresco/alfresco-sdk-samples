@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE beans PUBLIC '-//SPRING//DTD BEAN//EN' 'http://www.springframework.org/dtd/spring-beans.dtd'>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+    	
+    http://www.apache.org/licenses/LICENSE-2.0
+    	
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<beans>
+    <!-- Kick off the subsystem Spring context -->
+    <bean id="namedEntitiesService.subsystem.type"
+          class="org.alfresco.repo.management.subsystems.ChildApplicationContextFactory"
+          parent="abstractPropertyBackedBean">
+        <property name="category">
+            <value>Semantic</value>
+        </property>
+        <property name="typeName">
+            <value>namedEntities</value>
+        </property>
+        <property name="instancePath">
+            <list>
+                <value>namedEntities</value>
+            </list>
+        </property>
+        <property name="autoStart">
+            <value>true</value>
+        </property>
+    </bean>
+
+    <!-- Expose the Named Entities Service bean to this parent context, so it can be used by
+         Web Script Java controller below -->
+    <bean id="namedEntitiesService.proxy" class="org.alfresco.repo.management.subsystems.SubsystemProxyFactory">
+        <property name="sourceApplicationContextFactory">
+            <ref bean="namedEntitiesService.subsystem.type" />
+        </property>
+        <property name="sourceBeanName">
+            <value>namedEntitiesService</value>
+        </property>
+        <property name="interfaces">
+            <list>
+                <value>org.alfresco.tutorial.semantic.namedentities.NamedEntitiesService</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Web Script used to call the named entities service -->
+    <bean id="webscript.namedentities.get"
+          class="org.alfresco.tutorial.semantic.namedentities.NamedEntitiesWebScript"
+          parent="webscript">
+        <property name="namedEntitiesService">
+            <ref bean="namedEntitiesService.proxy" />
+        </property>
+        <property name="serviceRegistry">
+            <ref bean="ServiceRegistry" />
+        </property>
+    </bean>
+
+
+    <!-- BEAN HAVE BEAN MOVED TO SUBSYSTEM SPRING CONTEXT - see
+        alfresco-sdk-samples/all-in-one/custom-subsystem-repo/
+            src/main/amp/config/alfresco/subsystems/Semantic/namedEntities/namedentities-semantic-context.xml
+            -->
+
+    <!-- Semantic Named Entities service bean dummy implementation
+    <bean id="namedEntitiesService"
+          class="org.alfresco.tutorial.semantic.namedentities.DummyNamedEntitiesServiceImpl">
+        <property name="remoteServiceHostname"><value>${namedentities.remote.service.hostname}</value></property>
+        <property name="remoteServicePort"><value>${namedentities.remote.service.port}</value></property>
+        <property name="remoteServiceAipKey"><value>${namedentities.remote.service.api.key}</value></property>
+        <property name="serviceRegistry">
+            <ref bean="ServiceRegistry" />
+        </property>
+    </bean>
+    -->
+
+</beans>

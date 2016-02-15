@@ -107,6 +107,7 @@
         <module>add-admin-console-component-repo</module>
         <module>custom-authentication-repo</module>
         <module>custom-content-store-repo</module>
+        <module>custom-subsystem-repo</module>
         <module>custom-content-model-share</module>
         <module>add-page-content-share</module>
         <module>remove-page-content-share</module>

@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE beans PUBLIC '-//SPRING//DTD BEAN//EN' 'http://www.springframework.org/dtd/spring-beans.dtd'>
+<beans>
+
+    <!-- Semantic Named Entities service bean dummy implementation -->
+    <bean id="namedEntitiesService"
+          class="org.alfresco.tutorial.semantic.namedentities.DummyNamedEntitiesServiceImpl">
+        <property name="remoteServiceHostname"><value>${namedentities.remote.service.hostname}</value></property>
+        <property name="remoteServicePort"><value>${namedentities.remote.service.port}</value></property>
+        <property name="remoteServiceAipKey"><value>${namedentities.remote.service.api.key}</value></property>
+        <property name="serviceRegistry">
+            <ref bean="ServiceRegistry" />
+        </property>
+    </bean>
+
+</beans>

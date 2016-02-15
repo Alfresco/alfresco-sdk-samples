@@ -1,0 +1,6 @@
+<webscript>
+    <shortname>Extract Named Entities</shortname>
+    <description>This Web Script is used to call the Named Entities Service to extract named entities from a text</description>
+    <url>/tutorial/extractentities?nodeId={nodeId}</url>
+    <authentication>user</authentication>
+</webscript>
