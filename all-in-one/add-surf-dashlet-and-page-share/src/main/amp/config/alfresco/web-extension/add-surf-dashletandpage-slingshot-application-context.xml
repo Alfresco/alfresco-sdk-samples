@@ -10,15 +10,15 @@
 
       Note. Any configuration related to the whole Share.war webapp
             (i.e. not specific to this share extension) should be
-             placed in the tomcat/shared/classes/alfresco/web-extension/custom-slingshot-application-context.xml file
+             placed in the tomcat/shared/classes/alfresco/web-extension/add-surf-dashletandpage-slingshot-application-context.xml file
     -->
 
     <!-- Add module specific messages and labels -->
-    <bean id="org.alfresco.tutorial.add-page-content.resources"
+    <bean id="org.alfresco.tutorial.add-surf-dashletandpage.resources"
           class="org.springframework.extensions.surf.util.ResourceBundleBootstrapComponent">
         <property name="resourceBundles">
             <list>
-                <value>alfresco.web-extension.messages.add-page-content</value>
+                <value>alfresco.web-extension.messages.add-surf-dashletandpage</value>
             </list>
         </property>
     </bean>

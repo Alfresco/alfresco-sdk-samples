@@ -10,15 +10,15 @@
 
       Note. Any configuration related to the whole Share.war webapp
             (i.e. not specific to this share extension) should be
-             placed in the tomcat/shared/classes/alfresco/web-extension/custom-slingshot-application-context.xml file
+             placed in the tomcat/shared/classes/alfresco/web-extension/customize-webscript-template-slingshot-application-context.xml file
     -->
 
     <!-- Add module specific messages and labels -->
-    <bean id="org.alfresco.tutorial.remove-page-content.resources"
+    <bean id="org.alfresco.tutorial.customize-webscript-template.resources"
           class="org.springframework.extensions.surf.util.ResourceBundleBootstrapComponent">
         <property name="resourceBundles">
             <list>
-                <value>alfresco.web-extension.messages.custom</value>
+                <value>alfresco.web-extension.messages.customize-webscript-template</value>
             </list>
         </property>
     </bean>

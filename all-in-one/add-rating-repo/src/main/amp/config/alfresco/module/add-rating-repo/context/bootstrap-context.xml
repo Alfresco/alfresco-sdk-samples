@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <!-- The bootstrap-context.xml file is used for patch definitions, importers, 
+		 workflow, and loading custom content models.  -->
+
+
+    <!-- Registration of the usTvRatingScheme content model -->
+    <bean id="org.alfresco.tutorial.add-rating.dictionaryBootstrap"
+          parent="dictionaryModelBootstrap"
+          depends-on="dictionaryBootstrap">
+        <property name="models">
+            <list>
+                <value>alfresco/module/${project.artifactId}/model/content-model.xml</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Register the new custom rating scheme -->
+    <bean name="usTvRatingScheme" parent="baseRatingScheme" class="org.alfresco.repo.rating.RatingSchemeImpl">
+        <property name="minRating" value="1"/>  <!-- TV-Y -->
+        <property name="maxRating" value="6"/>  <!-- TV-MA -->
+        <property name="selfRatingAllowed" value="true"/>
+        <property name="modelPrefix" value="acme"/>
+        <property name="propertyRollups">
+            <list>
+                <bean class="org.alfresco.repo.rating.RatingCountRollupAlgorithm" parent="baseRollupAlgorithm">
+                    <property name="ratingSchemeName" value="usTvRatingScheme" />
+                </bean>
+                <bean class="org.alfresco.repo.rating.RatingTotalRollupAlgorithm" parent="baseRollupAlgorithm">
+                    <property name="ratingSchemeName" value="usTvRatingScheme" />
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Make the new custom rating scheme work with the new Alfresco REST API -->
+    <bean id="apiUsTvRatingScheme" class="org.alfresco.tutorial.rating.scheme.UsTvRatingScheme">
+        <property name="nodeService" ref="NodeService" />
+        <property name="dictionaryService" ref="DictionaryService" />
+        <property name="activityService" ref="activityService" />
+        <property name="siteService" ref="SiteService" />
+        <property name="ratingService" ref="RatingService" />
+        <property name="nodeRatingSchemeRegistry" ref="nodeRatingSchemeRegistry" />
+    </bean>
+
+</beans>

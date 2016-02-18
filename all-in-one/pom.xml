@@ -108,6 +108,7 @@
         <module>custom-authentication-repo</module>
         <module>custom-content-store-repo</module>
         <module>custom-subsystem-repo</module>
+        <module>add-rating-repo</module>
         <module>custom-content-model-share</module>
         <module>add-page-content-share</module>
         <module>remove-page-content-share</module>
@@ -123,6 +124,7 @@
         <module>custom-workflow-share</module>
         <module>add-aikau-dashlet-share</module>
         <module>add-surf-dashlet-and-page-share</module>
+        <module>add-rating-share</module>
         <module>repo</module>
         <module>share</module>
         <module>solr-config</module>

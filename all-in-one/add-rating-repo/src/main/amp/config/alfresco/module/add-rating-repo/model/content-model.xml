@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<model name="acmer:ratingModel" xmlns="http://www.alfresco.org/model/dictionary/1.0">
+
+    <description>US TV Ratings Model</description>
+    <author>Martin Bergljung</author>
+    <version>1.0</version>
+
+    <imports>
+        <import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d"/>
+        <import uri="http://www.alfresco.org/model/content/1.0" prefix="cm"/>
+        <import uri="http://www.alfresco.org/model/system/1.0" prefix="sys" />
+    </imports>
+
+    <namespaces>
+        <namespace uri="http://www.acme.org/model/rating/1.0" prefix="acmer"/>
+    </namespaces>
+
+    <aspects>
+        <aspect name="acmer:usTvRatingSchemeRollups">
+            <title>US TV rating scheme rollups</title>
+            <properties>
+                <property name="acmer:usTvRatingSchemeCount">
+                    <title>US TV Rating Scheme ratings count</title>
+                    <type>d:int</type>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>true</stored>
+                        <tokenised>false</tokenised>
+                    </index>
+                </property>
+                <property name="acmer:usTvRatingSchemeTotal">
+                    <title>US TV Rating Scheme ratings total</title>
+                    <type>d:float</type>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>true</stored>
+                        <tokenised>false</tokenised>
+                    </index>
+                </property>
+            </properties>
+        </aspect>
+    </aspects>
+</model>

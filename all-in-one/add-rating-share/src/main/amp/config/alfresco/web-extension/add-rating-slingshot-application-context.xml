@@ -14,13 +14,24 @@
     -->
 
     <!-- Add module specific messages and labels -->
-    <bean id="org.alfresco.tutorial.customize-webscript-i18n.resources"
+    <bean id="org.alfresco.tutorial.add-rating.resources"
           class="org.springframework.extensions.surf.util.ResourceBundleBootstrapComponent">
         <property name="resourceBundles">
             <list>
-                <value>alfresco.web-extension.messages.custom</value>
+                <value>alfresco.web-extension.messages.add-rating</value>
             </list>
         </property>
     </bean>
+
+    <!--
+        Rating evaluator
+    -->
+    <bean id="alfresco.tutorials.evaluator.isRatedFiveStar"
+          class="org.alfresco.tutorial.rating.evaluator.IsRatedEvaluator" >
+        <property name="ratingSchemeShortName" value="fiveStar" />
+    </bean>
+
+
+
 
 </beans>

@@ -1,0 +1,93 @@
+<!-- Share configuration related to this particular Share module extension, such as:
+     - Doclib action config
+     - Form config
+     - Aspect and Type config
+
+    Note. Any configuration related to the whole Share.war webapp
+           (i.e. not specific to this share extension) should be
+            placed in the environment specific config:
+             alfresco-allinone/share/src/main/resources/alfresco/web-extension/share-config-custom.xml file
+     -->
+<alfresco-config>
+
+    <!-- Add a rated indicator to the DocLib -->
+    <config evaluator="string-compare" condition="DocumentLibrary">
+        <indicators>
+            <indicator id="alfresco.tutorials.indicator.isRated"
+                       icon="rated-16.png"
+                       index="100"
+                       label="alfresco.tutorials.indicator.isRated.label">
+                <evaluator>alfresco.tutorials.evaluator.isRatedFiveStar</evaluator>
+            </indicator>
+        </indicators>
+    </config>
+
+    <!-- Add a DocLib Action that can be used to rate a folder or a file (i.e. node) -->
+    <config evaluator="string-compare" condition="DocLibActions">
+        <actions>
+            <action id="alfresco.tutorials.doclib.action.rateNode"
+                    icon="rate"
+                    type="javascript"
+                    label="alfresco.tutorials.doclib.action.rateNode.label">
+                <param name="function">onActionFormDialog</param>
+                <param name="itemKind">action</param>
+                <param name="itemId">rate-node</param><!-- Repository action id = Spring Bean id -->
+                <param name="mode">create</param>
+                <param name="destination">{node.nodeRef}</param>
+                <param name="successMessage">alfresco.tutorials.doclib.action.rateNode.msg.success</param>
+                <param name="failureMessage">alfresco.tutorials.doclib.action.rateNode.msg.failure</param>
+                <evaluator negate="true">alfresco.tutorials.evaluator.isRatedFiveStar</evaluator>
+            </action>
+        </actions>
+        <actionGroups>
+            <actionGroup id="document-browse">
+                <action index="410" id="alfresco.tutorials.doclib.action.rateNode"/>
+            </actionGroup>
+            <actionGroup id="document-details">
+                <action index="410" id="alfresco.tutorials.doclib.action.rateNode"/>
+            </actionGroup>
+            <actionGroup id="folder-browse">
+                <action index="410" id="alfresco.tutorials.doclib.action.rateNode"/>
+            </actionGroup>
+            <actionGroup id="folder-details">
+                <action index="410" id="alfresco.tutorials.doclib.action.rateNode"/>
+            </actionGroup>
+        </actionGroups>
+    </config>
+
+    <!-- Rate Node DocLib action form. It matches the fields used by the 'rate-node' Repository action -->
+    <config evaluator="string-compare"
+            condition="rate-node"> <!-- ID for the Repository Action that this form is associated with -->
+        <forms>
+            <form>
+                <field-visibility>
+                    <show id="star_rating"/>
+                </field-visibility>
+                <appearance>
+                    <set id="ratingSet" appearance="bordered-panel" label-id="form.set.label.node.rating"/>
+                    <field id="star_rating"
+                           label-id="alfresco.tutorials.doclib.action.rateNode.form.field.starRating"
+                           set="ratingSet">
+                        <control template="/org/alfresco/components/form/controls/selectone.ftl">
+                            <control-param name="options">1|*,2|**,3|***,4|****,5|*****</control-param>
+                        </control>
+                    </field>
+                </appearance>
+            </form>
+        </forms>
+    </config>
+
+    <!-- Five Star Rating rollup form -->
+    <config evaluator="aspect" condition="cm:fiveStarRatingSchemeRollups">
+        <forms>
+            <form>
+                <field-visibility>
+                    <!-- fields from my example aspect -->
+                    <show id="cm:fiveStarRatingSchemeCount" />
+                    <show id="cm:fiveStarRatingSchemeTotal" />
+                </field-visibility>
+            </form>
+        </forms>
+    </config>
+
+</alfresco-config>

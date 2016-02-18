@@ -118,6 +118,12 @@
             <version>${project.version}</version>
             <type>amp</type>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>add-rating-share</artifactId>
+            <version>${project.version}</version>
+            <type>amp</type>
+        </dependency>
 
     </dependencies>
 
@@ -220,6 +226,12 @@
                             <artifactId>add-surf-dashlet-and-page-share</artifactId>
                             <type>amp</type>
                         </overlay>
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>add-rating-share</artifactId>
+                            <type>amp</type>
+                        </overlay>
+
                     </overlays>
                 </configuration>
             </plugin>
