@@ -1,0 +1,8 @@
+<webscript>
+    <shortname>Create Data List</shortname>
+    <description>Create Data List shows how to programmatically create a Data List instance with an item.</description>
+    <url>/tutorial/createdatalist</url>
+    <format default="html"></format>
+    <authentication>user</authentication>
+    <family>Alfresco Tutorials</family>
+</webscript>

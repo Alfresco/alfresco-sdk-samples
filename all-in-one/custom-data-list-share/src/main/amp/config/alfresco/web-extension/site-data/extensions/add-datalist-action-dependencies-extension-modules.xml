@@ -1,0 +1,19 @@
+<extension>
+    <modules>
+        <module>
+            <id>Add Data List custom action dependencies</id>
+            <version>1.0</version>
+            <auto-deploy>true</auto-deploy>
+            <customizations>
+                <customization>
+                    <targetPackageRoot>org.alfresco</targetPackageRoot>
+                    <sourcePackageRoot>org.alfresco.tutorial.data-list</sourcePackageRoot>
+                    <dependencies>
+                        <css>/res/org/alfresco/tutorial/data-lists/custom-datalist-actions.css</css>
+                        <js>/res/org/alfresco/tutorial/data-lists/custom-datalist-actions.js</js>
+                    </dependencies>
+                </customization>
+            </customizations>
+        </module>
+    </modules>
+</extension>

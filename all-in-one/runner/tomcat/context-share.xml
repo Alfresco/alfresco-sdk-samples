@@ -10,7 +10,7 @@
     <!-- Pick up static resource files from any Share extensions, being it a JAR or an AMP
          (this should not include docBase) IMPORTANT - CONFIG NEED TO BE ON ONE LINE -->
     <Resources className="org.apache.naming.resources.VirtualDirContext"
-               extraResourcePaths="/=${project.parent.basedir}/add-theme-share/target/add-theme-share/web,/=${project.parent.basedir}/add-action-doclib-share/target/add-action-doclib-share/web,/=${project.parent.basedir}/add-metadata-template-doclib-share/target/add-metadata-template-doclib-share/web,/=${project.parent.basedir}/add-permission-share/target/add-permission-share/web,/=${project.parent.basedir}/add-aikau-dashlet-share/target/add-aikau-dashlet-share/web,/=${project.parent.basedir}/add-rating-share/target/add-rating-share/web" />
+               extraResourcePaths="/=${project.parent.basedir}/add-theme-share/target/add-theme-share/web,/=${project.parent.basedir}/add-action-doclib-share/target/add-action-doclib-share/web,/=${project.parent.basedir}/add-metadata-template-doclib-share/target/add-metadata-template-doclib-share/web,/=${project.parent.basedir}/add-permission-share/target/add-permission-share/web,/=${project.parent.basedir}/add-aikau-dashlet-share/target/add-aikau-dashlet-share/web,/=${project.parent.basedir}/add-rating-share/target/add-rating-share/web,/=${project.parent.basedir}/custom-data-list-share/target/custom-data-list-share/web" />
 
     <!-- Configure where the Share (share.war) web application can load classes, config, and test classes (in that order) -->
     <!-- Setup the virtual class path like this:

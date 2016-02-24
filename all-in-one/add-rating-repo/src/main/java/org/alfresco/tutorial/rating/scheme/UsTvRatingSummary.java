@@ -47,5 +47,4 @@ public class UsTvRatingSummary implements DocumentRatingSummary {
     public String toString() {
         return "UsTvRatingSummary [numberOfRatings=" + numberOfRatings + ", average=" + average + "]";
     }
-
 }

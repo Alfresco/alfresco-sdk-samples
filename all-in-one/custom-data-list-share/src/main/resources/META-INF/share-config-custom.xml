@@ -1,0 +1,65 @@
+<!-- Share configuration related to this particular Share module extension, such as:
+     - Doclib action config
+     - Form config
+     - Aspect and Type config
+
+    Note. Any configuration related to the whole Share.war webapp
+           (i.e. not specific to this share extension) should be
+            placed in the environment specific config:
+             alfresco-allinone/share/src/main/resources/alfresco/web-extension/share-config-custom.xml file
+     -->
+<alfresco-config>
+
+
+    <!--================================================================================================================
+         View, Edit, Create forms for custom data list types
+
+         For more information about how to define forms for
+         data list item types see existing out-of-the-box
+         form definitions: tomcat/webapps/share/WEB-INF/classes/alfresco/share-datalist-form-config.xml
+        =============================================================================================================-->
+
+    <!--
+        acmedl:projectListItem type create form config
+        -->
+    <config evaluator="model-type" condition="acmedl:projectListItem">
+        <forms>
+            <!-- Create item form -->
+            <form>
+                <field-visibility>
+                    <show id="acmedl:projectName" />
+                    <show id="acmedl:projectNumber" />
+                    <show id="acmedl:projectDescription" />
+                    <show id="acmedl:projectStartDate" />
+                    <show id="acmedl:projectActive" />
+                    <show id="acmedl:projectMember" />
+                </field-visibility>
+                <create-form template="../data-lists/forms/dataitem.ftl" />
+                <appearance>
+                </appearance>
+            </form>
+        </forms>
+    </config>
+
+    <!--
+        acmedl:projectListItem type edit form config
+    -->
+    <config evaluator="node-type" condition="acmedl:projectListItem">
+        <forms>
+            <form>
+                <field-visibility>
+                    <show id="acmedl:projectName" />
+                    <show id="acmedl:projectNumber" />
+                    <show id="acmedl:projectDescription" />
+                    <show id="acmedl:projectStartDate" />
+                    <show id="acmedl:projectActive" />
+                    <show id="acmedl:projectMember" />
+                </field-visibility>
+                <edit-form template="../data-lists/forms/dataitem.ftl" />
+                <appearance>
+                </appearance>
+            </form>
+        </forms>
+    </config>
+
+</alfresco-config>

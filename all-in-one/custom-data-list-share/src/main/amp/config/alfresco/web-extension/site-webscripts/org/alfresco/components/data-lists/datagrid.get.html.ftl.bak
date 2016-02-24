@@ -1,0 +1,7 @@
+<#-- Custom Dependencies -->
+<@markup id="custom-datalist-css" target="css" action="after" scope="global">
+    <@link href="${url.context}/res/components/data-lists/custom-datalist-actions.css" group="datalists"/>
+</@>
+<@markup id="custom-datalist-js" target="js" action="after" scope="global">
+    <@script src="${url.context}/res/components/data-lists/custom-datalist-actions.js" group="datalists"/>
+</@>

@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <!-- The bootstrap-context.xml file is used for patch definitions, importers, 
+		 workflow, and loading custom content models.  -->
+
+
+    <bean id="org.alfresco.tutorial.customdatalist.dictionaryBootstrap"
+          parent="dictionaryModelBootstrap"
+          depends-on="dictionaryBootstrap">
+        <property name="models">
+            <list>
+                <!-- Bootstrap Data List Model -->
+                <value>alfresco/module/${project.artifactId}/model/datalist-model.xml</value>
+            </list>
+        </property>
+        <property name="labels">
+            <list>
+                <!-- Bootstrap Resource Bundles for data list type and properties -->
+                <value>alfresco/module/${project.artifactId}/messages/datalist-model</value>
+            </list>
+        </property>
+    </bean>
+</beans>

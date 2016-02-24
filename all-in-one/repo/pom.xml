@@ -146,6 +146,14 @@
             <version>${project.version}</version>
             <type>amp</type>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>custom-data-list-repo</artifactId>
+            <version>${project.version}</version>
+            <type>amp</type>
+        </dependency>
+
+
 
         <!-- Uncomment if you are using SPP (SharePoint Protocol Support) for Online Edit etc -->
         <!--
@@ -283,6 +291,11 @@
                         <overlay>
                             <groupId>${project.groupId}</groupId>
                             <artifactId>add-rating-repo</artifactId>
+                            <type>amp</type>
+                        </overlay>
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>custom-data-list-repo</artifactId>
                             <type>amp</type>
                         </overlay>
 

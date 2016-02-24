@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="acmedl:datalistModel" xmlns="http://www.alfresco.org/model/dictionary/1.0">
+
+    <!-- Optional meta-data about the model -->
+    <description>ACME Data List Content model</description>
+    <author>Martin Bergljung</author>
+    <version>1.0</version>
+
+    <imports>
+        <!-- Import Alfresco Dictionary Definitions -->
+        <import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d"/>
+        <!-- Import Alfresco Content Domain Model Definitions -->
+        <import uri="http://www.alfresco.org/model/content/1.0" prefix="cm"/>
+        <!-- Import Alfresco Data List Model Definitions -->
+        <import uri="http://www.alfresco.org/model/datalist/1.0"   prefix="dl" />
+    </imports>
+
+    <!-- Custom namespace for the ACME company Data Lists-->
+    <namespaces>
+        <namespace uri="http://www.acme.org/model/datalist/1.0" prefix="acmedl"/>
+    </namespaces>
+
+    <types>
+        <!--
+            Data List Item Type for the custom project list
+            -->
+        <type name="acmedl:projectListItem">
+            <title>Project List Item</title>
+            <parent>dl:dataListItem</parent>
+            <properties>
+                <property name="acmedl:projectName">
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                </property>
+                <property name="acmedl:projectNumber">
+                    <type>d:int</type>
+                    <mandatory>true</mandatory>
+                </property>
+                <property name="acmedl:projectDescription">
+                    <type>d:text</type>
+                </property>
+                <property name="acmedl:projectStartDate">
+                    <type>d:date</type>
+                </property>
+                <property name="acmedl:projectActive">
+                    <type>d:boolean</type>
+                    <default>true</default>
+                </property>
+            </properties>
+            <associations>
+                <association name="acmedl:projectMember">
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>cm:person</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+            </associations>
+        </type>
+    </types>
+
+</model>

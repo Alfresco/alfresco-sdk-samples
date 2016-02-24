@@ -24,7 +24,7 @@
         <property name="minRating" value="1"/>  <!-- TV-Y -->
         <property name="maxRating" value="6"/>  <!-- TV-MA -->
         <property name="selfRatingAllowed" value="true"/>
-        <property name="modelPrefix" value="acme"/>
+        <property name="modelPrefix" value="acmer"/>
         <property name="propertyRollups">
             <list>
                 <bean class="org.alfresco.repo.rating.RatingCountRollupAlgorithm" parent="baseRollupAlgorithm">

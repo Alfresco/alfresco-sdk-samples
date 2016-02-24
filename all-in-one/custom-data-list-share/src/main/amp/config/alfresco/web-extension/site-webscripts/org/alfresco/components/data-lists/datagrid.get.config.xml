@@ -1,0 +1,11 @@
+<dataGrid>
+    <actionSet>
+        <action type="action-link" id="onActionEdit" permission="edit" label="actions.edit" />
+        <action type="action-link" id="onActionDuplicate" permission="create" label="actions.duplicate-row" />
+        <action type="action-link" id="onActionDelete" permission="delete" label="actions.delete-row" />
+
+        <!-- Add a custom data list action -->
+        <action type="action-link" id="onActionDisplayMsg" permission="edit"
+                label="alfresco.tutorials.datalist.action.showMsg.label" />
+    </actionSet>
+</dataGrid>
