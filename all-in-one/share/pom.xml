@@ -130,6 +130,12 @@
             <version>${project.version}</version>
             <type>amp</type>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>custom-form-processor-share</artifactId>
+            <version>${project.version}</version>
+            <type>amp</type>
+        </dependency>
 
     </dependencies>
 
@@ -240,6 +246,11 @@
                         <overlay>
                             <groupId>${project.groupId}</groupId>
                             <artifactId>custom-data-list-share</artifactId>
+                            <type>amp</type>
+                        </overlay>
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>custom-form-processor-share</artifactId>
                             <type>amp</type>
                         </overlay>
                     </overlays>

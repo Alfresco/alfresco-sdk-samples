@@ -17,6 +17,14 @@
                 <value>alfresco/module/${project.artifactId}/model/content-model.xml</value>
             </list>
         </property>
+        <property name="labels">
+            <list>
+                <!-- Bootstrap Resource Bundles for the content model types, aspects, properties etc -->
+                <value>alfresco/module/${project.artifactId}/messages/content-model</value>
+            </list>
+        </property>
     </bean>
+
+
 
 </beans>

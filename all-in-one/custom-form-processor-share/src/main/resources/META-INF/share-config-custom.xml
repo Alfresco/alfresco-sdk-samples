@@ -1,0 +1,68 @@
+<!-- Share configuration related to this particular Share module extension, such as:
+     - Doclib action config
+     - Form config
+     - Aspect and Type config
+
+    Note. Any configuration related to the whole Share.war webapp
+           (i.e. not specific to this share extension) should be
+            placed in the environment specific config:
+             alfresco-allinone/share/src/main/resources/alfresco/web-extension/share-config-custom.xml file
+     -->
+<alfresco-config>
+
+    <!-- Add a DocLib Action that can be used to create global keys->value attributes -->
+    <config evaluator="string-compare" condition="DocLibActions">
+        <actions>
+            <action id="alfresco.tutorials.doclib.action.createAttribute"
+                    icon="attribute"
+                    type="javascript"
+                    label="alfresco.tutorials.doclib.action.createAttribute.label">
+                <param name="function">onCreateAttribute</param>
+            </action>
+        </actions>
+
+        <actionGroups>
+            <actionGroup id="document-browse">
+                <action index="930" id="alfresco.tutorials.doclib.action.createAttribute"/>
+            </actionGroup>
+            <actionGroup id="document-details">
+                <action index="930" id="alfresco.tutorials.doclib.action.createAttribute"/>
+            </actionGroup>
+            <actionGroup id="folder-browse">
+                <action index="930" id="alfresco.tutorials.doclib.action.createAttribute"/>
+            </actionGroup>
+            <actionGroup id="folder-details">
+                <action index="930" id="alfresco.tutorials.doclib.action.createAttribute"/>
+            </actionGroup>
+        </actionGroups>
+
+    </config>
+
+    <config evaluator="string-compare" condition="DocLibCustom">
+        <dependencies>
+            <js src="components/documentlibrary/custom-formprocessor-doclib-actions.js" />
+        </dependencies>
+    </config>
+
+    <config>
+        <forms>
+            <form id="attributeForm">
+                <field-visibility>
+                    <show id="attribute_key1"/>
+                    <show id="attribute_key2"/>
+                    <show id="attribute_key3"/>
+                    <show id="attribute_value"/>
+                </field-visibility>
+                <appearance>
+                    <field id="attribute_key1" label-id="alfresco.tutorials.doclib.action.createAttribute.form.field.key1"
+                           mandatory="true"/>
+                    <field id="attribute_key2" label-id="alfresco.tutorials.doclib.action.createAttribute.form.field.key2"/>
+                    <field id="attribute_key3" label-id="alfresco.tutorials.doclib.action.createAttribute.form.field.key3"/>
+                    <field id="attribute_value" label-id="alfresco.tutorials.doclib.action.createAttribute.form.field.value" />
+                </appearance>
+            </form>
+        </forms>
+    </config>
+
+
+</alfresco-config>

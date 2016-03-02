@@ -23,10 +23,10 @@
         </actions>
         <actionGroups>
             <actionGroup id="document-browse">
-                <action index="404" id="alfresco.tutorials.permissions.publishToWeb" />
+                <action index="910" id="alfresco.tutorials.permissions.publishToWeb" />
             </actionGroup>
             <actionGroup id="document-details">
-                <action index="404" id="alfresco.tutorials.permissions.publishToWeb" />
+                <action index="910" id="alfresco.tutorials.permissions.publishToWeb" />
             </actionGroup>
         </actionGroups>
     </config>

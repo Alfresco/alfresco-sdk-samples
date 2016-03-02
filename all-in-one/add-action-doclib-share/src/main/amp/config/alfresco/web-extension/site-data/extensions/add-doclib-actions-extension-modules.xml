@@ -75,21 +75,21 @@
                         <!-- We want the doclib actions to be visible in the
                              document-browse and document-details views. -->
                         <actionGroup id="document-browse">
-                            <action index="400" id="alfresco.tutorials.doclib.action.sendAsEmail" />
-                            <action index="401" id="alfresco.tutorials.doclib.action.callWebScript" />
-                            <action index="402" id="alfresco.tutorials.doclib.action.showCustomMessage" />
-                            <action index="403" id="alfresco.tutorials.doclib.action.goToGoogle" />
+                            <action index="900" id="alfresco.tutorials.doclib.action.sendAsEmail" />
+                            <action index="901" id="alfresco.tutorials.doclib.action.callWebScript" />
+                            <action index="902" id="alfresco.tutorials.doclib.action.showCustomMessage" />
+                            <action index="903" id="alfresco.tutorials.doclib.action.goToGoogle" />
                         </actionGroup>
                         <actionGroup id="document-details">
-                            <action index="400" id="alfresco.tutorials.doclib.action.sendAsEmail" />
-                            <action index="401" id="alfresco.tutorials.doclib.action.callWebScript" />
-                            <action index="402" id="alfresco.tutorials.doclib.action.showCustomMessage" />
-                            <action index="403" id="alfresco.tutorials.doclib.action.goToGoogle" />
+                            <action index="900" id="alfresco.tutorials.doclib.action.sendAsEmail" />
+                            <action index="901" id="alfresco.tutorials.doclib.action.callWebScript" />
+                            <action index="902" id="alfresco.tutorials.doclib.action.showCustomMessage" />
+                            <action index="903" id="alfresco.tutorials.doclib.action.goToGoogle" />
                         </actionGroup>
 
                         <!-- The Go To Google action will be visible also in Folder browse view -->
                         <actionGroup id="folder-browse">
-                            <action index="403" id="alfresco.tutorials.doclib.action.goToGoogle" />
+                            <action index="903" id="alfresco.tutorials.doclib.action.goToGoogle" />
                         </actionGroup>
                     </actionGroups>
                 </config>

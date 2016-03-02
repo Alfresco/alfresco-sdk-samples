@@ -41,16 +41,16 @@
         </actions>
         <actionGroups>
             <actionGroup id="document-browse">
-                <action index="410" id="alfresco.tutorials.doclib.action.rateNode"/>
+                <action index="920" id="alfresco.tutorials.doclib.action.rateNode"/>
             </actionGroup>
             <actionGroup id="document-details">
-                <action index="410" id="alfresco.tutorials.doclib.action.rateNode"/>
+                <action index="920" id="alfresco.tutorials.doclib.action.rateNode"/>
             </actionGroup>
             <actionGroup id="folder-browse">
-                <action index="410" id="alfresco.tutorials.doclib.action.rateNode"/>
+                <action index="920" id="alfresco.tutorials.doclib.action.rateNode"/>
             </actionGroup>
             <actionGroup id="folder-details">
-                <action index="410" id="alfresco.tutorials.doclib.action.rateNode"/>
+                <action index="920" id="alfresco.tutorials.doclib.action.rateNode"/>
             </actionGroup>
         </actionGroups>
     </config>
