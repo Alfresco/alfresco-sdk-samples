@@ -62,7 +62,7 @@ public class AcmeContentServiceImpl implements AcmeContentService {
      * This will be done in a read-write transaction, retry until successful or 20 trials.
      * Joins an ongoing transaction if one exists.
      */
-    public NodeRef createContractFile(String filename, String contractTxt, AcmeContract contract) {
+    public NodeRef createContractFile(final String filename, final String contractTxt, final AcmeContract contract) {
         NodeRef nodeRefForContract = serviceRegistry.getRetryingTransactionHelper().doInTransaction(
                 new RetryingTransactionHelper.RetryingTransactionCallback<NodeRef>() {
                     public NodeRef execute() throws Throwable {
@@ -107,7 +107,7 @@ public class AcmeContentServiceImpl implements AcmeContentService {
      *
      * @param nodeRef the Alfresco Repo node reference to apply the aspect to
      */
-    public void applyWebPublishedAspect(NodeRef nodeRef) {
+    public void applyWebPublishedAspect(final NodeRef nodeRef) {
         Boolean result = serviceRegistry.getRetryingTransactionHelper().doInTransaction(
                 new RetryingTransactionHelper.RetryingTransactionCallback<Boolean>() {
                     public Boolean execute() throws Throwable {

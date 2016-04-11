@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>add-aikau-dashlet-share</artifactId>
     <name>Alfresco Tutorials (Aikau Dashlet) - Add an Aikau Dashlet</name>
-    <packaging>amp</packaging>
+    <packaging>jar</packaging>
     <description>Tutorial that shows how to implement a new Aikau Dashlet</description>
 
     <parent>

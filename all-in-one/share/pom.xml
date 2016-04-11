@@ -20,20 +20,61 @@
     </properties>
 
     <dependencies>
+        <!-- Bring in the Share.WAR to be overlayed -->
         <dependency>
             <groupId>${alfresco.groupId}</groupId>
             <artifactId>${alfresco.share.artifactId}</artifactId>
             <version>${alfresco.version}</version>
             <type>war</type>
         </dependency>
-
-        <!-- AMPs with Share Extension Point samples -->
+        <!-- Extension JARs to be overlayed -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>add-action-doclib-share</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>add-aikau-dashlet-share</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>add-create-menuitem-doclib-share</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>add-metadata-template-doclib-share</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>add-page-content-share</artifactId>
             <version>${project.version}</version>
-            <type>amp</type>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>add-permission-share</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>add-rating-share</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>add-surf-dashlet-and-page-share</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>add-theme-share</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- AMPs with Share Extension Point samples -->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>remove-page-content-share</artifactId>
@@ -60,31 +101,7 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>add-create-menuitem-doclib-share</artifactId>
-            <version>${project.version}</version>
-            <type>amp</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>change-header-style-share</artifactId>
-            <version>${project.version}</version>
-            <type>amp</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>add-theme-share</artifactId>
-            <version>${project.version}</version>
-            <type>amp</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>add-action-doclib-share</artifactId>
-            <version>${project.version}</version>
-            <type>amp</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>add-metadata-template-doclib-share</artifactId>
             <version>${project.version}</version>
             <type>amp</type>
         </dependency>
@@ -96,31 +113,7 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>add-permission-share</artifactId>
-            <version>${project.version}</version>
-            <type>amp</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>custom-workflow-share</artifactId>
-            <version>${project.version}</version>
-            <type>amp</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>add-aikau-dashlet-share</artifactId>
-            <version>${project.version}</version>
-            <type>amp</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>add-surf-dashlet-and-page-share</artifactId>
-            <version>${project.version}</version>
-            <type>amp</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>add-rating-share</artifactId>
             <version>${project.version}</version>
             <type>amp</type>
         </dependency>
@@ -142,8 +135,35 @@
     <build>
         <plugins>
             <plugin>
+                <!-- Bring in the Maven Dependency plugin so we can unpack and store the MANIFEST.MF file.
+                     It will be used in the custom Share WAR that is produced by the WAR plugin,
+                     it otherwise gets overwritten by the overlay process. -->
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>unpack</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <includeTypes>war</includeTypes>
+                            <includeGroupIds>org.alfresco</includeGroupIds>
+                            <includeArtifactIds>share</includeArtifactIds>
+                            <includes>META-INF/MANIFEST.MF</includes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
+                    <!-- Bring in the MANIFEST.MF file from the original share.war, it contains version information
+                            that is needed for it to operate properly -->
+                    <archive>
+                        <addMavenDescriptor>false</addMavenDescriptor>
+                        <manifestFile>${project.build.directory}/dependency/META-INF/MANIFEST.MF</manifestFile>
+                    </archive>
                     <!-- Here is can control the order of overlay of your (WAR, AMP, etc.) dependencies
                         | NOTE: At least one WAR dependency must be uncompressed first 
                         | NOTE: In order to have a dependency effectively added to the WAR you need to 
@@ -163,11 +183,6 @@
                         </overlay>
 
                         <!-- AMPs with Share Extension Point samples -->
-                        <overlay>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>add-page-content-share</artifactId>
-                            <type>amp</type>
-                        </overlay>
                         <overlay>
                             <groupId>${project.groupId}</groupId>
                             <artifactId>remove-page-content-share</artifactId>
@@ -190,29 +205,48 @@
                         </overlay>
                         <overlay>
                             <groupId>${project.groupId}</groupId>
-                            <artifactId>add-create-menuitem-doclib-share</artifactId>
-                            <type>amp</type>
-                        </overlay>
-                        <overlay>
-                            <groupId>${project.groupId}</groupId>
                             <artifactId>change-header-style-share</artifactId>
                             <type>amp</type>
                         </overlay>
-                        <overlay>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>add-theme-share</artifactId>
-                            <type>amp</type>
-                        </overlay>
+                        <!-- JARs are overlayed automatically, only need to add them here if order is important
                         <overlay>
                             <groupId>${project.groupId}</groupId>
                             <artifactId>add-action-doclib-share</artifactId>
-                            <type>amp</type>
+                        </overlay>
+
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>add-aikau-dashlet-share</artifactId>
+                        </overlay>
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>add-create-menuitem-doclib-share</artifactId>
                         </overlay>
                         <overlay>
                             <groupId>${project.groupId}</groupId>
                             <artifactId>add-metadata-template-doclib-share</artifactId>
-                            <type>amp</type>
                         </overlay>
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>add-page-content-share</artifactId>
+                        </overlay>
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>add-permission-share</artifactId>
+                        </overlay>
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>add-rating-share</artifactId>
+                        </overlay>
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>add-surf-dashlet-and-page-share</artifactId>
+                        </overlay>
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>add-theme-share</artifactId>
+                        </overlay>
+                        -->
                         <overlay>
                             <groupId>${project.groupId}</groupId>
                             <artifactId>custom-content-model-share</artifactId>
@@ -220,27 +254,7 @@
                         </overlay>
                         <overlay>
                             <groupId>${project.groupId}</groupId>
-                            <artifactId>add-permission-share</artifactId>
-                            <type>amp</type>
-                        </overlay>
-                        <overlay>
-                            <groupId>${project.groupId}</groupId>
                             <artifactId>custom-workflow-share</artifactId>
-                            <type>amp</type>
-                        </overlay>
-                        <overlay>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>add-aikau-dashlet-share</artifactId>
-                            <type>amp</type>
-                        </overlay>
-                        <overlay>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>add-surf-dashlet-and-page-share</artifactId>
-                            <type>amp</type>
-                        </overlay>
-                        <overlay>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>add-rating-share</artifactId>
                             <type>amp</type>
                         </overlay>
                         <overlay>

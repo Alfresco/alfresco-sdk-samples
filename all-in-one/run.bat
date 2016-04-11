@@ -3,13 +3,6 @@
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 @echo off
 
-set springloadedfile=%HOME%\.m2\repository\org\springframework\springloaded\1.2.3.RELEASE\springloaded-1.2.3.RELEASE.jar
+set MAVEN_OPTS=-Xms256m -Xmx2G
 
-if not exist %springloadedfile% (
-  mvn validate -Psetup
-)
-
-set MAVEN_OPTS=-javaagent:"%springloadedfile%" -noverify -Xms256m -Xmx2G
-
-mvn install -Prun -nsu
-:: mvn install -Prun 
+mvn clean install -Prun

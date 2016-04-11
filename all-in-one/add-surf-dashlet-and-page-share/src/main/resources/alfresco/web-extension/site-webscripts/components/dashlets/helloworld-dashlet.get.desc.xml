@@ -1,0 +1,6 @@
+<webscript>
+    <shortname>Hello World Surf Dashlet</shortname>
+    <description>Hello World Surf Dashlet with click button</description>
+    <family>dashlet</family>
+    <url>/components/dashlets/hellosurf</url>
+</webscript>

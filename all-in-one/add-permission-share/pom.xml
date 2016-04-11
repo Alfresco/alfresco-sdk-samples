@@ -5,7 +5,7 @@
 
     <artifactId>add-permission-share</artifactId>
     <name>Alfresco Tutorials (Permission / Role) - Configure UI DocLib action with custom permission</name>
-    <packaging>amp</packaging>
+    <packaging>jar</packaging>
     <description>Tutorial that demonstrates how to configure a Share DocLib action with a custom permission</description>
 
     <parent>

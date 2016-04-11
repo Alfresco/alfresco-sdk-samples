@@ -34,7 +34,7 @@
     <!-- Bring in custom JavaScript function called by the publishToWeb DocLib action defined above -->
     <config evaluator="string-compare" condition="DocLibCustom">
         <dependencies>
-            <js src="components/documentlibrary/custom-doclib-action-permissions.js" />
+            <js src="resources/add-permission-share/components/documentlibrary/custom-doclib-action-permissions.js" />
         </dependencies>
     </config>
 </alfresco-config>

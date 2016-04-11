@@ -1,0 +1,8 @@
+<webscript>
+    <shortname>Test Bean</shortname>
+    <description>Test calling Public Service Spring Bean from JavaScript controller</description>
+    <url>/tutorial/testbean</url>
+    <format default="html"></format>
+    <authentication>user</authentication>
+    <family>Alfresco Tutorials</family>
+</webscript>

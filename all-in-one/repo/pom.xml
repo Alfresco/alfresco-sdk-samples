@@ -25,28 +25,54 @@
     </parent>
 
     <dependencies>
+        <!-- Bring in the Alfresco.WAR to be overlayed -->
         <dependency>
             <groupId>${alfresco.groupId}</groupId>
             <artifactId>${alfresco.repo.artifactId}</artifactId>
             <version>${alfresco.version}</version>
             <type>war</type>
         </dependency>
-        <!-- Demonstrating the dependency / installation of the repo AMP developed in the 'repo-amp' module -->
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>repo-amp</artifactId>
-            <version>${project.version}</version>
-            <type>amp</type>
-        </dependency>
+        <!-- Extension JARs to be overlayed -->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>add-action-repo</artifactId>
             <version>${project.version}</version>
-            <type>amp</type>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>add-admin-console-component-repo</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>add-patch-repo</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>add-permission-repo</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>add-rating-repo</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>add-web-script-repo</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>bootstrap-content-repo</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- Extension AMPs to be overlayed -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>repo-amp</artifactId>
             <version>${project.version}</version>
             <type>amp</type>
         </dependency>
@@ -64,19 +90,7 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>add-web-script-repo</artifactId>
-            <version>${project.version}</version>
-            <type>amp</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>schedule-job-repo</artifactId>
-            <version>${project.version}</version>
-            <type>amp</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>add-permission-repo</artifactId>
             <version>${project.version}</version>
             <type>amp</type>
         </dependency>
@@ -112,19 +126,7 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>add-patch-repo</artifactId>
-            <version>${project.version}</version>
-            <type>amp</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>custom-audit-app-repo</artifactId>
-            <version>${project.version}</version>
-            <type>amp</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>add-admin-console-component-repo</artifactId>
             <version>${project.version}</version>
             <type>amp</type>
         </dependency>
@@ -137,12 +139,6 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>custom-subsystem-repo</artifactId>
-            <version>${project.version}</version>
-            <type>amp</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>add-rating-repo</artifactId>
             <version>${project.version}</version>
             <type>amp</type>
         </dependency>
@@ -207,16 +203,37 @@
                             <artifactId>repo-amp</artifactId>
                             <type>amp</type>
                         </overlay>
+                        <!-- JARs are overlayed automatically, only need to add them here if order is important
+                       <overlay>
+                           <groupId>${project.groupId}</groupId>
+                           <artifactId>add-action-repo</artifactId>
+                       </overlay>
+
+                       <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>add-admin-console-component-repo</artifactId>
+                        </overlay>
                         <overlay>
                             <groupId>${project.groupId}</groupId>
-                            <artifactId>add-action-repo</artifactId>
-                            <type>amp</type>
+                            <artifactId>add-patch-repo</artifactId>
+                        </overlay>
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>add-permission-repo</artifactId>
+                        </overlay>
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>add-rating-repo</artifactId>
+                        </overlay>
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>add-web-script-repo</artifactId>
                         </overlay>
                         <overlay>
                             <groupId>${project.groupId}</groupId>
                             <artifactId>bootstrap-content-repo</artifactId>
-                            <type>amp</type>
                         </overlay>
+                       -->
                         <overlay>
                             <groupId>${project.groupId}</groupId>
                             <artifactId>custom-content-model-repo</artifactId>
@@ -229,17 +246,7 @@
                         </overlay>
                         <overlay>
                             <groupId>${project.groupId}</groupId>
-                            <artifactId>add-web-script-repo</artifactId>
-                            <type>amp</type>
-                        </overlay>
-                        <overlay>
-                            <groupId>${project.groupId}</groupId>
                             <artifactId>schedule-job-repo</artifactId>
-                            <type>amp</type>
-                        </overlay>
-                        <overlay>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>add-permission-repo</artifactId>
                             <type>amp</type>
                         </overlay>
                         <overlay>
@@ -269,17 +276,7 @@
                         </overlay>
                         <overlay>
                             <groupId>${project.groupId}</groupId>
-                            <artifactId>add-patch-repo</artifactId>
-                            <type>amp</type>
-                        </overlay>
-                        <overlay>
-                            <groupId>${project.groupId}</groupId>
                             <artifactId>custom-audit-app-repo</artifactId>
-                            <type>amp</type>
-                        </overlay>
-                        <overlay>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>add-admin-console-component-repo</artifactId>
                             <type>amp</type>
                         </overlay>
                         <overlay>
@@ -290,11 +287,6 @@
                         <overlay>
                             <groupId>${project.groupId}</groupId>
                             <artifactId>custom-subsystem-repo</artifactId>
-                            <type>amp</type>
-                        </overlay>
-                        <overlay>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>add-rating-repo</artifactId>
                             <type>amp</type>
                         </overlay>
                         <overlay>

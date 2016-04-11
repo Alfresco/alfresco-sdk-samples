@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>add-surf-dashlet-and-page-share</artifactId>
     <name>Alfresco Tutorials (Surf Web Scripts, Dashlets, Pages) - Add Surf Web Script, Dashlet, and Page</name>
-    <packaging>amp</packaging>
+    <packaging>jar</packaging>
     <description>Tutorial that shows the implementation of Surf Web Scripts, Surf Dashlets, and Surf Pages</description>
 
     <parent>

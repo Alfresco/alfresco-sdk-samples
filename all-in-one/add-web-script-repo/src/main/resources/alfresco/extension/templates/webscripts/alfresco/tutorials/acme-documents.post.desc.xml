@@ -1,0 +1,24 @@
+<webscript>
+    <shortname>Create ACME Document</shortname>
+    <description>Create an ACME Text Document by uploading JSON data
+        with both metadata and content for the text document.
+
+        POST body should include JSON such as:
+
+        {
+        "name": "acmedocument2.txt",
+        "docId": "DOC002",
+        "securityClass": "Public",
+        "content": "Some text to represent the content of the document"
+        }
+
+        Example curl call:
+
+        curl -v -u admin:admin -d @sample.json -H 'Content-Type:application/json' http://localhost:8080/alfresco/service/tutorial/acmedocs
+    </description>
+    <url>/tutorial/acmedocs</url>
+    <authentication>user</authentication>
+    <transaction>required</transaction>
+    <format default="html">any</format>
+    <family>Alfresco Tutorials</family>
+</webscript>

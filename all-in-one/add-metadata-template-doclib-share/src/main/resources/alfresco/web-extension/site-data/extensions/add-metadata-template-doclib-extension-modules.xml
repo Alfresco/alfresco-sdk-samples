@@ -1,0 +1,36 @@
+<extension>
+    <modules>
+        <module>
+            <id>Add Acme Document Metadata Template</id>
+            <version>1.0</version>
+            <auto-deploy>true</auto-deploy>
+            <configurations>
+                <config evaluator="string-compare" condition="DocumentLibrary">
+                    <metadata-templates>
+                        <template id="acmeDocMetadataTemplate">
+                            <evaluator>alfresco.tutorials.evaluator.isAcmeDocument</evaluator>
+                            <banner index="10" id="lockBanner" evaluator="evaluator.doclib.metadata.hasLockBanner">{lockBanner}</banner>
+                            <banner index="20" id="syncTransientError" evaluator="evaluator.doclib.metadata.hasSyncTransientErrorBanner">{syncTransientError}</banner>
+                            <banner index="30" id="syncFailed" evaluator="evaluator.doclib.metadata.hasSyncFailedBanner">{syncFailed}</banner>
+                            <line index="10" id="date">{date}{size}</line>
+                            <line index="20" id="description" view="detailed">{description}</line>
+                            <line index="30" id="tags" view="detailed">{tags}</line>
+                            <line index="40" id="categories" view="detailed" evaluator="evaluator.doclib.metadata.hasCategories">{categories}</line>
+                            <line index="50" id="acmeDocId" view="detailed">{acme_documentId org.alfresco.tutorial.label.acme_documentId}</line>
+                            <line index="60" id="social" view="detailed">{social}</line>
+                            <line index="70" id="acmeDocIdCustom" view="detailed">{acmeDocumentIdCustomRendition org.alfresco.tutorial.label.acme_documentId}</line>
+                        </template>
+                    </metadata-templates>
+                </config>
+
+                <!-- Bring in custom JavaScript functions called to render the
+                     acmeDocumentIdCustomRendition property above -->
+                <config evaluator="string-compare" condition="DocLibCustom">
+                    <dependencies>
+                        <js src="resources/add-metadata-template-doclib-share/components/documentlibrary/custom-metadata-template-renderer.js"/>
+                    </dependencies>
+                </config>
+            </configurations>
+        </module>
+    </modules>
+</extension>

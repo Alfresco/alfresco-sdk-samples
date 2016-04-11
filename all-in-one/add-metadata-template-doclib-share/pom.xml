@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>add-metadata-template-doclib-share</artifactId>
     <name>Alfresco Tutorials (Document Library) - Add Metadata Template</name>
-    <packaging>amp</packaging>
+    <packaging>jar</packaging>
     <description>Tutorial that demonstrates how to add a custom metadata template to the Document Library.</description>
 
     <parent>

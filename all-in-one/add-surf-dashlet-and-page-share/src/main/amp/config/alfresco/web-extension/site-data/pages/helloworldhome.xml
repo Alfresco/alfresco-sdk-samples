@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<page>
-    <title>Hello World Home</title>
-    <title-id>page.helloworld.title</title-id>
-    <description>Hello World Home Description</description>
-    <description-id>page.helloworld.description</description-id>
-    <template-instance>helloworldhome-three-column</template-instance>
-    <authentication>user</authentication>
-</page>

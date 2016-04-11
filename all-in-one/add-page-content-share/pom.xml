@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>add-page-content-share</artifactId>
     <name>Alfresco Tutorials (Surf Extension Modules) - Add Content to Surf Page</name>
-    <packaging>amp</packaging>
+    <packaging>jar</packaging>
     <description>Tutorial that uses a Surf Extension Module to add content to a Surf Page</description>
 
     <parent>

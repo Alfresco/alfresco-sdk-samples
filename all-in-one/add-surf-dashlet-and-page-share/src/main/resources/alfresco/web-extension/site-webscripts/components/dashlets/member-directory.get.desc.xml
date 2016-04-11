@@ -1,0 +1,7 @@
+<webscript>
+    <shortname>Member Directory Surf Dashlet</shortname>
+    <description>Provide Search of people and display in a list
+    </description>
+    <family>user-dashlet</family>
+    <url>/components/dashlets/member-directory</url>
+</webscript>

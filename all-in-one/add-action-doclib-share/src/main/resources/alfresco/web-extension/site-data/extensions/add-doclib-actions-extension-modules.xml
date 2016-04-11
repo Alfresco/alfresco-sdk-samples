@@ -1,0 +1,129 @@
+<extension>
+    <modules>
+        <module>
+            <id>Add Document Libarary Actions (Send-as-Email, Call WS, Show Msg, Go to Google)</id>
+            <version>1.0</version>
+            <auto-deploy>true</auto-deploy>
+            <configurations>
+                <config evaluator="string-compare" condition="DocumentLibrary">
+                    <indicators>
+                        <!-- Indicator that will be displayed if a node has the cm:emailed aspect applied -->
+                        <indicator id="alfresco.tutorials.indicator.isEmailed"
+                                   icon="email-16.png"
+                                   index="100"
+                                   label="alfresco.tutorials.indicator.isEmailed.label">
+                            <evaluator>alfresco.tutorials.evaluator.isEmailed</evaluator>
+                        </indicator>
+                    </indicators>
+                </config>
+
+                <config evaluator="string-compare" condition="DocLibActions">
+                    <actions>
+                        <!-- Add a Document Library action of the type javascript,
+                             meaning it will execute client side JavaScript code.
+                             In this case the action will call an Out-of-the-box
+                             action JavaScript function called onActionFormDialog, which
+                             will assume you want to display a form collecting some
+                             data that should then be passed on to a repo action
+                             invokation. -->
+                        <action id="alfresco.tutorials.doclib.action.sendAsEmail"
+                                icon="email"
+                                type="javascript"
+                                label="alfresco.tutorials.doclib.action.sendAsEmail.label">
+                            <param name="function">onActionFormDialog</param>
+                            <param name="itemKind">action</param>
+                            <param name="itemId">send-as-email</param> <!-- Repository action id = Spring Bean id -->
+                            <param name="mode">create</param>
+                            <param name="destination">{node.nodeRef}</param>
+                            <param name="successMessage">alfresco.tutorials.doclib.action.sendAsEmail.msg.success</param>
+                            <param name="failureMessage">alfresco.tutorials.doclib.action.sendAsEmail.msg.failure</param>
+                            <evaluator negate="true">alfresco.tutorials.evaluator.isEmailed</evaluator>
+                        </action>
+
+                        <!-- Add a Document Library action of the type javascript,
+                             meaning it will execute client side JavaScript code.
+                             In this case it will call a custom JavaScript function that
+                             invokes a Web Script-->
+                        <action id="alfresco.tutorials.doclib.action.callWebScript"
+                                icon="callws"
+                                type="javascript"
+                                label="alfresco.tutorials.doclib.action.callWebScript.label">
+                            <param name="function">onActionCallWebScript</param>
+                            <param name="successMessage">alfresco.tutorials.doclib.action.callWebScript.msg.success</param>
+                            <param name="failureMessage">alfresco.tutorials.doclib.action.callWebScript.msg.failure</param>
+                        </action>
+
+                        <!-- Simple doclib action that just shows a message -->
+                        <action id="alfresco.tutorials.doclib.action.showCustomMessage"
+                                icon="showmsg"
+                                type="javascript"
+                                label="alfresco.tutorials.doclib.action.showCustomMessage.label">
+                            <param name="function">onShowCustomMessage</param>
+                        </action>
+
+                        <!-- Action that will navigate to Google Home page -->
+                        <action id="alfresco.tutorials.doclib.action.goToGoogle"
+                                icon="google"
+                                type="link"
+                                label="alfresco.tutorials.doclib.action.goToGoogle.label">
+                            <param name="href">http://www.google.com</param>
+                            <param name="target">_blank</param>
+                        </action>
+                    </actions>
+
+                    <actionGroups>
+                        <!-- We want the doclib actions to be visible in the
+                             document-browse and document-details views. -->
+                        <actionGroup id="document-browse">
+                            <action index="900" id="alfresco.tutorials.doclib.action.sendAsEmail" />
+                            <action index="901" id="alfresco.tutorials.doclib.action.callWebScript" />
+                            <action index="902" id="alfresco.tutorials.doclib.action.showCustomMessage" />
+                            <action index="903" id="alfresco.tutorials.doclib.action.goToGoogle" />
+                        </actionGroup>
+                        <actionGroup id="document-details">
+                            <action index="900" id="alfresco.tutorials.doclib.action.sendAsEmail" />
+                            <action index="901" id="alfresco.tutorials.doclib.action.callWebScript" />
+                            <action index="902" id="alfresco.tutorials.doclib.action.showCustomMessage" />
+                            <action index="903" id="alfresco.tutorials.doclib.action.goToGoogle" />
+                        </actionGroup>
+
+                        <!-- The Go To Google action will be visible also in Folder browse view -->
+                        <actionGroup id="folder-browse">
+                            <action index="903" id="alfresco.tutorials.doclib.action.goToGoogle" />
+                        </actionGroup>
+                    </actionGroups>
+                </config>
+
+                <!-- Send-As-Email DocLib action form.
+                     It matches the fields used by the send-as-email Repository action -->
+                <config evaluator="string-compare"
+                        condition="send-as-email"> <!-- ID for the Repository Action that this form is associated with -->
+                    <forms>
+                        <form>
+                            <field-visibility>
+                                <show id="to"/>
+                                <show id="subject"/>
+                                <show id="body_text"/>
+                            </field-visibility>
+                            <appearance>
+                                <field id="to" label-id="alfresco.tutorials.doclib.action.sendAsEmail.form.field.to"/>
+                                <field id="subject" label-id="alfresco.tutorials.doclib.action.sendAsEmail.form.field.subject"/>
+                                <field id="body_text" label-id="alfresco.tutorials.doclib.action.sendAsEmail.form.field.body_text">
+                                    <control template="/org/alfresco/components/form/controls/textarea.ftl" />
+                                </field>
+                            </appearance>
+                        </form>
+                    </forms>
+                </config>
+
+                <!-- Bring in custom JavaScript functions called by the callWebScript and showCustomMessage
+                     DocLib actions defined above -->
+                <config evaluator="string-compare" condition="DocLibCustom">
+                    <dependencies>
+                        <js src="resources/add-action-doclib-share/components/documentlibrary/custom-doclib-actions.js" />
+                    </dependencies>
+                </config>
+            </configurations>
+        </module>
+    </modules>
+</extension>

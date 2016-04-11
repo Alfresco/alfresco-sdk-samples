@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>add-rating-repo</artifactId>
     <name>Alfresco Tutorials (Rating) - Add a new Rating Scheme</name>
-    <packaging>amp</packaging>
+    <packaging>jar</packaging>
     <description>Tutorial that adds a new rating scheme with model and Spring definition, also includes repo action that rate nodes</description>
 
     <parent>
@@ -52,31 +52,6 @@
         </dependency>
 
     </dependencies>
-
-    <!-- Produce an extra add-action-repo-1.0-SNAPSHOT-classes.jar that can be used by the integration-test-runner project -->
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>produce-jar-artifact</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                        <phase>package</phase>
-                        <configuration>
-                            <classifier>classes</classifier>
-                            <includes>
-                                <include>**/*</include>
-                            </includes>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 
     <profiles>
 

@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>add-create-menuitem-doclib-share</artifactId>
     <name>Alfresco Tutorials (Surf Extension Modules) - Add a new Create menu item in DocLib</name>
-    <packaging>amp</packaging>
+    <packaging>jar</packaging>
     <description>Tutorial that uses a Surf Extension Module to add a new menu item to the "Create..." drop-down menu in the Document Library (DocLib)</description>
 
     <parent>

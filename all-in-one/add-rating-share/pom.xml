@@ -5,7 +5,7 @@
 
     <artifactId>add-rating-share</artifactId>
     <name>Alfresco Tutorials (Ratings) - Configure UI for five star ratings</name>
-    <packaging>amp</packaging>
+    <packaging>jar</packaging>
     <description>Tutorial that demonstrates how to configure the Share UI so the Five star rating scheme can be used</description>
 
     <parent>

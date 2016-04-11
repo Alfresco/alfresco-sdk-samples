@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>add-action-doclib-share</artifactId>
     <name>Alfresco Tutorials (Document Library) - Add a DocLib Action</name>
-    <packaging>amp</packaging>
+    <packaging>jar</packaging>
     <description>Tutorial that demonstrates how to add a new document library action that is backed by a Repository action.</description>
 
     <parent>

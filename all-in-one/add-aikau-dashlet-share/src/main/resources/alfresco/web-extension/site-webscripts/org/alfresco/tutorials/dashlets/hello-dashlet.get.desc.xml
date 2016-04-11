@@ -1,0 +1,6 @@
+<webscript>
+    <shortname>Hello Aikau Dashlet</shortname>
+    <description>An Aikau dashlet that displays an Alfresco logo and a Hello message</description>
+    <family>dashlet</family>
+    <url>/tutorials/dashlets/helloaikau</url>
+</webscript>

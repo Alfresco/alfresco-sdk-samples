@@ -1,0 +1,21 @@
+<extension>
+    <modules>
+        <module>
+            <id>add-aikau-dashlet-share - ACME Dashlet and Widgets</id>
+            <version>1.0</version>
+            <auto-deploy>true</auto-deploy>
+            <configurations>
+                <config evaluator="string-compare" condition="WebFramework" replace="false">
+                    <web-framework>
+                        <dojo-pages>
+                            <packages>
+                                <package name="acmedashlets" location="resources/add-aikau-dashlet-share/js/tutorials/dashlets"/>
+                                <package name="acmewidgets" location="resources/add-aikau-dashlet-share/js/tutorials/dashlets/widgets"/>
+                            </packages>
+                        </dojo-pages>
+                    </web-framework>
+                </config>
+            </configurations>
+        </module>
+    </modules>
+</extension>

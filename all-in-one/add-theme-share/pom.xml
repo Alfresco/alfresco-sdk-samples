@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>add-theme-share</artifactId>
     <name>Alfresco Tutorials (Share Theme) - Add Share Theme</name>
-    <packaging>amp</packaging>
+    <packaging>jar</packaging>
     <description>Tutorial that adds a custom Share Theme based on the out-of-the-box Green Theme</description>
 
     <parent>
