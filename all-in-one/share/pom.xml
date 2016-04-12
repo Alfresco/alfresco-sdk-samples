@@ -73,6 +73,16 @@
             <artifactId>add-theme-share</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>change-header-style-share</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>custom-content-model-share</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
         <!-- AMPs with Share Extension Point samples -->
         <dependency>
@@ -96,18 +106,6 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>customize-webscript-template-share</artifactId>
-            <version>${project.version}</version>
-            <type>amp</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>change-header-style-share</artifactId>
-            <version>${project.version}</version>
-            <type>amp</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>custom-content-model-share</artifactId>
             <version>${project.version}</version>
             <type>amp</type>
         </dependency>
@@ -203,11 +201,6 @@
                             <artifactId>customize-webscript-template-share</artifactId>
                             <type>amp</type>
                         </overlay>
-                        <overlay>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>change-header-style-share</artifactId>
-                            <type>amp</type>
-                        </overlay>
                         <!-- JARs are overlayed automatically, only need to add them here if order is important
                         <overlay>
                             <groupId>${project.groupId}</groupId>
@@ -246,12 +239,15 @@
                             <groupId>${project.groupId}</groupId>
                             <artifactId>add-theme-share</artifactId>
                         </overlay>
-                        -->
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>change-header-style-share</artifactId>
+                        </overlay>
                         <overlay>
                             <groupId>${project.groupId}</groupId>
                             <artifactId>custom-content-model-share</artifactId>
-                            <type>amp</type>
                         </overlay>
+                        -->
                         <overlay>
                             <groupId>${project.groupId}</groupId>
                             <artifactId>custom-workflow-share</artifactId>

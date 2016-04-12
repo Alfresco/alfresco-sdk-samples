@@ -68,17 +68,31 @@
             <artifactId>bootstrap-content-repo</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>custom-audit-app-repo</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>custom-authentication-repo</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>custom-content-model-repo</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>custom-content-store-repo</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
         <!-- Extension AMPs to be overlayed -->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>repo-amp</artifactId>
-            <version>${project.version}</version>
-            <type>amp</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>custom-content-model-repo</artifactId>
             <version>${project.version}</version>
             <type>amp</type>
         </dependency>
@@ -102,12 +116,6 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>custom-content-store-repo</artifactId>
-            <version>${project.version}</version>
-            <type>amp</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>custom-metadata-extracter-repo</artifactId>
             <version>${project.version}</version>
             <type>amp</type>
@@ -121,18 +129,6 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>custom-mimetype-map-repo</artifactId>
-            <version>${project.version}</version>
-            <type>amp</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>custom-audit-app-repo</artifactId>
-            <version>${project.version}</version>
-            <type>amp</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>custom-authentication-repo</artifactId>
             <version>${project.version}</version>
             <type>amp</type>
         </dependency>
@@ -233,12 +229,23 @@
                             <groupId>${project.groupId}</groupId>
                             <artifactId>bootstrap-content-repo</artifactId>
                         </overlay>
-                       -->
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>custom-audit-app-repo</artifactId>
+                        </overlay>
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>custom-authentication-repo</artifactId>
+                        </overlay>
                         <overlay>
                             <groupId>${project.groupId}</groupId>
                             <artifactId>custom-content-model-repo</artifactId>
-                            <type>amp</type>
                         </overlay>
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>custom-content-store-repo</artifactId>
+                        </overlay>
+                       -->
                         <overlay>
                             <groupId>${project.groupId}</groupId>
                             <artifactId>public-api-access-repo</artifactId>
@@ -256,11 +263,6 @@
                         </overlay>
                         <overlay>
                             <groupId>${project.groupId}</groupId>
-                            <artifactId>custom-content-store-repo</artifactId>
-                            <type>amp</type>
-                        </overlay>
-                        <overlay>
-                            <groupId>${project.groupId}</groupId>
                             <artifactId>custom-metadata-extracter-repo</artifactId>
                             <type>amp</type>
                         </overlay>
@@ -272,16 +274,6 @@
                         <overlay>
                             <groupId>${project.groupId}</groupId>
                             <artifactId>custom-mimetype-map-repo</artifactId>
-                            <type>amp</type>
-                        </overlay>
-                        <overlay>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>custom-audit-app-repo</artifactId>
-                            <type>amp</type>
-                        </overlay>
-                        <overlay>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>custom-authentication-repo</artifactId>
                             <type>amp</type>
                         </overlay>
                         <overlay>

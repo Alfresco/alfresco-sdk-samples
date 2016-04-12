@@ -5,7 +5,7 @@
 
     <artifactId>custom-content-model-share</artifactId>
     <name>Alfresco Tutorials (Custom Content Model) - Configure UI for content model</name>
-    <packaging>amp</packaging>
+    <packaging>jar</packaging>
     <description>Tutorial that demonstrates how to configure Share so types and aspects from a custom content model are visible</description>
 
     <parent>

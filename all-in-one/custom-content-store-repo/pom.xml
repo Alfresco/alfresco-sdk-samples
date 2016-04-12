@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>custom-content-store-repo</artifactId>
     <name>Alfresco Tutorials (Custom Content Store) - Define and Bootstrap a content store</name>
-    <packaging>amp</packaging>
+    <packaging>jar</packaging>
     <description>Tutorial that demonstrates how to define and bootstrap a custom content store that stores files in a DB as BLOBs</description>
 
     <parent>
@@ -16,10 +16,9 @@
         <!-- Property overrides are mostly done in parent pom -->
     </properties>
 
-    <!-- Following dependencies are needed for compiling Java code in src/main/java;
-          <scope>provided</scope> is inherited for each of the following;
-          for more info, please refer to alfresco-platform-distribution POM -->
+    <!-- Following dependencies are needed for compiling Java code in src/main/java -->
     <dependencies>
+        <!-- <scope>provided</scope> and version is inherited, for more info, please refer to alfresco-platform-distribution POM -->
         <dependency>
             <groupId>${alfresco.groupId}</groupId>
             <artifactId>alfresco-repository</artifactId>
@@ -33,31 +32,6 @@
         </dependency>
 
     </dependencies>
-
-    <!-- Produce an extra custom-content-store-repo-1.0-SNAPSHOT-classes.jar that can be used by the integration-test-runner project -->
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>produce-jar-artifact</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                        <phase>package</phase>
-                        <configuration>
-                            <classifier>classes</classifier>
-                            <includes>
-                                <include>**/*</include>
-                            </includes>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 
     <profiles>
 

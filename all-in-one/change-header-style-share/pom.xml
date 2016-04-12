@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>change-header-style-share</artifactId>
     <name>Alfresco Tutorials (Surf Extension Modules) - Change the Style of the Share Header</name>
-    <packaging>amp</packaging>
+    <packaging>jar</packaging>
     <description>Tutorial that uses a Surf Extension Module to change the style of the Share header, bring in a new CSS dependency</description>
 
     <parent>
