@@ -88,6 +88,51 @@
             <artifactId>custom-content-store-repo</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>custom-content-transformer-repo</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>custom-data-list-repo</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>custom-form-processor-repo</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>custom-metadata-extracter-repo</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>custom-mimetype-map-repo</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>custom-subsystem-repo</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>custom-workflow-repo</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>public-api-access-repo</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>schedule-job-repo</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
         <!-- Extension AMPs to be overlayed -->
         <dependency>
@@ -96,60 +141,7 @@
             <version>${project.version}</version>
             <type>amp</type>
         </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>public-api-access-repo</artifactId>
-            <version>${project.version}</version>
-            <type>amp</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>schedule-job-repo</artifactId>
-            <version>${project.version}</version>
-            <type>amp</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>custom-workflow-repo</artifactId>
-            <version>${project.version}</version>
-            <type>amp</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>custom-metadata-extracter-repo</artifactId>
-            <version>${project.version}</version>
-            <type>amp</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>custom-content-transformer-repo</artifactId>
-            <version>${project.version}</version>
-            <type>amp</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>custom-mimetype-map-repo</artifactId>
-            <version>${project.version}</version>
-            <type>amp</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>custom-subsystem-repo</artifactId>
-            <version>${project.version}</version>
-            <type>amp</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>custom-data-list-repo</artifactId>
-            <version>${project.version}</version>
-            <type>amp</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>custom-form-processor-repo</artifactId>
-            <version>${project.version}</version>
-            <type>amp</type>
-        </dependency>
+
 
         <!-- Uncomment if you are using SPP (SharePoint Protocol Support) for Online Edit etc -->
         <!--
@@ -199,13 +191,31 @@
                             <artifactId>repo-amp</artifactId>
                             <type>amp</type>
                         </overlay>
-                        <!-- JARs are overlayed automatically, only need to add them here if order is important
-                       <overlay>
+
+                        <!-- Uncomment if you are using SPP -->
+                        <!--
+                        <overlay>
+                            <groupId>${alfresco.groupId}</groupId>
+                            <artifactId>alfresco-spp</artifactId>
+                            <type>amp</type>
+                        </overlay>
+                        -->
+                        <!-- Uncomment if you are using RM -->
+                        <!--
+                        <overlay>
+                            <groupId>${alfresco.groupId}</groupId>
+                            <artifactId>alfresco-rm</artifactId>
+                            <type>amp</type>
+                        </overlay>
+                        -->
+
+                        <!-- JARs in the dependency section above are overlayed automatically,
+                             only need to add them here if order is important.
+                        <overlay>
                            <groupId>${project.groupId}</groupId>
                            <artifactId>add-action-repo</artifactId>
-                       </overlay>
-
-                       <overlay>
+                        </overlay>
+                        <overlay>
                             <groupId>${project.groupId}</groupId>
                             <artifactId>add-admin-console-component-repo</artifactId>
                         </overlay>
@@ -245,69 +255,44 @@
                             <groupId>${project.groupId}</groupId>
                             <artifactId>custom-content-store-repo</artifactId>
                         </overlay>
-                       -->
-                        <overlay>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>public-api-access-repo</artifactId>
-                            <type>amp</type>
-                        </overlay>
-                        <overlay>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>schedule-job-repo</artifactId>
-                            <type>amp</type>
-                        </overlay>
-                        <overlay>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>custom-workflow-repo</artifactId>
-                            <type>amp</type>
-                        </overlay>
-                        <overlay>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>custom-metadata-extracter-repo</artifactId>
-                            <type>amp</type>
-                        </overlay>
                         <overlay>
                             <groupId>${project.groupId}</groupId>
                             <artifactId>custom-content-transformer-repo</artifactId>
-                            <type>amp</type>
-                        </overlay>
-                        <overlay>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>custom-mimetype-map-repo</artifactId>
-                            <type>amp</type>
-                        </overlay>
-                        <overlay>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>custom-subsystem-repo</artifactId>
-                            <type>amp</type>
                         </overlay>
                         <overlay>
                             <groupId>${project.groupId}</groupId>
                             <artifactId>custom-data-list-repo</artifactId>
-                            <type>amp</type>
                         </overlay>
                         <overlay>
                             <groupId>${project.groupId}</groupId>
                             <artifactId>custom-form-processor-repo</artifactId>
-                            <type>amp</type>
                         </overlay>
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>custom-metadata-extracter-repo</artifactId>
+                        </overlay>
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>custom-mimetype-map-repo</artifactId>
+                        </overlay>
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>custom-subsystem-repo</artifactId>
+                        </overlay>
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>custom-workflow-repo</artifactId>
+                        </overlay>
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>public-api-access-repo</artifactId>
+                        </overlay>
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>schedule-job-repo</artifactId>
+                        </overlay>
+                        -->
 
-                        <!-- Uncomment if you are using SPP -->
-                        <!--
-                        <overlay>
-                            <groupId>${alfresco.groupId}</groupId>
-                            <artifactId>alfresco-spp</artifactId>
-                            <type>amp</type>
-                        </overlay>
-                        -->
-                        <!-- Uncomment if you are using RM -->
-                        <!--
-                        <overlay>
-                            <groupId>${alfresco.groupId}</groupId>
-                            <artifactId>alfresco-rm</artifactId>
-                            <type>amp</type>
-                        </overlay>
-                        -->
                     </overlays>
                 </configuration>
             </plugin>

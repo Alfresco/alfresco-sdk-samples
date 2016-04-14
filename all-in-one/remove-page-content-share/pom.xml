@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>remove-page-content-share</artifactId>
     <name>Alfresco Tutorials (Surf Extension Modules) - Remove Content from Surf Page</name>
-    <packaging>amp</packaging>
+    <packaging>jar</packaging>
     <description>Tutorial that uses a Surf Extension Module to remove content from a Surf Page</description>
 
     <parent>

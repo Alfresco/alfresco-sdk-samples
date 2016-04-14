@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>custom-form-processor-repo</artifactId>
     <name>Alfresco Tutorials (Form Processor) - Custom Form Processor</name>
-    <packaging>amp</packaging>
+    <packaging>jar</packaging>
     <description>Tutorial that shows implementation of custom form processor</description>
 
     <parent>

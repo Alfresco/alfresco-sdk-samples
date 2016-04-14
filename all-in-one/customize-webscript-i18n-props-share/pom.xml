@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>customize-webscript-i18n-props-share</artifactId>
     <name>Alfresco Tutorials (Surf Extension Modules) - Customize Web Script i18n properties</name>
-    <packaging>amp</packaging>
+    <packaging>jar</packaging>
     <description>Tutorial that uses a Surf Extension Module to customize the footer Web Script, sets new i18n properties</description>
 
     <parent>

@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>customize-webscript-controller-share</artifactId>
     <name>Alfresco Tutorials (Surf Extension Modules) - Customize Web Script Controller</name>
-    <packaging>amp</packaging>
+    <packaging>jar</packaging>
     <description>Tutorial that uses a Surf Extension Module to customize the Web Script controller for the Web View Dashlet</description>
 
     <parent>

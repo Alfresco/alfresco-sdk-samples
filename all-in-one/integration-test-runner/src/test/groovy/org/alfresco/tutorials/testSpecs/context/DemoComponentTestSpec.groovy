@@ -33,7 +33,7 @@ import spock.lang.Stepwise;
  *
  * @author Martin Bergljung
  */
-@ContextConfiguration(locations = "classpath:alfresco/application-context.xml")
+@ContextConfiguration(locations = [ "classpath:alfresco/application-context.xml", "classpath:alfresco/remote-api-context.xml", "classpath:alfresco/web-scripts-application-context.xml" ] )
 @Stepwise
 public class DemoComponentTestSpec extends Specification {
     private static final String ADMIN_USER_NAME = "admin";

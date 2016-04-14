@@ -5,7 +5,7 @@
 
     <artifactId>custom-workflow-share</artifactId>
     <name>Alfresco Tutorials (Custom Workflow) - Configure UI for workflow</name>
-    <packaging>amp</packaging>
+    <packaging>jar</packaging>
     <description>Tutorial that demonstrates how to configure Share so workflow forms for a custom advanced workflow are visible</description>
 
     <parent>

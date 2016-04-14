@@ -35,7 +35,7 @@ import spock.lang.Stepwise
  *
  * @author martin.bergljung@alfresco.com
  */
-@ContextConfiguration(locations = "classpath:alfresco/application-context.xml")
+@ContextConfiguration(locations = [ "classpath:alfresco/application-context.xml", "classpath:alfresco/remote-api-context.xml", "classpath:alfresco/web-scripts-application-context.xml" ] )
 @Stepwise
 class CustomContentModelTestSpec extends Specification {
     static final String ACME_MODEL_NS = "{http://www.acme.org/model/content/1.0}";

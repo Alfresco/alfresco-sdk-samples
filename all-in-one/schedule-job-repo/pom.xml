@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>schedule-job-repo</artifactId>
     <name>Alfresco Tutorials (Schedule Job) - schedule job that executes Java code</name>
-    <packaging>amp</packaging>
+    <packaging>jar</packaging>
     <description>Tutorial that schedules jobs</description>
 
     <parent>

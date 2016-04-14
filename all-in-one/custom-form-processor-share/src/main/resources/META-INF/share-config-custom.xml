@@ -40,7 +40,7 @@
 
     <config evaluator="string-compare" condition="DocLibCustom">
         <dependencies>
-            <js src="components/documentlibrary/custom-formprocessor-doclib-actions.js" />
+            <js src="resources/custom-form-processor-share/components/documentlibrary/custom-formprocessor-doclib-actions.js" />
         </dependencies>
     </config>
 

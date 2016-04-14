@@ -5,7 +5,7 @@
 
     <artifactId>custom-data-list-share</artifactId>
     <name>Alfresco Tutorials (Custom Data List) - Configure UI for data list</name>
-    <packaging>amp</packaging>
+    <packaging>jar</packaging>
     <description>Tutorial that demonstrates how to configure Share so custom data lists are visible</description>
 
     <parent>

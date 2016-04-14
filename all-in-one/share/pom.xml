@@ -83,49 +83,40 @@
             <artifactId>custom-content-model-share</artifactId>
             <version>${project.version}</version>
         </dependency>
-
-        <!-- AMPs with Share Extension Point samples -->
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>remove-page-content-share</artifactId>
-            <version>${project.version}</version>
-            <type>amp</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>customize-webscript-i18n-props-share</artifactId>
-            <version>${project.version}</version>
-            <type>amp</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>customize-webscript-controller-share</artifactId>
-            <version>${project.version}</version>
-            <type>amp</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>customize-webscript-template-share</artifactId>
-            <version>${project.version}</version>
-            <type>amp</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>custom-workflow-share</artifactId>
-            <version>${project.version}</version>
-            <type>amp</type>
-        </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>custom-data-list-share</artifactId>
             <version>${project.version}</version>
-            <type>amp</type>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>custom-form-processor-share</artifactId>
             <version>${project.version}</version>
-            <type>amp</type>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>custom-workflow-share</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>customize-webscript-controller-share</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>customize-webscript-i18n-props-share</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>customize-webscript-template-share</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>remove-page-content-share</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
     </dependencies>
@@ -180,28 +171,8 @@
                             <excludes/>
                         </overlay>
 
-                        <!-- AMPs with Share Extension Point samples -->
-                        <overlay>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>remove-page-content-share</artifactId>
-                            <type>amp</type>
-                        </overlay>
-                        <overlay>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>customize-webscript-i18n-props-share</artifactId>
-                            <type>amp</type>
-                        </overlay>
-                        <overlay>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>customize-webscript-controller-share</artifactId>
-                            <type>amp</type>
-                        </overlay>
-                        <overlay>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>customize-webscript-template-share</artifactId>
-                            <type>amp</type>
-                        </overlay>
-                        <!-- JARs are overlayed automatically, only need to add them here if order is important
+                        <!-- JARs in the dependency section above are overlayed automatically,
+                             only need to add them here if order is important.
                         <overlay>
                             <groupId>${project.groupId}</groupId>
                             <artifactId>add-action-doclib-share</artifactId>
@@ -247,22 +218,35 @@
                             <groupId>${project.groupId}</groupId>
                             <artifactId>custom-content-model-share</artifactId>
                         </overlay>
-                        -->
-                        <overlay>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>custom-workflow-share</artifactId>
-                            <type>amp</type>
-                        </overlay>
                         <overlay>
                             <groupId>${project.groupId}</groupId>
                             <artifactId>custom-data-list-share</artifactId>
-                            <type>amp</type>
                         </overlay>
                         <overlay>
                             <groupId>${project.groupId}</groupId>
                             <artifactId>custom-form-processor-share</artifactId>
-                            <type>amp</type>
                         </overlay>
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>custom-workflow-share</artifactId>
+                        </overlay>
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>customize-webscript-controller-share</artifactId>
+                        </overlay>
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>customize-webscript-i18n-props-share</artifactId>
+                        </overlay>
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>customize-webscript-template-share</artifactId>
+                        </overlay>
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>remove-page-content-share</artifactId>
+                        </overlay>
+                        -->
                     </overlays>
                 </configuration>
             </plugin>

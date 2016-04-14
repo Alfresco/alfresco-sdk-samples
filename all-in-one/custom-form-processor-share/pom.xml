@@ -5,7 +5,7 @@
 
     <artifactId>custom-form-processor-share</artifactId>
     <name>Alfresco Tutorials (Form Processor) - Configure UI for form processor invocation</name>
-    <packaging>amp</packaging>
+    <packaging>jar</packaging>
     <description>Tutorial that demonstrates how to configure the Share UI with a DocLib action to invoke a custom form processor</description>
 
     <parent>

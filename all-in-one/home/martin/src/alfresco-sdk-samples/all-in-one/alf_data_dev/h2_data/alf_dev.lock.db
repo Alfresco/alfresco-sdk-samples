@@ -1,0 +1,6 @@
+#FileLock
+#Thu Apr 14 10:48:30 BST 2016
+hostName=gravitonian
+id=154142c066c2205d113a19515f0f25e52fe01741ac9
+method=file
+server=127.0.1.1\:36610
