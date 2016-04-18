@@ -47,6 +47,7 @@ class RepositoryBrowseScriptsFolderPage extends AbstractRepositoryBrowsePage {
                     </td>
 
         */
-        checkAlfrescoDocsJsFileRow(wait:true) { $("tbody.yui-dt-data tr", 0) }
+        checkAlfrescoDocsJsFileRow(wait:true) { $("tbody.yui-dt-data tr td div label", text: startsWith("Check alfresco docs.js")) }
+
     }
 }

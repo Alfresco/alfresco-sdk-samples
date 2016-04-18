@@ -39,10 +39,10 @@ class ShareThemeITSpec extends GebReportingSpec {
 
     def "Test valid login"() {
         given: "I navigate to the login page"
-        to LoginPage
+        def currentPage = to LoginPage
 
         when: "I enter a valid Administrator username and password and click login"
-        login("admin", "admin")
+        currentPage.login("admin", "admin")
 
         then: "I'm redirected to the Admin User Dashboard page"
         at AdminHomePage
@@ -50,10 +50,10 @@ class ShareThemeITSpec extends GebReportingSpec {
 
     def "Test navigating to the Admin Tools page"() {
         given: "I'm at the Admin User Dashboard Page"
-        at AdminHomePage
+        def currentPage = at AdminHomePage
 
         when: "I click on the Admin Tools link in the top menu"
-        adminToolsLink.click()
+        currentPage.adminToolsLink.click()
 
         then: "I'm redirected to the Admin Tools page"
         at AdminToolsPage
@@ -61,11 +61,11 @@ class ShareThemeITSpec extends GebReportingSpec {
 
     def "Test selecting the Tutorial Theme from the Drop down"() {
         given: "I'm at the Admin Tools page"
-        at AdminToolsPage
+        def currentPage = at AdminToolsPage
 
         when: "I select the 'Tutorial Theme' in the 'Theme' drop down menu and click Apply button"
-        themeDropDown = 'Tutorial Theme'
-        applyButton.click()
+        currentPage.themeDropDown = 'Tutorial Theme'
+        currentPage.applyButton.click()
 
         then: "I'm still on the Admin Tools Page"
         at AdminToolsPage
@@ -73,12 +73,12 @@ class ShareThemeITSpec extends GebReportingSpec {
 
     def "Test that the new Tutorial Theme is applied to both Aikau and YUI bits"() {
         given: "I navigate to the Admin User Dashboard Page"
-        to AdminHomePage
+        def currentPage = to AdminHomePage
 
         expect: "The color for menu texts to be yellow (Aikau) and dashlet links to be purple (YUI)"
-        headerDiv.css("color") == "rgba(255, 255, 0, 1)" // same as "#FFFF00" yellow
-        headerSitesMenuDiv.css("color") == "rgba(255, 255, 0, 1)" // same as "#FFFF00" yellow
-        myTasksDashletStartWorkflowLink.css("color") == "rgba(127, 0, 255, 1)" // same as "#7F00FF" purple
+        currentPage.headerDiv.css("color") == "rgba(255, 255, 0, 1)" // same as "#FFFF00" yellow
+        currentPage.headerSitesMenuDiv.css("color") == "rgba(255, 255, 0, 1)" // same as "#FFFF00" yellow
+        currentPage.myTasksDashletStartWorkflowLink.css("color") == "rgba(127, 0, 255, 1)" // same as "#7F00FF" purple
     }
 }
 

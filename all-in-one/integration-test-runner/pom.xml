@@ -71,14 +71,24 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Use FireFox WebDriver to run the tests.
+        <!-- Use Chrome WebDriver to run the tests.
             WebDriver is part of Selenium, but it does not require a Selenium Server to run your tests. -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-chrome-driver</artifactId>
+            <version>${selenium.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Use FireFox WebDriver to run the tests.
+            WebDriver is part of Selenium, but it does not require a Selenium Server to run your tests.
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-firefox-driver</artifactId>
             <version>${selenium.version}</version>
             <scope>test</scope>
         </dependency>
+        -->
 
         <!-- org.openqa.selenium.support.ui.Select is required when interacting with select elements.
              This class is part of the selenium-support jar, which is not part of the WebDriver core that is
@@ -234,32 +244,31 @@
             * get to all the properties files for each extension -->
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>repo-amp</artifactId>
-            <version>${project.version}</version>
-            <classifier>classes</classifier>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>add-action-repo</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>bootstrap-content-repo</artifactId>
+            <artifactId>add-admin-console-component-repo</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>custom-content-model-repo</artifactId>
+            <artifactId>add-patch-repo</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>public-api-access-repo</artifactId>
+            <artifactId>add-permission-repo</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>add-rating-repo</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
@@ -271,7 +280,25 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>schedule-job-repo</artifactId>
+            <artifactId>bootstrap-content-repo</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>custom-audit-app-repo</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>custom-authentication-repo</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>custom-content-model-repo</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
@@ -283,10 +310,68 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
+            <artifactId>custom-content-transformer-repo</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
             <artifactId>custom-data-list-repo</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>custom-form-processor-repo</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>custom-metadata-extracter-repo</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>custom-mimetype-map-repo</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>custom-subsystem-repo</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>custom-workflow-repo</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>public-api-access-repo</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>schedule-job-repo</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Extension AMPs -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>repo-amp</artifactId>
+            <version>${project.version}</version>
+            <classifier>classes</classifier>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>

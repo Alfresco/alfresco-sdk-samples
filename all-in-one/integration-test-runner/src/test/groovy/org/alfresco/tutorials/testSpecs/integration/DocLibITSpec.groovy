@@ -40,10 +40,10 @@ import spock.lang.Stepwise
 class DocLibITSpec extends GebReportingSpec {
     def "Test valid login"() {
         given: "I navigate to the login page"
-        to LoginPage
+        def currentPage = to LoginPage
 
         when: "I enter a valid Administrator username and password and click login"
-        login("admin", "admin")
+        currentPage.login("admin", "admin")
 
         then: "I'm redirected to the Admin User Dashboard page"
         at AdminHomePage
@@ -51,10 +51,10 @@ class DocLibITSpec extends GebReportingSpec {
 
     def "Test navigating to the Repository Browser page (Top Level)"() {
         given: "I'm at the Admin User Dashboard Page"
-        at AdminHomePage
+        def currentPage = at AdminHomePage
 
         when: "I click on the Repository link in the top menu"
-        repositoryLink.click()
+        currentPage.repositoryLink.click()
 
         then: "I'm redirected to the Repository Browser page (Top Level)"
         at RepositoryBrowseCompanyHomeFolderPage
@@ -83,10 +83,10 @@ class DocLibITSpec extends GebReportingSpec {
 
     def "Test navigating to the Data Dictionary folder on the Repository Browser page (Top Level)"() {
         given: "I'm at the Repository Browser Page /Company Home folder level"
-        at RepositoryBrowseCompanyHomeFolderPage
+        def currentPage = at RepositoryBrowseCompanyHomeFolderPage
 
         when: "I click on the Data Dictionary folder link"
-        dataDictionaryFolderLink.click()
+        currentPage.dataDictionaryFolderLink.click()
 
         then: "I'm redirected to the Repository Browser page for the Data Dictionary folder"
         at RepositoryBrowseDataDictionaryFolderPage
@@ -94,10 +94,10 @@ class DocLibITSpec extends GebReportingSpec {
 
     def "Test navigating to the Scripts folder on the Repository Browser page (Data Dictionary level)"() {
         given: "I'm at the Repository Browser Page /Company Home/Data Dictionary folder level"
-        at RepositoryBrowseDataDictionaryFolderPage
+        def currentPage = at RepositoryBrowseDataDictionaryFolderPage
 
         when: "I click on the Scripts folder link"
-        scriptsFolderLink.click()
+        currentPage.scriptsFolderLink.click()
 
         then: "I'm redirected to the Repository Browser page for the Data Dictionary/Scripts folder"
         at RepositoryBrowseScriptsFolderPage
@@ -105,46 +105,46 @@ class DocLibITSpec extends GebReportingSpec {
 
     def "Test that all the custom DocLib actions are available on a File"() {
         given: "I'm at the Repository Browser Page for the Data Dictionary/Scripts folder"
-        at RepositoryBrowseScriptsFolderPage
+        def currentPage = at RepositoryBrowseScriptsFolderPage
 
         when: "I hover over a file row to expand the popup-menu and then click More..."
         interact { // An Actions instance is implicitly created, built into an Action
-            moveToElement checkAlfrescoDocsJsFileRow
+            moveToElement currentPage.checkAlfrescoDocsJsFileRow
             perform()
-            showMorePopupMenuItem.click()
+            currentPage.showMorePopupMenuItem.click()
         }
 
         then: "all the DocLib actions are visible"
-        goToGoogleActionPopupMenuItem.displayed
-        sendAsEmailActionPopupMenuItem.displayed
-        callWebScriptActionPopupMenuItem.displayed
-        showMessageActionPopupMenuItem.displayed
+        currentPage.goToGoogleActionPopupMenuItem.displayed
+        currentPage.sendAsEmailActionPopupMenuItem.displayed
+        currentPage.callWebScriptActionPopupMenuItem.displayed
+        currentPage.showMessageActionPopupMenuItem.displayed
     }
 
     def "Test that the Send-as-Email custom DocLib action shows a form"() {
         given: "I'm at the Repository Browser Page for the Data Dictionary/Scripts folder"
-        at RepositoryBrowseScriptsFolderPage
+        def currentPage = at RepositoryBrowseScriptsFolderPage
 
         when: "I hover over a file row to expand the popup-menu and then click More..."
         interact { // An Actions instance is implicitly created, built into an Action
-            moveToElement checkAlfrescoDocsJsFileRow
+            moveToElement currentPage.checkAlfrescoDocsJsFileRow
             perform()
-            showMorePopupMenuItem.click()
-            sendAsEmailActionPopupMenuItem.click()
+            currentPage.showMorePopupMenuItem.click()
+            currentPage.sendAsEmailActionPopupMenuItem.click()
         }
 
         then: "I should be able to cancel out of the Send-as-Email DocLib action form after filling it in"
-        fillInAndCancelSendAsEmailForm("someone@alfresco.com", "Email with attachments", "This is the body of the email")
+        currentPage.fillInAndCancelSendAsEmailForm("someone@alfresco.com", "Email with attachments", "This is the body of the email")
     }
 
     def "Test that the custom Metadata template for Acme Document Type works"() {
         given: "I navigate to the Repository Browser Page top folder"
-        to RepositoryBrowseCompanyHomeFolderPage
+        def currentPage = to RepositoryBrowseCompanyHomeFolderPage
 
         expect: "to see a text file with property acme:documentId displayed in 2 ways"
-        acmeTextFileRow
-        acmeTextFileRowDocId_1
-        acmeTextFileRowDocId_2
+        currentPage.acmeTextFileRow
+        currentPage.acmeTextFileRowDocId_1
+        currentPage.acmeTextFileRowDocId_2
     }
 }
 

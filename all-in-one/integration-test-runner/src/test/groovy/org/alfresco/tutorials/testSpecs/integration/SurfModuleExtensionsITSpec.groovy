@@ -37,10 +37,10 @@ class SurfModuleExtensionsITSpec extends GebReportingSpec {
 
     def "Test valid login"() {
         given: "I navigate to the login page"
-        to LoginPage
+        def currentPage = to LoginPage
 
         when: "I enter a valid Administrator username and password and click login"
-        login("admin", "admin")
+        currentPage.login("admin", "admin")
 
         then: "I'm redirected to the Admin User Dashboard page"
         at AdminHomePage
@@ -48,50 +48,50 @@ class SurfModuleExtensionsITSpec extends GebReportingSpec {
 
     def "Test for new dashboard page content"() {
         given: "I'm at the Admin User Dashboard Page"
-        at AdminHomePage
+        def currentPage = at AdminHomePage
 
         expect: "to see the new content added by Surf Extension Module"
-        newContentDiv.text() == "Hello World!"
+        currentPage.newContentDiv.text() == "Hello World!"
     }
 
     def "Test for removed dashboard page content"() {
         given: "I'm at the Admin User Dashboard Page"
-        at AdminHomePage
+        def currentPage = at AdminHomePage
 
         expect: "not to see the My Sites Dashlet, which was removed by Surf Extension Module"
-        !mySitesDivExists
+        !currentPage.mySitesDivExists
     }
 
     def "Test for customized footer copyright label"() {
         given: "I'm at the Admin User Dashboard Page"
-        at AdminHomePage
+        def currentPage = at AdminHomePage
 
         expect: "there to be a customized Community copyright label in the footer"
-        copyrightText == "This is free software. Copyright Alfresco forever"
+        currentPage.copyrightText == "This is free software. Copyright Alfresco forever"
     }
 
     def "Test for customized Web View dashlet"() {
         given: "I'm at the Admin User Dashboard Page"
-        at AdminHomePage
+        def currentPage = at AdminHomePage
 
         expect: "there to be a customized Web View Dashlet displaying http://www.alfresco.com"
-        webViewTitle == "Alfresco!"
+        currentPage.webViewTitle == "Alfresco!"
     }
 
     def "Test for additional custom content in footer"() {
         given: "I'm at the Admin User Dashboard Page"
-        at AdminHomePage
+        def currentPage = at AdminHomePage
 
         expect: "there to be some additional text before the out-of-the-box footer"
-        additonalFooterText == "Additional Footer!"
+        currentPage.additonalFooterText == "Additional Footer!"
     }
 
     def "Test navigating to the Repository Browser page"() {
         given: "I'm at the Admin User Dashboard Page"
-        at AdminHomePage
+        def currentPage = at AdminHomePage
 
         when: "I click on the Repository link in the top menu"
-        repositoryLink.click()
+        currentPage.repositoryLink.click()
 
         then: "I'm redirected to the Repository Browser page (Top Level)"
         at RepositoryBrowseCompanyHomeFolderPage
@@ -99,25 +99,25 @@ class SurfModuleExtensionsITSpec extends GebReportingSpec {
 
     def "Test creating a new text document with acme:document type set"() {
         given: "I'm at the Repository Browser page"
-        at RepositoryBrowseCompanyHomeFolderPage
+        def currentPage = at RepositoryBrowseCompanyHomeFolderPage
 
         when: "I click on the 'Create an Acme Text Document' link in the 'Create...' drop down menu"
-        createMenuButton.click()
-        createAcmeDocumentLink.click()
+        currentPage.createMenuButton.click()
+        currentPage.createAcmeDocumentLink.click()
 
         then: "I'm redirected to the Create Content Page, which has the custom property"
-        at CreateAcmeDocumentPage
-        createForm.prop_acme_documentId != null
+        def currentPage2 = at CreateAcmeDocumentPage
+        currentPage2.createForm.prop_acme_documentId != null
     }
 
     // The Green Theme has been customized via LESS variable overrides
     def "Test selecting the Green Theme from the Drop down"() {
         given: "I navigate to the Admin Tools page"
-        to AdminToolsPage
+        def currentPage = to AdminToolsPage
 
         when: "I select the 'Green Theme' in the 'Theme' drop down menu and click Apply button"
-        themeDropDown = 'Green Theme'
-        applyButton.click()
+        currentPage.themeDropDown = 'Green Theme'
+        currentPage.applyButton.click()
 
         then: "I'm still on the Admin Tools Page"
         at AdminToolsPage
@@ -125,10 +125,10 @@ class SurfModuleExtensionsITSpec extends GebReportingSpec {
 
     def "Test that header/menu has custom background color"() {
         given: "I navigate to the Admin User Dashboard Page"
-        to AdminHomePage
+        def currentPage = to AdminHomePage
 
         expect: "The background color for heading/menu to be custom green"
-        headerDiv.css("background-color") == "rgba(121, 146, 18, 1)" // same as "#799212"
+        currentPage.headerDiv.css("background-color") == "rgba(121, 146, 18, 1)" // same as "#799212"
     }
 }
 

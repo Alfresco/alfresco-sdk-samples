@@ -62,13 +62,13 @@ public class DemoComponentTestSpec extends Specification {
         "Company Home".equals(companyHomeName)
     }
 
-    def "Test getting Company Home sub-folders"() {
+    def "Test getting Company Home sub-nodes"() {
         given: "I get the Company Home node reference via the Demo Component"
         def companyHome = demoComponent.getCompanyHome();
 
-        // There's 7 folders under Company home by default but a bootstrap repo AMP adds a fie
-        expect: "There to be 8 nodes under Company Home"
+        // There's 7 folders under Company home by default but a bootstrap repo AMP adds a file and a patch adds a folder
+        expect: "There to be 9 nodes under Company Home"
         def childNodeCount = demoComponent.childNodesCount(companyHome);
-        childNodeCount == 8
+        childNodeCount == 9
     }
 }

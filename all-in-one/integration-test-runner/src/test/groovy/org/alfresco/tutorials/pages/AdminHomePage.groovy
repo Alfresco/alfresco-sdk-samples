@@ -24,7 +24,7 @@ import geb.Page
  *
  * @author marting.bergljung@alfresco.com
  */
-class AdminHomePage extends Page {
+class   AdminHomePage extends Page {
     // The relative URL of the page;
     // used by the to() method to determine which URL to send the HTTP request to.
     static url = "page/user/admin/dashboard"
@@ -63,7 +63,7 @@ class AdminHomePage extends Page {
 
              Wait for the header to appear...
              */
-        dashboardName(wait: true) { $("h1#HEADER_TITLE a").text() }
+        dashboardName(wait: true) { $("h1#HEADER_TITLE span").text() }
 
         /*
         <div id="alf-ft">
