@@ -12,7 +12,7 @@
     <parent>
         <groupId>org.alfresco.maven</groupId>
         <artifactId>alfresco-sdk-parent</artifactId>
-        <version>2.0.0</version>
+        <version>2.2.0</version>
     </parent>
 
     <!-- 
@@ -28,7 +28,7 @@
         <!-- <alfresco.groupId>org.alfresco</alfresco.groupId> -->
         <!-- Defines the Alfresco version to work against.
              Community versions are typically identified by major.minor.character (4.2.a) while Enterprise versions are identified by major.minor.digit (4.2.0)  -->
-        <alfresco.version>5.0.d</alfresco.version>
+        <alfresco.version>5.1.e</alfresco.version>
         <app.log.root.level>WARN</app.log.root.level>
         <alfresco.data.location>alf_data_dev</alfresco.data.location>
         <!-- This controls which properties will be picked in src/test/properties for embedded run -->

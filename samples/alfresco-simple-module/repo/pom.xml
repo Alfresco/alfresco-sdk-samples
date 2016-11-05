@@ -12,7 +12,7 @@
     <parent>
         <groupId>org.alfresco.maven</groupId>
         <artifactId>alfresco-sdk-parent</artifactId>
-        <version>2.1.0</version>
+        <version>2.2.0</version>
     </parent>
 
     <!-- 
@@ -21,6 +21,9 @@
         For more available properties see the alfresco-sdk-parent POM.
        -->
     <properties>
+        <!-- The SDK 2.2.x is supported only for Alfresco 5.1.x Community and above or  Alfresco Enterprise 5.1 and above -->
+        <alfresco.version>5.1.e</alfresco.version><!-- 5.2.b-EA -->
+
         <!-- The following are default values for data location and Alfresco Community version.
              Uncomment if you need to change (Note. current default version for Enterprise edition is 5.0.1)
           <alfresco.version>5.0.d</alfresco.version>
@@ -36,28 +39,28 @@
         -->
     </properties>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.alfresco.maven.plugin</groupId>
-				<artifactId>alfresco-maven-plugin</artifactId>
-				<extensions>true</extensions>
-				<configuration>
-					<skipAmpInstallation>true</skipAmpInstallation>
-				</configuration>
-				<executions>
-					<execution>
-						<id>resolve-snapshot-version</id>
-						<phase>initialize</phase>
-						<goals>
-							<goal>set-version</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.alfresco.maven.plugin</groupId>
+                <artifactId>alfresco-maven-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <skipAmpInstallation>true</skipAmpInstallation>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>resolve-snapshot-version</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>set-version</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
 
-	</build>
+    </build>
 
     <!-- Here we realize the connection with the Alfresco selected platform 
         (e.g.version and edition) -->
@@ -86,13 +89,29 @@
             <groupId>${alfresco.groupId}</groupId>
             <artifactId>alfresco-repository</artifactId>
         </dependency>
+
+        <!-- Bring in the H2 Database scripts -->
+        <dependency>
+            <groupId>${alfresco.groupId}</groupId>
+            <artifactId>alfresco-repository</artifactId>
+            <version>${alfresco.version}</version>
+            <classifier>h2scripts</classifier>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
     </dependencies>
     
     <distributionManagement>
-    	 <snapshotRepository>
-        	<id>alfresco-internal</id>
+         <snapshotRepository>
+            <id>alfresco-internal</id>
             <url>https://artifacts.alfresco.com/nexus/content/repositories/internal-snapshots/</url>
-		  </snapshotRepository>
+          </snapshotRepository>
     </distributionManagement>
 
     <profiles>
@@ -112,7 +131,7 @@
             </dependencies>
         </profile>
 
-		<!-- NOTE: Following profiles are temporary override of the SDK behavior. All these profiles will be removed when this approach is fully tested -->
+        <!-- NOTE: Following profiles are temporary override of the SDK behavior. All these profiles will be removed when this approach is fully tested -->
 
         <!--
             If the 'amp-to-war' profile is enabled then make sure to bring in the alfresco-rad module,
@@ -125,17 +144,17 @@
             <id>run</id>
             <dependencies>
                 <dependency>
-					<groupId>com.h2database</groupId>
-					<artifactId>h2</artifactId>
-					<version>${h2.version}</version>
-				</dependency>
-			</dependencies>
-			<properties>
-				<skipTests>true</skipTests>
-			</properties>
+                    <groupId>com.h2database</groupId>
+                    <artifactId>h2</artifactId>
+                    <version>${h2.version}</version>
+                </dependency>
+            </dependencies>
+            <properties>
+                <skipTests>true</skipTests>
+            </properties>
             <build>
-            	<plugins>
-            	 	<!-- Fetch and unpack Alfresco Repository WAR (alfresco.war) -->
+                <plugins>
+                     <!-- Fetch and unpack Alfresco Repository WAR (alfresco.war) -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-dependency-plugin</artifactId>
@@ -160,15 +179,15 @@
                             </execution>
                         </executions>
                     </plugin>
-            		<plugin>
-            			<groupId>org.alfresco.maven.plugin</groupId>
-            			<artifactId>alfresco-maven-plugin</artifactId>
-            			<!-- Added since now it's a JAR -->
-            			<configuration>
-            				<skipAmpInstallation>true</skipAmpInstallation>
-            			</configuration>
-            		</plugin>
-            		<plugin>
+                    <plugin>
+                        <groupId>org.alfresco.maven.plugin</groupId>
+                        <artifactId>alfresco-maven-plugin</artifactId>
+                        <!-- Added since now it's a JAR -->
+                        <configuration>
+                            <skipAmpInstallation>true</skipAmpInstallation>
+                        </configuration>
+                    </plugin>
+                    <plugin>
                         <groupId>org.apache.tomcat.maven</groupId>
                         <artifactId>tomcat7-maven-plugin</artifactId>
                         <version>2.2</version>
@@ -191,14 +210,14 @@
                             </execution>
                         </executions>
                         <dependencies>
-							<dependency>
-								<groupId>org.alfresco.maven</groupId>
-								<artifactId>alfresco-rad</artifactId>
-								<version>2.1.0</version>
-							</dependency>
+                            <dependency>
+                                <groupId>org.alfresco.maven</groupId>
+                                <artifactId>alfresco-rad</artifactId>
+                                <version>${maven.alfresco.version}</version>
+                            </dependency>
                         </dependencies>
                     </plugin>
-            	</plugins>
+                </plugins>
             </build>
         </profile>
     </profiles>
